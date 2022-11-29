@@ -6,13 +6,13 @@ const Navbar = () => {
                 <img src="/images/logo.png" alt="" className='w-8 mr-2' />
                 <span className='font-medium text-[#1E1E1E] text-xl'>WaffleHacks</span>
             </div>
-            <div className='text-[#2258A1] font-bold flex items-center flex-grow justify-between pl-12' style={{maxWidth: '35rem'}}>
-                <span>About</span>
-                <span>Tracks</span>
-                <span>Calendar</span>
-                <span>FAQs</span>
-                <span>Sponsors</span>
-                <button className='rounded-md bg-white py-1 px-2 shadow-md shadow-[#2A8CC3]'>Apply Now!</button>
+            <div className='text-[#2258A1] text-lg font-base flex items-center flex-grow justify-between pl-12' style={{maxWidth: '40rem'}}>
+                <a href='#about'>About</a>
+                <a href='#tracks'>Tracks</a>
+                <a href='#calendar'>Calendar</a>
+                <a href='#faqs'>FAQs</a>
+                <a href='#sponsors'>Sponsors</a>
+                <button className='rounded-md text-lg bg-white py-1 px-2 shadow-md shadow-[#2A8CC3]'>Apply Now!</button>
             </div>
         </div>
     )
