@@ -1,4 +1,5 @@
 import { useState } from 'react';
+
 import { Button } from './atoms';
 import ModalSide from './ModalSide';
 import NavbarOptions from './NavbarOptions';
@@ -22,9 +23,9 @@ const Navbar = () => {
         <NavbarOptions />
         <Button disabled>Coming Soon...</Button>
       </div>
-      <div className="flex items-center cursor-pointer md:hidden" onClick={() => setModalOpen(true)}>
+      <button className="flex items-center cursor-pointer md:hidden" onClick={() => setModalOpen(true)}>
         <img src="/images/waffleMenu.svg" alt="menu" className="w-6 mr-2" />
-      </div>
+      </button>
       <ModalSide open={modalOpen} setOpen={setModalOpen}>
         <NavbarOptions />
       </ModalSide>

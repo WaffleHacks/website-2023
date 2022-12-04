@@ -1,5 +1,5 @@
-import { ReactNode, useRef } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
+import { ReactNode, useRef } from 'react';
 import { BiX } from 'react-icons/bi';
 
 import ClickableIcon from './ClickableIcon';
@@ -25,6 +25,8 @@ const ModalSide = ({ children, open, setOpen }: ModalSideProps) => {
           animate="enter"
           initial="leave"
           exit="leave"
+          role="button"
+          tabIndex={0}
           onClick={(e) => {
             if (modalRef.current?.contains(e.target as HTMLElement)) {
               return;
