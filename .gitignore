@@ -92,6 +92,8 @@ fabric.properties
 /node_modules
 /.pnp
 .pnp.js
+/package-lock.json
+/yarn.lock
 
 # Testing
 /coverage

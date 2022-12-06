@@ -6,7 +6,8 @@ import BoardingPass from './BoardingPass';
 
 const LandingFrame = () => {
   return (
-    <div className="bg-[#C0ECFF] min-h-screen flex flex-col-reverse md:flex-row pt-12">
+    <div className="bg-[#C0ECFF] min-h-screen flex flex-col-reverse justify-end md:justify-start md:flex-row pt-12">
+      {/* boarding pass */}
       <div className="md:flex-grow flex flex-col pt-8 items-start pl-8 pr-8 md:pr-0">
         <span className="text-[6vw] font-bold text-[#2258A1]" style={{ textShadow: '-0.3vw 0.3vw 0px #67A1F0' }}>
           WaffleHacks 2023
@@ -16,7 +17,8 @@ const LandingFrame = () => {
           Your Ticket - Coming Soon
         </Button>
       </div>
-      <div className="flex-grow md:flex-grow-0 md:w-[37%] flex flex-col items-center md:pt-[10vw] relative px-8 md:px-0">
+      {/* travel to waffle paradise */}
+      <div className="md:flex-grow md:flex-grow-0 md:w-[37%] flex flex-col items-center md:pt-[10vw] relative px-8 md:px-0">
         <img src="/images/islands.png" alt="islands" className="mt-8 md:mt-0 md:w-5/6" style={{ aspectRatio: 1 }} />
         <div
           className="absolute top-4 left-4 md:left-[-3vw] md:top-[5vw] md:rotate-[-10.35deg] px-12 py-4 rounded-lg text-center text-[#2258A1] font-bold"

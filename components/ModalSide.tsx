@@ -36,7 +36,7 @@ const ModalSide = ({ children, open, setOpen }: ModalSideProps) => {
           }}
         >
           <motion.div
-            className="w-64 p-4 fixed right-0 top-0 bg-white h-screen text-left"
+            className="w-48 p-4 fixed right-0 top-0 bg-white h-screen text-left"
             ref={modalRef}
             variants={{
               enter: { opacity: 1, x: 0 },
