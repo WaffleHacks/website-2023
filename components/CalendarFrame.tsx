@@ -1,7 +1,17 @@
 import { useState } from 'react';
 
 const CalendarFrame = () => {
-  const [sections, setSections] = useState([0, 1, 2, 3, 4, 5, 6]);
+  const [sections, setSections] = useState([
+    { time: '5:30', desc: 'this is a description' },
+    { time: '7:00', desc: 'this is a description' },
+    { time: '8:00', desc: 'this is a description' },
+    { time: '9:00', desc: 'this is a description' },
+    { time: '10:00', desc: 'this is a description' },
+    { time: '11:00', desc: 'this is a description' },
+    { time: '11:30', desc: 'this is a description' },
+    { time: '11:30', desc: 'this is a description' },
+    { time: '11:30', desc: 'this is a description' },
+  ]);
   return (
     <div id="calendar" className="bg-white p-8 md:text-left">
       <p>Find all our events!</p>
@@ -10,7 +20,7 @@ const CalendarFrame = () => {
       {/* calendar */}
       <div
         id="calendar-cal"
-        className="bg-center bg-no-repeat bg-cover w-full border-black border-2"
+        className="bg-center bg-no-repeat bg-cover w-full border-black border-2 mt-4"
         style={{ backgroundImage: 'url("/images/waffleWonderland.png")' }}
       >
         {/* top section with day */}
@@ -23,15 +33,13 @@ const CalendarFrame = () => {
         </div>
 
         {/* bottom section with dates */}
-        <div className="grid grid-cols-7 bg-white/75 border-black border-t-2" style={{ backdropFilter: 'blur(3px)' }}>
+        <div className="grid md:grid-cols-7 bg-neutral-100/75 border-black" style={{ backdropFilter: 'blur(3px)' }}>
           {sections.map((val, ind) => (
             <div key={ind} className="calendar-date h-36 w-full p-4 flex flex-col">
               {/* time */}
-              <span className="mb-4">
-                {val}, {ind}
-              </span>
+              <span className="mb-4 text-xl">{val.time}</span>
               {/* Description */}
-              <span>This is a description of some kind, enjoy</span>
+              <span>{val.desc}</span>
             </div>
           ))}
         </div>

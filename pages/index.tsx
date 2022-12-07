@@ -2,6 +2,7 @@ import Head from 'next/head';
 
 import AboutFrame from '../components/AboutFrame';
 import CalendarFrame from '../components/CalendarFrame';
+import FaqFrame from '../components/FaqFrame';
 import LandingFrame from '../components/LandingFrame';
 import Navbar from '../components/Navbar';
 import TracksFrame from '../components/TracksFrame';
@@ -27,6 +28,7 @@ export default function Home() {
         <AboutFrame />
         <TracksFrame />
         <CalendarFrame />
+        <FaqFrame />
       </div>
     </>
   );
