@@ -4,7 +4,6 @@ import AboutFrame from '../components/AboutFrame';
 import LandingFrame from '../components/LandingFrame';
 import Navbar from '../components/Navbar';
 
-
 export default function Home() {
   return (
     <>
@@ -24,7 +23,6 @@ export default function Home() {
         <Navbar />
         <LandingFrame />
         <AboutFrame />
-
       </div>
     </>
   );
