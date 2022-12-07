@@ -1,8 +1,9 @@
 import Head from 'next/head';
 
+import AboutFrame from '../components/AboutFrame';
 import LandingFrame from '../components/LandingFrame';
 import Navbar from '../components/Navbar';
-import AboutFrame from '../components/AboutFrame';
+
 
 export default function Home() {
   return (
