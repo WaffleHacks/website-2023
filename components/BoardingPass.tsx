@@ -1,3 +1,5 @@
+import Image from '@/components/Image';
+
 const BoardingPass = () => {
   return (
     <>
@@ -138,8 +140,9 @@ const BoardingPass = () => {
           </tspan>
         </text>
       </svg>
-      <img
+      <Image
         src="/images/mobilePass.svg"
+        mimeType="image/svg+xml"
         alt="boarding pass"
         className="w-full sm:hidden"
         style={{ filter: 'drop-shadow(0px 4px 4px #84A6B5)' }}

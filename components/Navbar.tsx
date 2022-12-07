@@ -1,5 +1,7 @@
 import { useState } from 'react';
 
+import Image from '@/components/Image';
+
 import { Button } from './atoms';
 import ModalSide from './ModalSide';
 import NavbarOptions from './NavbarOptions';
@@ -13,7 +15,7 @@ const Navbar = () => {
       style={{ boxShadow: '0px 6px 5px rgba(40, 131, 183, 0.36)' }}
     >
       <div className="text-black flex items-center">
-        <img src="/images/logo.png" alt="" className="w-8 mr-2" />
+        <Image alt="wafflehacks logo" src="/images/logo.png" mimeType="image/png" className="w-8 mr-2" />
         <span className="font-medium text-[#1E1E1E] text-xl">WaffleHacks</span>
       </div>
       <div
@@ -24,7 +26,7 @@ const Navbar = () => {
         <Button disabled>Coming Soon...</Button>
       </div>
       <button className="flex items-center cursor-pointer md:hidden" onClick={() => setModalOpen(true)}>
-        <img src="/images/waffleMenu.svg" alt="menu" className="w-6 mr-2" />
+        <Image src="/images/waffleMenu.svg" mimeType="image/svg+xml" alt="menu" className="w-6 mr-2" />
       </button>
       <ModalSide open={modalOpen} setOpen={setModalOpen}>
         <NavbarOptions />
