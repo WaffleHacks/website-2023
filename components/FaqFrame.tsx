@@ -86,7 +86,7 @@ const FaqFrame = () => {
         <p>For all your questions, here are some answers!</p>
         <h1 className="text-4xl md:text-5xl">FAQs</h1>
 
-        <div className="grid grid-cols-2 gap-4 mt-4">
+        <div className="flex flex-col md:grid md:grid-cols-2 gap-4 mt-4">
           {faqs.map((faq, ind) => (
             <div key={'faq-' + ind} className="p-4 border-2 border-[#2258A1] rounded-lg">
               <span className="font-light">{faq[0]}</span>
