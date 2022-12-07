@@ -1,6 +1,5 @@
 import Head from 'next/head';
 
-import AboutFrame from '../components/AboutFrame';
 import LandingFrame from '../components/LandingFrame';
 import Navbar from '../components/Navbar';
 
@@ -22,7 +21,6 @@ export default function Home() {
       <div className="App">
         <Navbar />
         <LandingFrame />
-        <AboutFrame />
       </div>
     </>
   );
