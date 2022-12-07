@@ -15,7 +15,7 @@ const LandingFrame = () => {
         </Button>
       </div>
       {/* travel to waffle paradise */}
-      <div className="md:flex-grow md:flex-grow-0 md:w-[37%] flex flex-col items-center md:pt-[10vw] relative px-8 md:px-0">
+      <div className="md:flex-grow md:flex-grow-0 md:w-[37%] flex flex-col items-center md:pt-[10vw] relative px-8 md:px-0 pb-8 md:pb-0">
         <img src="/images/islands.png" alt="islands" className="mt-8 md:mt-0 md:w-5/6" style={{ aspectRatio: 1 }} />
         <div
           className="absolute top-4 left-4 md:left-[-3vw] md:top-[5vw] rotate-[-10.35deg] px-12 py-4 rounded-lg text-center text-[#2258A1] font-bold"
