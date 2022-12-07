@@ -1,6 +1,6 @@
 const AboutFrame = () => {
   return (
-    <div className="bg-white px-4 py-8 md:py-12">
+    <div id="about" className="bg-white px-4 py-8 md:py-12">
       <h1 className="text-2xl md:text-5xl font-normal md:font-light mb-3 md:mb-6">
         Dream. Learn. Create. Have Fun! <br className="hidden md:inline-block" /> For WH2023, let&apos;s travel to
         Waffle Paradise!

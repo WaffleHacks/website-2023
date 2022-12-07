@@ -1,6 +1,7 @@
 import Head from 'next/head';
 
 import AboutFrame from '../components/AboutFrame';
+import CalendarFrame from '../components/CalendarFrame';
 import LandingFrame from '../components/LandingFrame';
 import Navbar from '../components/Navbar';
 import TracksFrame from '../components/TracksFrame';
@@ -25,6 +26,7 @@ export default function Home() {
         <LandingFrame />
         <AboutFrame />
         <TracksFrame />
+        <CalendarFrame />
       </div>
     </>
   );
