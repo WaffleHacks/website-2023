@@ -1,11 +1,13 @@
 const BoardingPass = () => {
   return (
-    <svg
+    <>
+      <svg
       viewBox="0 0 837 379"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
       xmlnsXlink="http://www.w3.org/1999/xlink"
       style={{ filter: 'drop-shadow(0px 4px 4px #84A6B5)' }}
+      className="hidden sm:block"
     >
       <rect width="837" height="379" rx="20" fill="white" />
 
@@ -135,7 +137,10 @@ const BoardingPass = () => {
           Air
         </tspan>
       </text>
-    </svg>
+      </svg>
+      <img src="/images/mobilePass.svg" alt="boarding pass" className="w-full sm:hidden" style={{ filter: 'drop-shadow(0px 4px 4px #84A6B5)' }} />
+    </>
+    
   );
 };
 
