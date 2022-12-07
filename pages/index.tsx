@@ -1,11 +1,10 @@
-import Head from 'next/head';
-
-import LandingFrame from '../components/LandingFrame';
-import Navbar from '../components/Navbar';
+import LandingFrame from '@/components/LandingFrame';
+import Navbar from '@/components/Navbar';
+import styles from '@/styles/Index.module.css';
 
 export default function Home() {
   return (
-    <div className="App">
+    <div className={styles.container}>
       <Navbar />
       <LandingFrame />
     </div>
