@@ -3,7 +3,7 @@ import BoardingPass from './BoardingPass';
 
 const LandingFrame = () => {
   return (
-    <div className="bg-[#C0ECFF] min-h-screen flex flex-col justify-start md:justify-start md:flex-row pt-12">
+    <div className="bg-[#C0ECFF] md:pb-12 flex flex-col justify-start md:justify-start md:flex-row pt-12">
       {/* boarding pass */}
       <div className="md:flex-grow flex flex-col pt-8 items-start pl-2 md:pl-8 pr-2 md:pr-0">
         <span
