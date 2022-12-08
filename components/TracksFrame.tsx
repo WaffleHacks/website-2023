@@ -36,7 +36,7 @@ const TracksFrame = () => {
             <img src="/images/tree.svg" alt="tree" className="tree" />
             <img src="/images/tree.svg" alt="tree" className="tree" />
             <img src="/images/tree.svg" alt="tree" className="tree" />
-            <svg ref={lineRef} width="100%" height="100%" viewBox="0 0 100 100" style={{ position: 'absolute' }}>
+            <svg ref={lineRef} width="100%" height="100%" viewBox="0 0 100 100" className="absolute">
               <path
                 d={pathData}
                 fill="none"
