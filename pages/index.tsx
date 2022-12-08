@@ -2,9 +2,11 @@ import Head from 'next/head';
 
 import AboutFrame from '../components/AboutFrame';
 import CalendarFrame from '../components/CalendarFrame';
+import CrewFrame from '../components/CrewFrame';
 import FaqFrame from '../components/FaqFrame';
 import LandingFrame from '../components/LandingFrame';
 import Navbar from '../components/Navbar';
+import SponsorsFrame from '../components/SponsorsFrame';
 import TracksFrame from '../components/TracksFrame';
 
 export default function Home() {
@@ -29,6 +31,8 @@ export default function Home() {
         <TracksFrame />
         <CalendarFrame />
         <FaqFrame />
+        <CrewFrame />
+        <SponsorsFrame />
       </div>
     </>
   );

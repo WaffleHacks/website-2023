@@ -32,7 +32,7 @@ const TracksFrame = () => {
             <img src="/images/travelCard.svg" alt="travel track" />
           </div>
           {/* trees and path */}
-          <div className="w-1/2 hidden md:block bg-gray-200 relative">
+          <div className="w-1/2 hidden md:block relative">
             <img src="/images/tree.svg" alt="tree" className="tree" />
             <img src="/images/tree.svg" alt="tree" className="tree" />
             <img src="/images/tree.svg" alt="tree" className="tree" />
