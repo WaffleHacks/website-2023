@@ -1,14 +1,14 @@
-import { useState, useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from 'react';
 
 const TracksFrame = () => {
-  const [pathData, setPathData] = useState("M0,8 C30,10 70,0 100,8");
+  const [pathData, setPathData] = useState('M0,8 C30,10 70,0 100,8');
 
   useEffect(() => {
     // Generate a random path data string
     let points = 'M-35,50 C ';
     let x = -35;
     let y = 50;
-    
+
     for (let i = 0; i < 5; i++) {
       x = Math.max(Math.min(x + Math.random() * 40, 100), -35);
       y = Math.max(Math.min(y + (Math.random() - 0.5) * 40, 100), 0);
@@ -19,7 +19,7 @@ const TracksFrame = () => {
   }, []);
 
   const lineRef = useRef(null);
-  
+
   return (
     <div id="tracks" className="bg-white p-8 md:text-left flex justify-center">
       <div style={{ maxWidth: 'min(100vw, 80rem)' }}>
@@ -36,21 +36,15 @@ const TracksFrame = () => {
             <img src="/images/tree.svg" alt="tree" className="tree" />
             <img src="/images/tree.svg" alt="tree" className="tree" />
             <img src="/images/tree.svg" alt="tree" className="tree" />
-            <svg
-                ref={lineRef}
-                width="100%"
-                height="100%"
-                viewBox="0 0 100 100"
-                style={{ position: 'absolute' }}
-              >
-                <path
-                  d={pathData}
-                  fill="none"
-                  stroke="black"
-                  strokeWidth="1.5"
-                  stroke-dasharray="4,6"
-                  stroke-linecap="round"
-                />
+            <svg ref={lineRef} width="100%" height="100%" viewBox="0 0 100 100" style={{ position: 'absolute' }}>
+              <path
+                d={pathData}
+                fill="none"
+                stroke="black"
+                strokeWidth="1.5"
+                stroke-dasharray="4,6"
+                stroke-linecap="round"
+              />
             </svg>
           </div>
 
