@@ -38,26 +38,21 @@ body {
   border-bottom: 2px solid black;
 }
 
-.tree {
-  position: absolute;
-  width: 3rem;
-  height: auto;
+
+.track-desc {
+  opacity: 0;
+  bottom: -120%;
+  transition: opacity 0.5s ease, bottom 0.5s ease;
 }
 
-.tree:nth-child(1) {
-  top: 0;
-  left: 0;
+.track-box:hover .track-desc {
+  transition: opacity 0.3s ease, bottom 0.3s ease;
+  opacity: 1;
+  bottom: 1.25%;
 }
 
-.tree:nth-child(2) {
-  top: 0;
-  right: 0;
-}
-
-.tree:nth-child(3) {
-  bottom: 0;
-  left: 0;
-  transform: rotate(90deg);
+#footer a {
+  text-decoration: underline;
 }
 
 

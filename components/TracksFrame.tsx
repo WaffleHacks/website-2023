@@ -1,21 +1,31 @@
 import { useEffect, useRef, useState } from 'react';
 
 const TracksFrame = () => {
-  const [pathData, setPathData] = useState('M0,8 C30,10 70,0 100,8');
+  const [pathData, setPathData]: [string, Function] = useState('M0,8 C30,10 70,0 100,8');
+  const [pathNums, setPathNums]: [number[][], Function] = useState([]);
 
   useEffect(() => {
     // Generate a random path data string
-    let points = 'M-35,50 C ';
-    let x = -35;
-    let y = 50;
+    let points: string = 'M-36,50 C ';
+    let x: number = -36;
+    let y: number = 50;
+
+    let pointNums = [];
+    for (let i = 0; i < 20; i++) {
+      pointNums.push([Math.random() * 100, Math.random() * 100]);
+    }
 
     for (let i = 0; i < 5; i++) {
-      x = Math.max(Math.min(x + Math.random() * 40, 100), -35);
+      x = Math.max(Math.min(x + Math.random() * 40, 100 - 35), -35);
       y = Math.max(Math.min(y + (Math.random() - 0.5) * 40, 100), 0);
       points += `${x},${y} `;
+      // pointNums.push([100*(x + 36)/172, y]);
     }
+    console.log(pointNums);
     points += '50,100';
+    console.log(points);
     setPathData(points);
+    setPathNums(pointNums);
   }, []);
 
   const lineRef = useRef(null);
@@ -28,36 +38,85 @@ const TracksFrame = () => {
         {/* tracks */}
         <div className="flex flex-wrap pt-6 gap-y-6 mb-6">
           {/* travel image */}
-          <div className="w-full md:w-1/2 flex justify-center">
+          <div className="track-box w-full md:w-1/2 flex justify-center relative overflow-hidden">
             <img src="/images/travelCard.svg" alt="travel track" />
+
+            {/* description */}
+            <span
+              className="track-desc absolute w-[98.5%] bg-white flex flex-col justify-end items-center text-xl md:text-sm lg:text-lg p-4 md:py-2 lg:py-4"
+              style={{ maxHeight: '85%' }}
+            >
+              This track is all about finding how you can make travel better - in a car, plane, boat, or whatever else.
+              <br />
+              <br />
+              What do you think can be made better about travelling?
+              <br />
+              <br />
+              Prize: Model Train Set
+            </span>
           </div>
           {/* trees and path */}
           <div className="w-1/2 hidden md:block relative">
-            <img src="/images/tree.svg" alt="tree" className="tree" />
-            <img src="/images/tree.svg" alt="tree" className="tree" />
-            <img src="/images/tree.svg" alt="tree" className="tree" />
-            <svg ref={lineRef} width="100%" height="100%" viewBox="0 0 100 100" className="absolute">
+            <svg ref={lineRef} viewBox="0 0 100 100" className="absolute w-full h-full">
               <path
                 d={pathData}
                 fill="none"
                 stroke="black"
                 strokeWidth="1.5"
-                stroke-dasharray="4,6"
-                stroke-linecap="round"
+                strokeDasharray="4,6"
+                strokeLinecap="round"
               />
             </svg>
+            {pathNums.map((point, ind) => (
+              <img
+                key={'tree-' + ind}
+                src="/images/tree.svg"
+                alt="tree"
+                className="absolute h-16"
+                style={{ left: point[0] + '%', top: `calc(${point[1]}% - 4rem)` }}
+              />
+            ))}
           </div>
 
           {/* plane and clouds */}
           <div className="w-1/2 hidden md:block bg-gray-200"></div>
           {/* accessability image */}
-          <div className="w-full md:w-1/2 flex justify-center">
+          <div className="track-box w-full md:w-1/2 flex justify-center relative overflow-hidden">
             <img src="/images/accessabilityCard.svg" alt="accessability track" />
+
+            {/* description */}
+            <span
+              className="track-desc absolute w-[98.5%] bg-white flex flex-col justify-end items-center text-xl md:text-sm lg:text-lg p-4 md:py-2 lg:py-4"
+              style={{ maxHeight: '85%' }}
+            >
+              Description
+              <br />
+              <br />
+              Guiding question
+              <br />
+              <br />
+              Prize: something
+            </span>
           </div>
 
           {/* food insecurity image */}
-          <div className="w-full md:w-1/2 flex justify-center">
+          <div className="track-box w-full md:w-1/2 flex justify-center relative overflow-hidden">
             <img src="/images/foodInsCard.svg" alt="food insecurity track" />
+
+            {/* description */}
+            <span
+              className="track-desc absolute w-[98.5%] bg-white flex flex-col justify-end items-center text-xl md:text-sm lg:text-lg p-4 md:py-2 lg:py-4"
+              style={{ maxHeight: '85%' }}
+            >
+              Come up with ways to make eating easier, whether that means finding healthy food, restaurants in the area,
+              or setting up ways to connect people with food.
+              <br />
+              <br />
+              How can you connect people with more / better food?
+              <br />
+              <br />
+              Prize: Oven Mitts
+            </span>
           </div>
           {/* boat and water */}
           <div className="w-1/2 hidden md:block bg-gray-200"></div>
@@ -65,8 +124,22 @@ const TracksFrame = () => {
           {/* rocket ship */}
           <div className="w-1/2 hidden md:block bg-gray-200"></div>
           {/* sustainability image */}
-          <div className="w-full md:w-1/2 flex justify-center">
+          <div className="track-box w-full md:w-1/2 flex justify-center relative overflow-hidden">
             <img src="/images/sustainCard.svg" alt="sustainability track" />
+
+            {/* description */}
+            <span
+              className="track-desc absolute w-[98.5%] bg-white flex flex-col justify-end items-center text-xl md:text-sm lg:text-lg p-4 md:py-2 lg:py-4"
+              style={{ maxHeight: '85%' }}
+            >
+              Description
+              <br />
+              <br />
+              Guiding question
+              <br />
+              <br />
+              Prize: something
+            </span>
           </div>
         </div>
         {/* other prizes */}
