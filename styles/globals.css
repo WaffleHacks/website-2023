@@ -55,6 +55,10 @@ body {
   text-decoration: underline;
 }
 
+.swiper-slide {
+  width: auto !important;
+}
+
 
 @media (max-width: 768px) { 
   .calendar-date {

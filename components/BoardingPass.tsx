@@ -1,4 +1,10 @@
 const BoardingPass = () => {
+  let now = Date.now();
+  // make a date for June 17, 2022
+  let endDate = Date.parse(new Date(2023, 6, 23).toDateString());
+  let timeLeft = endDate - now;
+  let daysLeft = Math.max(0, Math.ceil(timeLeft / (1000 * 60 * 60 * 24)));
+
   return (
     <>
       <svg
@@ -97,7 +103,7 @@ const BoardingPass = () => {
             Boarding in
           </tspan>
           <tspan x="585" y="130" fontSize={44} fontWeight="bold">
-            WH23
+            {daysLeft} Days
           </tspan>
         </text>
 

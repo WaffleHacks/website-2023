@@ -19,11 +19,8 @@ const TracksFrame = () => {
       x = Math.max(Math.min(x + Math.random() * 40, 100 - 35), -35);
       y = Math.max(Math.min(y + (Math.random() - 0.5) * 40, 100), 0);
       points += `${x},${y} `;
-      // pointNums.push([100*(x + 36)/172, y]);
     }
-    console.log(pointNums);
     points += '50,100';
-    console.log(points);
     setPathData(points);
     setPathNums(pointNums);
   }, []);
