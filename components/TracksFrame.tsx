@@ -13,6 +13,9 @@ const TracksFrame = () => {
     let pointNums = [];
     for (let i = 0; i < 20; i++) {
       pointNums.push([Math.random() * 100, Math.random() * 100]);
+      pointNums.sort((a, b) => {
+        return a[1] - b[1];
+      });
     }
 
     for (let i = 0; i < 5; i++) {
