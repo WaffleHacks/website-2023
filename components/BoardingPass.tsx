@@ -152,7 +152,7 @@ const BoardingPass = () => {
         className="w-full sm:hidden"
       >
         <rect width="367" height="319" rx="10" fill="white" />
-        <g clip-path="url(#clip0_499_622)">
+        <g clipPath="url(#clip0_499_622)">
           <g opacity="0.78">
             <path d="M260.082 227.755H210.135V231.302H260.082V227.755Z" fill="#CE7C35" />
             <path d="M260.082 288.059H210.135V291.606H260.082V288.059Z" fill="#CE7C35" />

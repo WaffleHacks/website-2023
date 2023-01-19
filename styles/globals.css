@@ -30,6 +30,7 @@ body {
 .calendar-date:nth-child(7n){
   border-right: none;
 }
+
 .calendar-date:nth-last-child(-n+7){
   border-bottom: none;
 }
@@ -38,6 +39,9 @@ body {
   border-bottom: 2px solid black;
 }
 
+.track-island {
+  animation: 8s ease-in-out infinite float;
+}
 
 .track-desc {
   opacity: 0;
@@ -45,10 +49,21 @@ body {
   transition: opacity 0.5s ease, bottom 0.5s ease;
 }
 
+.track-box:hover + .track-art .track-desc {
+  transition: opacity 0.3s ease, bottom 0.3s ease;
+  opacity: 1;
+  bottom: 1.25%;
+}
+
 .track-box:hover .track-desc {
   transition: opacity 0.3s ease, bottom 0.3s ease;
   opacity: 1;
   bottom: 1.25%;
+}
+
+.faq-tab li {
+  list-style: inside;
+  padding: 0 0 0 1.5rem;
 }
 
 #footer a {
@@ -59,8 +74,25 @@ body {
   width: auto !important;
 }
 
+@keyframes float {
+  0% {
+    transform: translatey(0px);
+  }
+  50% {
+    transform: translatey(-15px);
+  }
+  100% {
+    transform: translatey(0px);
+  }
+}
 
-@media (max-width: 768px) { 
+
+@media (max-width: 768px) {
+  .track-box:hover .track-desc {
+    transition: opacity 0.3s ease, bottom 0.3s ease;
+    opacity: 1;
+    bottom: 1.25%;
+  }
   .calendar-date {
     border: none;
     border-top: 2px solid black;

@@ -1,82 +1,45 @@
 import { useState } from 'react';
+import Faq from './Faq';
+
 const FaqFrame = () => {
   const [faqs, setFaqs] = useState([
     [
       'What is a hackathon?',
-      <span key="faq-1" className="faq-desc-text" style={{ color: 'rgb(255, 219, 184)' }}>
-        A hackathon is a 24-hour event where students come together to create and build something amazing. Hackathons
-        are a great way to learn new skills and gain experience in a fast-paced environment. We are a community of
-        students, hackers, and engineers who are passionate about building the future of technology.
-      </span>,
+      `A hackathon is a 24-hour event where students come together to create and build something amazing. Hackathons are a great way to learn new skills and gain experience in a fast-paced environment. We are a community of students, hackers, and engineers who are passionate about building the future of technology.`,
     ],
     [
       'Who can attend?',
-      <span key="faq-2" className="faq-desc-text" style={{ color: 'rgb(255, 219, 184)' }}>
-        We welcome all highschool and undergraduate students, regardless of gender, major, and school! Open to coders
-        and designers of all skill levels. Coding experience is not required.
-      </span>,
+      `We welcome all highschool and undergraduate students, regardless of gender, major, and school! Open to coders and designers of all skill levels. Coding experience is not required.`,
     ],
     [
       'How many people per team?',
-      <span key="faq-3" className="faq-desc-text" style={{ color: 'rgb(255, 219, 184)' }}>
-        A team should consist of a minimum of 1 person to a max of 4. There will only be 4 prizes distributed per team.
-        You are free to choose whoever is going to be on your team either prior or during the day of the event. You are
-        also free to work on your own.
-      </span>,
+      `A team should consist of a minimum of 1 person to a max of 4. There will only be 4 prizes distributed per team. You are free to choose whoever is going to be on your team either prior or during the day of the event. You are also free to work on your own.`
     ],
     [
       'When is the registration deadline?',
-      <span key="faq-4" className="faq-desc-text" style={{ color: 'rgb(255, 219, 184)' }}>
-        June 16th, by 11:59 PM (EST)
-      </span>,
+      `June 16th, by 11:59 PM (EST)`,
     ],
     [
       'Do I have to submit a project to join?',
-      <span key="faq-5" className="faq-desc-text" style={{ color: 'rgb(255, 219, 184)' }}>
-        Nope! You are free to attend any of our workshops and events if you would so choose to.
-      </span>,
+      `Nope! You are free to attend any of our workshops and events if you would so choose to.`,
     ],
     [
       'What are the prize categories?',
-      <span key="faq-6" className="faq-desc-text" style={{ color: 'rgb(255, 219, 184)' }}>
-        We have prizes for each of the four tracks, as well as two more: Best Hack for Cozy Theme UI/UX and Best
-        Diversity &amp; Inclusion Hack! Check the{' '}
-        <a href="https://wffl.link/devpost" style={{ color: 'rgb(255, 219, 184)' }}>
-          devpost
-        </a>{' '}
-        for more details!
-      </span>,
+      `We have prizes for each of the four tracks, as well as two more: Best Hack for Cozy Theme UI/UX and Best Diversity &amp; Inclusion Hack! Check the [devpost](https://wffl.link/devpost) for more details!`,
     ],
     [
       'Any guidance for beginners?',
-      <span key="faq-7" className="faq-desc-text" style={{ color: 'rgb(255, 219, 184)', fontSize: 'min(2vw, 1.6rem)' }}>
-        In addition to the technical workshops that we are hosting throughout WaffleHacks, there are many online
-        resources if you want to learn about programming. These resources include but are not limited to:
-        <br />
-        <ul>
-          <li>KhanAcademy</li>
-          <li>W3Schools</li>
-          <li>Codecademy</li>
-        </ul>
-      </span>,
+      `In addition to the technical workshops that we are hosting throughout WaffleHacks, there are many online resources if you want to learn about programming. These resources include but are not limited to:
+      
+* KhanAcademy
+* W3Schools
+* Codecademy
+`,
     ],
     [
       'I have more questions!',
-      <span key="faq-8" className="faq-desc-text" style={{ color: 'rgb(255, 219, 184)', fontSize: 'min(2vw, 1.6rem)' }}>
-        <ul>
-          <li>
-            If you have anything you want us to know prior to the event, please feel free to email us at{' '}
-            <a href="mailto:operations@wafflehacks.org" style={{ color: 'rgb(255, 219, 184)' }}>
-              operations@wafflehacks.org
-            </a>
-          </li>
-          <br />
-          <li>
-            If you have any questions or concerns during the event, you can always chat with us in person or in the
-            Discord channel, and we will do our best to help you!
-          </li>
-        </ul>
-      </span>,
+      `- If you have any questions or concerns, please feel free to email us at [operations@wafflehacks.org](mailto:operations@wafflehacks.org)
+- If you have any questions or concerns during the event, you can always chat with us in person or in the Discord channel, and we will do our best to help you!`,
     ],
   ]);
 
@@ -88,9 +51,7 @@ const FaqFrame = () => {
 
         <div className="flex flex-col md:grid md:grid-cols-2 gap-4 mt-4">
           {faqs.map((faq, ind) => (
-            <div key={'faq-' + ind} className="p-4 border-2 border-[#2258A1] rounded-lg">
-              <span className="font-light">{faq[0]}</span>
-            </div>
+            <Faq key={'faq-' + ind} faq={faq[0]} desc={faq[1]} />
           ))}
         </div>
       </div>
