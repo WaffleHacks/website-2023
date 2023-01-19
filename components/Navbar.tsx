@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 import { Button } from './atoms';
 import ModalSide from './ModalSide';
@@ -6,6 +6,24 @@ import NavbarOptions from './NavbarOptions';
 
 const Navbar = () => {
   const [modalOpen, setModalOpen] = useState(false);
+
+  const [scrollY, setScrollY] = useState(0);
+  const planeRef = useRef<HTMLImageElement>(null);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      var height = Math.max(document.body.scrollHeight, document.body.offsetHeight) - window.innerHeight;
+      if (planeRef.current) {
+        setScrollY((window.scrollY * (window.innerWidth - planeRef.current.clientWidth)) / height);
+      }
+    };
+    handleScroll();
+
+    window.addEventListener('scroll', handleScroll);
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
 
   return (
     <div
@@ -29,6 +47,14 @@ const Navbar = () => {
       <ModalSide open={modalOpen} setOpen={setModalOpen}>
         <NavbarOptions />
       </ModalSide>
+      <img
+        id="nav-plane"
+        src="/images/waffleairplane.png"
+        alt="airplane"
+        ref={planeRef}
+        className="hidden md:block h-12 absolute top-[1.9rem]"
+        style={{ left: scrollY + 'px' }}
+      />
     </div>
   );
 };

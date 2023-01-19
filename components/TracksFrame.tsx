@@ -37,7 +37,7 @@ const TracksFrame = () => {
         <h1 className="text-4xl md:text-5xl">Tracks &amp; Prizes</h1>
         {/* tracks */}
         <div className="flex relative flex-wrap justify-center pt-6 gap-y-6 mb-6">
-          <span className='absolute left-[5%] text-2xl font-bold'>Sustainability</span>
+          <span className="absolute left-[5%] text-2xl font-bold">Sustainability</span>
           {/* travel image */}
           <div className="track-box w-full md:w-[40%] flex justify-center relative overflow-hidden">
             <img className="track-island" src="/images/sustainabilityIsland.png" alt="travel track" />
@@ -82,9 +82,14 @@ const TracksFrame = () => {
               className="track-desc absolute w-[98.5%] bg-white/[90%] backdrop-blur-[3px] border-2 border-black border-dotted flex flex-col justify-end items-center text-xl md:text-sm lg:text-lg p-4 md:py-2 lg:py-4"
               style={{ maxHeight: '85%' }}
             >
-              Looking for a change of scenery? This category challenges you to design and develop innovative, user-friendly, and practical solutions for the travel industry. Maybe you'll develop a new booking platform that streamlines the process of finding and reserving flights and hotels. Or maybe you'll create an app that helps travelers plan and optimize their itineraries, taking into account things like budget, duration of trip, and must-see attractions. There's infinite possibilities! Whatever your idea may be, participants in this track have the opportunity to work on projects that have the potential to revolutionize the way we travel. Come prepared to let your creativity roam free!
+              Looking for a change of scenery? This category challenges you to design and develop innovative,
+              user-friendly, and practical solutions for the travel industry. Maybe you&apos;ll develop a new booking
+              platform that streamlines the process of finding and reserving flights and hotels. Or maybe you&apos;ll
+              create an app that helps travelers plan and optimize their itineraries, taking into account things like
+              budget, duration of trip, and must-see attractions. There&apos;s infinite possibilities! Whatever your
+              idea may be, participants in this track have the opportunity to work on projects that have the potential
+              to revolutionize the way we travel. Come prepared to let your creativity roam free!
             </span>
-            
           </div>
 
           {/* plane and clouds */}

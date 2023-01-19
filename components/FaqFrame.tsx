@@ -1,4 +1,5 @@
 import { useState } from 'react';
+
 import Faq from './Faq';
 
 const FaqFrame = () => {
@@ -13,12 +14,9 @@ const FaqFrame = () => {
     ],
     [
       'How many people per team?',
-      `A team should consist of a minimum of 1 person to a max of 4. There will only be 4 prizes distributed per team. You are free to choose whoever is going to be on your team either prior or during the day of the event. You are also free to work on your own.`
+      `A team should consist of a minimum of 1 person to a max of 4. There will only be 4 prizes distributed per team. You are free to choose whoever is going to be on your team either prior or during the day of the event. You are also free to work on your own.`,
     ],
-    [
-      'When is the registration deadline?',
-      `June 16th, by 11:59 PM (EST)`,
-    ],
+    ['When is the registration deadline?', `June 16th, by 11:59 PM (EST)`],
     [
       'Do I have to submit a project to join?',
       `Nope! You are free to attend any of our workshops and events if you would so choose to.`,
@@ -49,10 +47,13 @@ const FaqFrame = () => {
         <p>For all your questions, here are some answers!</p>
         <h1 className="text-4xl md:text-5xl">FAQs</h1>
 
-        <div className="flex flex-col md:grid md:grid-cols-2 gap-4 mt-4">
-          {faqs.map((faq, ind) => (
-            <Faq key={'faq-' + ind} faq={faq[0]} desc={faq[1]} />
-          ))}
+        <div className="flex flex-col md:flex-row gap-4 mt-4">
+          <div className="flex flex-col w-full md:w-1/2 gap-4">
+            {faqs.map((faq, ind) => ind < 4 && <Faq key={'faq-' + ind} faq={faq[0]} desc={faq[1]} />)}
+          </div>
+          <div className="flex flex-col w-full md:w-1/2 gap-4">
+            {faqs.map((faq, ind) => ind >= 4 && <Faq key={'faq-' + ind} faq={faq[0]} desc={faq[1]} />)}
+          </div>
         </div>
       </div>
     </div>
