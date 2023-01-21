@@ -1,5 +1,5 @@
-import { useEffect, useRef, useState } from 'react';
 import Image from 'next/image';
+import { useEffect, useRef, useState } from 'react';
 
 const TracksFrame = () => {
   const [pathData, setPathData]: [string, Function] = useState('M0,8 C30,10 70,0 100,8');

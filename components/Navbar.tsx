@@ -1,10 +1,9 @@
 import { useEffect, useRef, useState } from 'react';
+import Draggable from 'react-draggable';
 
 import { Button } from './atoms';
 import ModalSide from './ModalSide';
 import NavbarOptions from './NavbarOptions';
-
-import Draggable from 'react-draggable';
 
 const Navbar = () => {
   const [modalOpen, setModalOpen] = useState(false);
