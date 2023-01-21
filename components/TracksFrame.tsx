@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
+import Image from 'next/image';
 
 const TracksFrame = () => {
   const [pathData, setPathData]: [string, Function] = useState('M0,8 C30,10 70,0 100,8');
@@ -12,7 +13,7 @@ const TracksFrame = () => {
 
     let pointNums = [];
     for (let i = 0; i < 20; i++) {
-      pointNums.push([Math.random() * 85, Math.random() * 85 + 15]);
+      pointNums.push([Math.random() * 85, Math.random() * 80 + 20]);
       pointNums.sort((a, b) => {
         return a[1] - b[1];
       });
@@ -41,7 +42,6 @@ const TracksFrame = () => {
           {/* travel image */}
           <div className="track-box w-full md:w-[40%] flex justify-center relative overflow-hidden">
             <img className="track-island" src="/images/sustainabilityIsland.png" alt="travel track" />
-
             {/* description */}
             <span
               className="track-desc absolute w-[98.5%] bg-white/[80%] backdrop-blur-[3px] border-2 border-black border-dotted flex flex-col justify-end items-center text-xl md:text-sm lg:text-lg p-4 md:py-2 lg:py-4"

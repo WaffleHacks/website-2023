@@ -4,6 +4,8 @@ import { Button } from './atoms';
 import ModalSide from './ModalSide';
 import NavbarOptions from './NavbarOptions';
 
+import Draggable from 'react-draggable';
+
 const Navbar = () => {
   const [modalOpen, setModalOpen] = useState(false);
 
@@ -47,14 +49,17 @@ const Navbar = () => {
       <ModalSide open={modalOpen} setOpen={setModalOpen}>
         <NavbarOptions />
       </ModalSide>
-      <img
-        id="nav-plane"
-        src="/images/waffleairplane.png"
-        alt="airplane"
-        ref={planeRef}
-        className="hidden md:block h-12 absolute top-[1.9rem]"
-        style={{ left: scrollY + 'px' }}
-      />
+      <Draggable>
+        <img
+          id="nav-plane"
+          src="/images/waffleairplane.png"
+          alt="airplane"
+          ref={planeRef}
+          className="hidden md:block h-12 absolute top-[1.8rem]"
+          draggable={false}
+          style={{ left: scrollY + 'px' }}
+        />
+      </Draggable>
     </div>
   );
 };
