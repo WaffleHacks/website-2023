@@ -58,14 +58,13 @@ const TreeDisplay = () => {
 // cloud display
 const CloudDisplay = () => {
   const [clouds, setClouds]: [any, Function] = useState([{ x: 150, y: 50, speed: 0.1 }]);
-  const cloudPos = useRef([{ x: 150, y: 50 }]);
+  const cloudPos = useRef([{ x: 150, y: 50, speed: 0.1 }]);
   const [pathData, setPathData]: [string, Function] = useState('M0,8 C30,10 70,0 100,8');
   const lineRef = useRef(null);
   const [planeLoc, setPlaneLoc]: [any, Function] = useState({ x: 110, y: 37.5, angle: 0 });
   const planePointRef = useRef(140);
   const lastPos = useRef({ x: 110, y: 37.5, angle: 0 });
   const planeSpeed = 0.2;
-  const cloudSpeed = 0.1;
 
   function setPlane() {
     if (lineRef.current) {
@@ -196,6 +195,212 @@ const CloudDisplay = () => {
   );
 };
 
+const BoatDisplay = () => {
+  const [pathData, setPathData]: [string, Function] = useState('M0,8 C30,10 70,0 100,8');
+  const lineRef = useRef(null);
+  const [boatLoc, setBoatLoc]: [any, Function] = useState({ x: 110, y: 37.5, angle: 0 });
+  const boatPointRef = useRef(140);
+  const lastPos = useRef({ x: 110, y: 37.5, angle: 0 });
+  const boatSpeed = 0.2;
+  const pathDocs = [
+    // [ [x, +-x], [y, +-y], [ctrl1x, +-ctrl1x], [ctrl1y, +-ctrl1y] ]
+    [
+      [-38, 0],
+      [50, 0],
+      [5, 3],
+      [15, 5],
+    ],
+    [
+      [6, 10],
+      [75, 10],
+      [20, 10],
+      [0, 0],
+    ],
+    [
+      [30, 20],
+      [50, 20],
+      [20, 10],
+      [0, 0],
+    ],
+    [
+      [94, 20],
+      [60, 10],
+      [0, 0],
+      [20, 5],
+    ],
+    [
+      [50, 0],
+      [100, 0],
+      [0, 0],
+      [20, 5],
+    ],
+  ];
+
+  const [waves, setWaves]: [any, Function] = useState([{ x: 150, y: 50, height: 20, dir: true, speed: 0.1 }]);
+  const wavesPos = useRef([{ x: 150, y: 50, height: 20, dir: true, speed: 0.1 }]);
+  const waveHeight = 4;
+
+  function setBoat() {
+    if (lineRef.current) {
+      if (boatPointRef.current < 0) {
+        let point = (lineRef.current as SVGGeometryElement).getPointAtLength(0);
+        let p2 = (lineRef.current as SVGGeometryElement).getPointAtLength(1);
+        let angle = Math.atan2(p2.y - point.y, p2.x - point.x) * (180 / Math.PI);
+
+        let x = -38 + boatPointRef.current * (p2.x - point.x);
+        let y = 50 + boatPointRef.current * (p2.y - point.y);
+        setBoatLoc({ x: x, y: y, angle: angle });
+        boatPointRef.current += boatSpeed;
+      }
+      if (boatPointRef.current >= (lineRef.current as SVGGeometryElement).getTotalLength() - 0.5) {
+        let dx = lastPos.current.x;
+        let dy = lastPos.current.y + boatSpeed;
+        let angle = 90;
+
+        lastPos.current = { x: dx, y: dy, angle: angle };
+        setBoatLoc({ x: dx, y: dy, angle: angle });
+        boatPointRef.current += boatSpeed;
+      } else {
+        let point = (lineRef.current as SVGGeometryElement).getPointAtLength(boatPointRef.current);
+        let p2 = (lineRef.current as SVGGeometryElement).getPointAtLength(boatPointRef.current + 0.5);
+        let angle = Math.atan2(p2.y - point.y, p2.x - point.x) * (180 / Math.PI);
+
+        boatPointRef.current += boatSpeed;
+
+        if (point.x && point.y && angle) {
+          lastPos.current = { x: point.x, y: point.y, angle: angle };
+          setBoatLoc({ x: point.x, y: point.y, angle: angle });
+        }
+      }
+
+      if (boatPointRef.current >= (lineRef.current as SVGGeometryElement).getTotalLength() + 25) {
+        boatPointRef.current = -25;
+      }
+      setTimeout(setBoat, 25);
+    }
+    updateWaves();
+  }
+
+  function makeWave() {
+    let x = Math.random() * 176 - 38;
+    let y = Math.random() * 100;
+    let speed = Math.random() * 0.05 + 0.025;
+    let height = 0;
+    let dir = true;
+    return { x, y, height, dir, speed };
+  }
+
+  function updateWaves() {
+    let newWaves = [];
+    for (let wave of wavesPos.current) {
+      if (wave.dir) wave.height += wave.speed;
+      else wave.height -= wave.speed;
+      if (wave.height > waveHeight) wave.dir = false;
+
+      if (wave.height < 0) {
+        newWaves.push(makeWave());
+      } else newWaves.push(wave);
+    }
+    wavesPos.current = newWaves;
+    setWaves(newWaves);
+  }
+
+  function numWithRange(num: number, range: number) {
+    return num + Math.round(Math.random() * 2 * range - range);
+  }
+
+  // activate boat movement loop when the path is generated
+  useEffect(() => {
+    setBoat();
+  }, [lineRef.current]);
+
+  // generate random boat path
+  useEffect(() => {
+    // path string
+    let points: string = '';
+
+    let pastPoints = [];
+
+    for (let i = 0; i < pathDocs.length - 1; i++) {
+      let point = pathDocs[i];
+      let x, y, ctrl1x, ctrl1y;
+      if (i === 0) {
+        // make first point
+        x = numWithRange(point[0][0], point[0][1]);
+        y = numWithRange(point[1][0], point[1][1]);
+        ctrl1x = numWithRange(point[2][0], point[2][1]);
+        ctrl1y = numWithRange(point[3][0], point[3][1]);
+      } else {
+        // load in point after it was already made
+        [x, y, ctrl1x, ctrl1y] = pastPoints[i - 1];
+      }
+
+      let nextPoint = pathDocs[i + 1];
+      let px2 = numWithRange(nextPoint[0][0], nextPoint[0][1]);
+      let py2 = numWithRange(nextPoint[1][0], nextPoint[1][1]);
+      let ctrl2x = numWithRange(nextPoint[2][0], nextPoint[2][1]);
+      let ctrl2y = numWithRange(nextPoint[3][0], nextPoint[3][1]);
+
+      pastPoints.push([px2, py2, ctrl2x, ctrl2y]);
+
+      console.log(x, y, ctrl1x, ctrl1y, '\n\n', px2, py2, ctrl2x, ctrl2y);
+
+      if (i == 0) {
+        points += `M${x},${y} `;
+      }
+      points += `C${x + ctrl1x},${y + ctrl1y} ${px2 - ctrl2x},${py2 - ctrl2y} ${px2},${py2} `;
+    }
+    setPathData(points);
+  }, []);
+
+  // make 50 random waves
+  useEffect(() => {
+    let newWaves = [];
+    for (let i = 0; i < 100; i++) {
+      newWaves.push(makeWave());
+    }
+    setWaves(newWaves);
+    wavesPos.current = newWaves;
+  }, []);
+
+  return (
+    <svg viewBox="0 0 100 100" className="absolute w-full h-full">
+      <path
+        d={pathData}
+        ref={lineRef}
+        fill="none"
+        stroke="black"
+        strokeWidth="0.5"
+        strokeDasharray="4,6"
+        strokeLinecap="round"
+      />
+      {waves.map((wave: any, i: number) => (
+        <image
+          key={i}
+          x={wave.x}
+          y={wave.y - wave.height}
+          width={waveHeight * 2}
+          height={waveHeight}
+          href="/images/tracks/wave.svg"
+          style={{ clipPath: `inset(0 0 ${waveHeight - wave.height}px 0)` }}
+        />
+      ))}
+
+      <image
+        x={boatLoc.x - 12.5}
+        // y={boatLoc.y - 25}
+        y={boatLoc.y - 12.5}
+        width="25"
+        height="25"
+        // href="/images/tracks/boat.svg"
+        // style={{ transform: `rotateY(${boatLoc.angle}deg)`, transformOrigin: 'center', transformBox: 'fill-box' }}
+        href="/images/tracks/canoe.svg"
+        style={{ transform: `rotate(${boatLoc.angle}deg)`, transformOrigin: 'center', transformBox: 'fill-box' }}
+      />
+    </svg>
+  );
+};
+
 const TracksFrame = () => {
   return (
     <div id="tracks" className="bg-white p-8 md:text-left flex justify-center">
@@ -207,7 +412,7 @@ const TracksFrame = () => {
           <span className="absolute left-[5%] text-2xl font-bold">Sustainability</span>
           {/* travel image */}
           <div className="track-box w-full md:w-[40%] flex justify-center relative overflow-hidden">
-            <img className="track-island" src="/images/sustainabilityIsland.png" alt="travel track" />
+            <img className="track-island" src="/images/tracks/sustainabilityIsland.png" alt="travel track" />
             {/* description */}
             <span
               className="track-desc absolute w-[98.5%] bg-white/[80%] backdrop-blur-[3px] border-2 border-black border-dotted flex flex-col justify-end items-center text-xl md:text-sm lg:text-lg p-4 md:py-2 lg:py-4"
@@ -246,7 +451,7 @@ const TracksFrame = () => {
           </div>
           {/* accessability image */}
           <div className="track-box w-full md:w-1/2 flex justify-center relative overflow-hidden">
-            <img src="/images/accessabilityCard.svg" alt="accessability track" />
+            <img src="/images/tracks/accessabilityCard.svg" alt="accessability track" />
 
             {/* description */}
             <span
@@ -265,7 +470,7 @@ const TracksFrame = () => {
 
           {/* food insecurity image */}
           <div className="track-box w-full md:w-1/2 flex justify-center relative overflow-hidden">
-            <img src="/images/foodInsCard.svg" alt="food insecurity track" />
+            <img src="/images/tracks/foodInsCard.svg" alt="food insecurity track" />
 
             {/* description */}
             <span
@@ -283,13 +488,15 @@ const TracksFrame = () => {
             </span>
           </div>
           {/* boat and water */}
-          <div className="w-1/2 hidden md:block bg-gray-200"></div>
+          <div className="track-art w-1/2 hidden md:block relative">
+            <BoatDisplay />
+          </div>
 
           {/* rocket ship */}
           <div className="w-1/2 hidden md:block bg-gray-200"></div>
           {/* sustainability image */}
           <div className="track-box w-full md:w-1/2 flex justify-center relative overflow-hidden">
-            <img src="/images/sustainCard.svg" alt="sustainability track" />
+            <img src="/images/tracks/sustainCard.svg" alt="sustainability track" />
 
             {/* description */}
             <span
