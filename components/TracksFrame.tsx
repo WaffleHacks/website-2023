@@ -2,9 +2,10 @@ import Image from 'next/image';
 import { useEffect, useRef, useState } from 'react';
 
 const TracksFrame = () => {
-  const [pathData, setPathData]: [string, Function] = useState('M0,8 C30,10 70,0 100,8');
-  const [pathNums, setPathNums]: [number[][], Function] = useState([]);
+  const [treePathData, setTreePathData]: [string, Function] = useState('M0,8 C30,10 70,0 100,8');
+  const [treePathNums, setTreePathNums]: [number[][], Function] = useState([]);
 
+  // set up tree track image
   useEffect(() => {
     // Generate a random path data string
     let points: string = 'M-36,50 C ';
@@ -25,8 +26,35 @@ const TracksFrame = () => {
       points += `${x},${y} `;
     }
     points += '50,100';
-    setPathData(points);
-    setPathNums(pointNums);
+    setTreePathData(points);
+    setTreePathNums(pointNums);
+  }, []);
+
+  // set up cloud track image
+  const [cloudPathData, setCloudPathData]: [string, Function] = useState('M0,8 C30,10 70,0 100,8');
+  // const [cloudPathNums, setCloudPathNums]: [number[][], Function] = useState([]);
+  useEffect(() => {
+    // Generate a random path data string
+    let points: string = 'M138,50 ';
+
+    let ctrl1x = 108 + Math.round(Math.random() * 20 - 10);
+    let ctrl1y = 70 + Math.round(Math.random() * 10 - 5);
+
+    let px2 = 0 + Math.round(Math.random() * 40 - 20);
+    let py2 = 60 + Math.round(Math.random() * 30 - 15);
+    let ctrl2 = 18 + Math.round(Math.random() * 10 - 5);
+
+    let px3 = 60 + Math.round(Math.random() * 60 - 30);
+    let py3 = 25 + Math.round(Math.random() * 20 - 10);
+    let ctrl3 = 18 + Math.round(Math.random() * 10 - 5);
+
+    let ctrl4y = 90 + Math.round(Math.random() * 10 - 5);
+
+    points += `C${ctrl1x},${ctrl1y} ${px2},${py2 + ctrl2} ${px2},${py2} C${px2},${py2 - ctrl2} ${
+      px3 - ctrl3
+    },${py3} ${px3},${py3} C${px3 + ctrl3},${py3} ${50},${ctrl4y} 50,100`;
+    setCloudPathData(points);
+    console.log('pathData', points);
   }, []);
 
   const lineRef = useRef(null);
@@ -60,7 +88,7 @@ const TracksFrame = () => {
           <div className="track-art w-1/2 overflow-hidden hidden md:block relative">
             <svg ref={lineRef} viewBox="0 0 100 100" className="absolute w-full h-full">
               <path
-                d={pathData}
+                d={treePathData}
                 fill="none"
                 stroke="black"
                 strokeWidth="1.5"
@@ -68,7 +96,7 @@ const TracksFrame = () => {
                 strokeLinecap="round"
               />
             </svg>
-            {pathNums.map((point, ind) => (
+            {treePathNums.map((point, ind) => (
               <img
                 key={'tree-' + ind}
                 src="/images/tree.svg"
@@ -93,7 +121,18 @@ const TracksFrame = () => {
           </div>
 
           {/* plane and clouds */}
-          <div className="w-1/2 hidden md:block bg-gray-200"></div>
+          <div className="track-art w-1/2 hidden md:block relative">
+            <svg ref={lineRef} viewBox="0 0 100 100" className="absolute w-full h-full">
+              <path
+                d={cloudPathData}
+                fill="none"
+                stroke="black"
+                strokeWidth="1.5"
+                strokeDasharray="4,6"
+                strokeLinecap="round"
+              />
+            </svg>
+          </div>
           {/* accessability image */}
           <div className="track-box w-full md:w-1/2 flex justify-center relative overflow-hidden">
             <img src="/images/accessabilityCard.svg" alt="accessability track" />
