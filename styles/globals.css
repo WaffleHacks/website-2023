@@ -24,19 +24,14 @@ body {
 }
 
 .calendar-date {
-  border-bottom: 2px solid black;
+  border-bottom: none;
   border-right: 2px solid black;
+}
+.calendar-date.has-bottom {
+  border-bottom: 2px solid black;
 }
 .calendar-date:nth-child(7n){
   border-right: none;
-}
-
-.calendar-date:nth-last-child(-n+7){
-  border-bottom: none;
-}
-.calendar-date:nth-child(-n+7){
-  border-top: 2px solid black;
-  border-bottom: 2px solid black;
 }
 
 .track-island {
