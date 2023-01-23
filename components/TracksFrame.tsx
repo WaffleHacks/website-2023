@@ -1,11 +1,11 @@
 import Image from 'next/image';
 import { useEffect, useRef, useState } from 'react';
 
-const TracksFrame = () => {
+// tree display
+const TreeDisplay = () => {
   const [treePathData, setTreePathData]: [string, Function] = useState('M0,8 C30,10 70,0 100,8');
   const [treePathNums, setTreePathNums]: [number[][], Function] = useState([]);
 
-  // set up tree track image
   useEffect(() => {
     // Generate a random path data string
     let points: string = 'M-36,50 C ';
@@ -30,9 +30,106 @@ const TracksFrame = () => {
     setTreePathNums(pointNums);
   }, []);
 
-  // set up cloud track image
-  const [cloudPathData, setCloudPathData]: [string, Function] = useState('M0,8 C30,10 70,0 100,8');
-  // const [cloudPathNums, setCloudPathNums]: [number[][], Function] = useState([]);
+  return (
+    <>
+      <svg viewBox="0 0 100 100" className="absolute w-full h-full">
+        <path
+          d={treePathData}
+          fill="none"
+          stroke="black"
+          strokeWidth="1.5"
+          strokeDasharray="4,6"
+          strokeLinecap="round"
+        />
+      </svg>
+      {treePathNums.map((point, ind) => (
+        <img
+          key={'tree-' + ind}
+          src="/images/tracks/tree.svg"
+          alt="tree"
+          className="absolute h-16"
+          style={{ left: point[0] + '%', top: `calc(${point[1]}% - 4rem)` }}
+        />
+      ))}
+    </>
+  );
+};
+
+// cloud display
+const CloudDisplay = () => {
+  const [clouds, setClouds]: [any, Function] = useState([{ x: 150, y: 50, speed: 0.1 }]);
+  const cloudPos = useRef([{ x: 150, y: 50 }]);
+  const [pathData, setPathData]: [string, Function] = useState('M0,8 C30,10 70,0 100,8');
+  const lineRef = useRef(null);
+  const [planeLoc, setPlaneLoc]: [any, Function] = useState({ x: 110, y: 37.5, angle: 0 });
+  const planePointRef = useRef(140);
+  const lastPos = useRef({ x: 110, y: 37.5, angle: 0 });
+  const planeSpeed = 0.2;
+  const cloudSpeed = 0.1;
+
+  function setPlane() {
+    if (lineRef.current) {
+      if (planePointRef.current < 0) {
+        let point = (lineRef.current as SVGGeometryElement).getPointAtLength(0);
+        let p2 = (lineRef.current as SVGGeometryElement).getPointAtLength(1);
+        let angle = Math.atan2(p2.y - point.y, p2.x - point.x) * (180 / Math.PI);
+
+        let x = 138 + planePointRef.current * (p2.x - point.x);
+        let y = 50 + planePointRef.current * (p2.y - point.y);
+        setPlaneLoc({ x: x, y: y, angle: angle });
+        planePointRef.current += planeSpeed;
+      }
+      if (planePointRef.current >= (lineRef.current as SVGGeometryElement).getTotalLength() - 0.5) {
+        let dx = lastPos.current.x;
+        let dy = lastPos.current.y + planeSpeed;
+        let angle = 90;
+
+        lastPos.current = { x: dx, y: dy, angle: angle };
+        setPlaneLoc({ x: dx, y: dy, angle: angle });
+        planePointRef.current += planeSpeed;
+      } else {
+        let point = (lineRef.current as SVGGeometryElement).getPointAtLength(planePointRef.current);
+        let p2 = (lineRef.current as SVGGeometryElement).getPointAtLength(planePointRef.current + 0.5);
+        let angle = Math.atan2(p2.y - point.y, p2.x - point.x) * (180 / Math.PI);
+
+        planePointRef.current += planeSpeed;
+
+        if (point.x && point.y && angle) {
+          lastPos.current = { x: point.x, y: point.y, angle: angle };
+          setPlaneLoc({ x: point.x, y: point.y, angle: angle });
+        }
+      }
+
+      if (planePointRef.current >= (lineRef.current as SVGGeometryElement).getTotalLength() + 25) {
+        planePointRef.current = -25;
+      }
+      moveClouds();
+      setTimeout(setPlane, 25);
+    }
+  }
+
+  function makeCloud() {
+    let x = 138 + Math.random() * 60 + 10;
+    let y = Math.random() * 80;
+    let speed = Math.random() * 0.1 + 0.05;
+    return [x, y, speed];
+  }
+
+  function moveClouds() {
+    let newClouds = [];
+    for (let cloud of cloudPos.current) {
+      let x = cloud.x - cloud.speed;
+      let y = cloud.y;
+      if (x < -38 - 20) {
+        [x, y, cloud.speed] = makeCloud();
+      }
+      newClouds.push({ x: x, y: y, speed: cloud.speed });
+    }
+    cloudPos.current = newClouds;
+    setClouds(newClouds);
+  }
+
+  // generate path
   useEffect(() => {
     // Generate a random path data string
     let points: string = 'M138,50 ';
@@ -42,23 +139,64 @@ const TracksFrame = () => {
 
     let px2 = 0 + Math.round(Math.random() * 40 - 20);
     let py2 = 60 + Math.round(Math.random() * 30 - 15);
-    let ctrl2 = 18 + Math.round(Math.random() * 10 - 5);
+    let ctrl2 = 18 + Math.round(Math.random() * 20 - 10);
 
     let px3 = 60 + Math.round(Math.random() * 60 - 30);
     let py3 = 25 + Math.round(Math.random() * 20 - 10);
-    let ctrl3 = 18 + Math.round(Math.random() * 10 - 5);
+    let ctrl3 = 18 + Math.round(Math.random() * 20 - 10);
 
     let ctrl4y = 90 + Math.round(Math.random() * 10 - 5);
 
     points += `C${ctrl1x},${ctrl1y} ${px2},${py2 + ctrl2} ${px2},${py2} C${px2},${py2 - ctrl2} ${
       px3 - ctrl3
     },${py3} ${px3},${py3} C${px3 + ctrl3},${py3} ${50},${ctrl4y} 50,100`;
-    setCloudPathData(points);
-    console.log('pathData', points);
+    setPathData(points);
   }, []);
 
-  const lineRef = useRef(null);
+  // activate plane movement loop when the path is generated
+  useEffect(() => {
+    setPlane();
+  }, [lineRef.current]);
 
+  // generate cloud points
+  useEffect(() => {
+    let cs = [];
+    for (let i = 0; i < 4; i++) {
+      let [x, y, speed] = makeCloud();
+      x = Math.random() * 190;
+      cs.push({ x, y, speed });
+    }
+    cloudPos.current = cs;
+    setClouds(cs);
+  }, []);
+
+  return (
+    <svg viewBox="0 0 100 100" className="absolute w-full h-full">
+      <path
+        d={pathData}
+        ref={lineRef}
+        fill="none"
+        stroke="black"
+        strokeWidth="1.5"
+        strokeDasharray="4,6"
+        strokeLinecap="round"
+      />
+      <image
+        x={planeLoc.x - 12.5}
+        y={planeLoc.y - 12.5}
+        width="25"
+        height="25"
+        href="/images/tracks/plane.svg"
+        style={{ transform: `rotate(${planeLoc.angle}deg)`, transformOrigin: 'center', transformBox: 'fill-box' }}
+      />
+      {clouds.map((cloud: any, i: number) => (
+        <image key={i} x={cloud.x} y={cloud.y} width="25" height="25" href="/images/tracks/cloud.svg" />
+      ))}
+    </svg>
+  );
+};
+
+const TracksFrame = () => {
   return (
     <div id="tracks" className="bg-white p-8 md:text-left flex justify-center">
       <div style={{ maxWidth: 'min(100vw, 80rem)' }}>
@@ -86,25 +224,7 @@ const TracksFrame = () => {
           </div>
           {/* trees and path */}
           <div className="track-art w-1/2 overflow-hidden hidden md:block relative">
-            <svg ref={lineRef} viewBox="0 0 100 100" className="absolute w-full h-full">
-              <path
-                d={treePathData}
-                fill="none"
-                stroke="black"
-                strokeWidth="1.5"
-                strokeDasharray="4,6"
-                strokeLinecap="round"
-              />
-            </svg>
-            {treePathNums.map((point, ind) => (
-              <img
-                key={'tree-' + ind}
-                src="/images/tree.svg"
-                alt="tree"
-                className="absolute h-16"
-                style={{ left: point[0] + '%', top: `calc(${point[1]}% - 4rem)` }}
-              />
-            ))}
+            <TreeDisplay />
 
             <span
               className="track-desc absolute w-[98.5%] bg-white/[90%] backdrop-blur-[3px] border-2 border-black border-dotted flex flex-col justify-end items-center text-xl md:text-sm lg:text-lg p-4 md:py-2 lg:py-4"
@@ -122,16 +242,7 @@ const TracksFrame = () => {
 
           {/* plane and clouds */}
           <div className="track-art w-1/2 hidden md:block relative">
-            <svg ref={lineRef} viewBox="0 0 100 100" className="absolute w-full h-full">
-              <path
-                d={cloudPathData}
-                fill="none"
-                stroke="black"
-                strokeWidth="1.5"
-                strokeDasharray="4,6"
-                strokeLinecap="round"
-              />
-            </svg>
+            <CloudDisplay />
           </div>
           {/* accessability image */}
           <div className="track-box w-full md:w-1/2 flex justify-center relative overflow-hidden">
