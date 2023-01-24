@@ -14,7 +14,7 @@ const TreeDisplay = () => {
 
     // generate random tree spots
     let pointNums = [];
-    for (let i = 0; i < 40; i++) {
+    for (let i = 0; i < 35; i++) {
       // [x, y, tree type]
       pointNums.push([Math.random() * 85, Math.random() * 80 + 20, Math.floor(Math.random() * 3) + 1]);
       pointNums.sort((a, b) => {
@@ -61,8 +61,8 @@ const TreeDisplay = () => {
 
 // cloud display
 const CloudDisplay = () => {
-  const [clouds, setClouds]: [any, Function] = useState([{ x: 150, y: 50, speed: 0.1 }]);
-  const cloudPos = useRef([{ x: 150, y: 50, speed: 0.1 }]);
+  const [clouds, setClouds]: [any, Function] = useState([{ x: 150, y: 50, speed: 0.1, type: 1 }]);
+  const cloudPos = useRef([{ x: 150, y: 50, speed: 0.1, type: 1 }]);
   const [pathData, setPathData]: [string, Function] = useState('M0,8 C30,10 70,0 100,8');
   const lineRef = useRef(null);
   const [planeLoc, setPlaneLoc]: [any, Function] = useState({ x: 110, y: 37.5, angle: 0 });
@@ -115,7 +115,8 @@ const CloudDisplay = () => {
     let x = 138 + Math.random() * 60 + 10;
     let y = Math.random() * 80;
     let speed = Math.random() * 0.1 + 0.05;
-    return [x, y, speed];
+    let type = Math.floor(Math.random() * 3) + 1;
+    return [x, y, speed, type];
   }
 
   function moveClouds() {
@@ -123,10 +124,11 @@ const CloudDisplay = () => {
     for (let cloud of cloudPos.current) {
       let x = cloud.x - cloud.speed;
       let y = cloud.y;
+      let type = cloud.type;
       if (x < -38 - 20) {
-        [x, y, cloud.speed] = makeCloud();
+        [x, y, cloud.speed, type] = makeCloud();
       }
-      newClouds.push({ x: x, y: y, speed: cloud.speed });
+      newClouds.push({ x: x, y: y, speed: cloud.speed, type: type });
     }
     cloudPos.current = newClouds;
     setClouds(newClouds);
@@ -165,9 +167,9 @@ const CloudDisplay = () => {
   useEffect(() => {
     let cs = [];
     for (let i = 0; i < 4; i++) {
-      let [x, y, speed] = makeCloud();
+      let [x, y, speed, type] = makeCloud();
       x = Math.random() * 190;
-      cs.push({ x, y, speed });
+      cs.push({ x, y, speed, type });
     }
     cloudPos.current = cs;
     setClouds(cs);
@@ -193,7 +195,15 @@ const CloudDisplay = () => {
         style={{ transform: `rotate(${planeLoc.angle}deg)`, transformOrigin: 'center', transformBox: 'fill-box' }}
       />
       {clouds.map((cloud: any, i: number) => (
-        <image key={i} x={cloud.x} y={cloud.y} width="25" height="25" href="/images/tracks/cloud.svg" />
+        <image
+          key={i}
+          x={cloud.x}
+          y={cloud.y}
+          width="25"
+          height="25"
+          href={`/images/tracks/cloud${cloud.type}.svg`}
+          style={{ backdropFilter: 'blur(6px)' }}
+        />
       ))}
     </svg>
   );
@@ -242,7 +252,7 @@ const BoatDisplay = () => {
 
   const [waves, setWaves]: [any, Function] = useState([{ x: 150, y: 50, height: 20, dir: true, speed: 0.1 }]);
   const wavesPos = useRef([{ x: 150, y: 50, height: 20, dir: true, speed: 0.1 }]);
-  const waveHeight = 6;
+  const waveHeight = 3;
 
   function setBoat() {
     if (lineRef.current) {
@@ -383,7 +393,7 @@ const BoatDisplay = () => {
           key={i}
           x={wave.x}
           y={wave.y - wave.height}
-          width={waveHeight * 2}
+          width={waveHeight * 4}
           height={waveHeight}
           href="/images/tracks/wave.svg"
           style={{ clipPath: `inset(0 0 ${waveHeight - wave.height}px 0)` }}
@@ -403,6 +413,30 @@ const BoatDisplay = () => {
       />
     </svg>
   );
+};
+
+const RocketDisplay = () => {
+  const stars = useRef([{ x: 0, y: 0, type: 'blue' }]);
+  const [starsPos, setStars] = useState([{ x: 0, y: 0, type: 'blue' }]);
+
+  const rocket = useRef(null);
+  const [rocketPos, setRocket] = useState({ x: 0, y: 0, dir: 1 });
+
+  useEffect(() => {
+    let newStars = [];
+    let options = ['blue', 'plus', 'x', 'yellow'];
+    for (let i = 0; i < 100; i++) {
+      newStars.push({
+        x: Math.random() * 100,
+        y: Math.random() * 100,
+        type: options[Math.floor(Math.random() * options.length)],
+      });
+    }
+    setStars(newStars);
+    stars.current = newStars;
+  });
+
+  return <></>;
 };
 
 const TracksFrame = () => {
