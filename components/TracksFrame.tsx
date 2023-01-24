@@ -357,8 +357,6 @@ const BoatDisplay = () => {
 
       pastPoints.push([px2, py2, ctrl2x, ctrl2y]);
 
-      console.log(x, y, ctrl1x, ctrl1y, '\n\n', px2, py2, ctrl2x, ctrl2y);
-
       if (i == 0) {
         points += `M${x},${y} `;
       }
@@ -416,27 +414,92 @@ const BoatDisplay = () => {
 };
 
 const RocketDisplay = () => {
-  const stars = useRef([{ x: 0, y: 0, type: 'blue' }]);
-  const [starsPos, setStars] = useState([{ x: 0, y: 0, type: 'blue' }]);
+  const stars = useRef([{ x: 0, y: 0, type: 'blue', speed: 0.1 }]);
+  const [starsPos, setStars]: [any, Function] = useState([{ x: 0, y: 0, type: 'blue', speed: 0.1 }]);
 
-  const rocket = useRef(null);
-  const [rocketPos, setRocket] = useState({ x: 0, y: 0, dir: 1 });
+  const rocketRef = useRef(null);
+  const [rocketPos, setRocket] = useState({ x: 10, y: 25, dir: 0.2 });
+  const rocketPosRef = useRef({ x: 10, y: 25, dir: 0.2 });
 
+  function moveRocket() {
+    let dir = rocketPosRef.current.dir + 0.02;
+    let y = Math.sin(dir) * 10 + 50;
+
+    rocketPosRef.current = { x: rocketPos.x, y, dir };
+    setRocket({ x: rocketPos.x, y, dir });
+
+    moveStars();
+
+    setTimeout(moveRocket, 25);
+  }
+
+  function makeStar() {
+    let options = ['blue', 'plus', 'x', 'yellow'];
+    return {
+      x: -Math.random() * 100 - 5,
+      y: Math.random() * 100,
+      type: options[Math.floor(Math.random() * options.length)],
+      speed: Math.random() * 0.025 + 0.025,
+    };
+  }
+
+  function map(num: number, in_min: number, in_max: number, out_min: number, out_max: number) {
+    return ((num - in_min) * (out_max - out_min)) / (in_max - in_min) + out_min;
+  }
+
+  function moveStars() {
+    let newStars = [];
+    for (let i = 0; i < stars.current.length; i++) {
+      let star = stars.current[i];
+      let x = star.x + star.speed;
+      if (x > 105) newStars.push(makeStar());
+      else newStars.push({ x, y: star.y, type: star.type, speed: star.speed });
+    }
+    stars.current = newStars;
+    setStars(newStars);
+  }
+
+  // generate the random stars
   useEffect(() => {
     let newStars = [];
-    let options = ['blue', 'plus', 'x', 'yellow'];
     for (let i = 0; i < 100; i++) {
-      newStars.push({
-        x: Math.random() * 100,
-        y: Math.random() * 100,
-        type: options[Math.floor(Math.random() * options.length)],
-      });
+      let star = makeStar();
+      star.x = Math.random() * 150 - 25;
+      star.y = Math.random() * 100;
+      newStars.push(star);
     }
     setStars(newStars);
     stars.current = newStars;
-  });
+  }, []);
 
-  return <></>;
+  // set rocket to move once it's loaded in
+  useEffect(() => {
+    moveRocket();
+  }, [rocketRef.current]);
+
+  return (
+    <>
+      {starsPos.map((star: any, i: number) => {
+        let size = map(star.speed, 0.025, 0.05, 1, 2.5);
+        return (
+          <img
+            key={i}
+            src={`/images/tracks/star${star.type}.svg`}
+            alt=""
+            className="absolute"
+            style={{ left: `${star.x}%`, top: `${star.y}%`, width: `${size}%`, height: `${size}%` }}
+          />
+        );
+      })}
+      <img
+        src="/images/tracks/rocket.svg"
+        alt=""
+        className="absolute h-[45%]"
+        //  ref={rocketRef}
+        style={{ right: `${rocketPos.x}%`, top: `${rocketPos.y}%`, transform: 'translateY(-50%)' }}
+      />
+    </>
+  );
 };
 
 const TracksFrame = () => {
@@ -448,6 +511,7 @@ const TracksFrame = () => {
         {/* tracks */}
         <div className="flex relative flex-wrap justify-center pt-6 gap-y-6 mb-6">
           <span className="absolute left-[5%] text-2xl font-bold">Sustainability</span>
+
           {/* travel image */}
           <div className="track-box w-full md:w-[40%] flex justify-center relative overflow-hidden">
             <img className="track-island" src="/images/tracks/sustainabilityIsland.png" alt="travel track" />
@@ -465,6 +529,7 @@ const TracksFrame = () => {
               Prize: Model Train Set
             </span>
           </div>
+
           {/* trees and path */}
           <div className="track-art w-1/2 overflow-hidden hidden md:block relative">
             <TreeDisplay />
@@ -487,6 +552,7 @@ const TracksFrame = () => {
           <div className="track-art w-1/2 hidden md:block relative">
             <CloudDisplay />
           </div>
+
           {/* accessability image */}
           <div className="track-box w-full md:w-1/2 flex justify-center relative overflow-hidden">
             <img src="/images/tracks/accessabilityCard.svg" alt="accessability track" />
@@ -531,7 +597,9 @@ const TracksFrame = () => {
           </div>
 
           {/* rocket ship */}
-          <div className="w-1/2 hidden md:block bg-gray-200"></div>
+          <div className="w-1/2 hidden md:block relative overflow-hidden">
+            <RocketDisplay />
+          </div>
           {/* sustainability image */}
           <div className="track-box w-full md:w-1/2 flex justify-center relative overflow-hidden">
             <img src="/images/tracks/sustainCard.svg" alt="sustainability track" />
