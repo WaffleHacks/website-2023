@@ -12,22 +12,26 @@ const TreeDisplay = () => {
     let x: number = -36;
     let y: number = 50;
 
+    // generate random tree spots
     let pointNums = [];
-    for (let i = 0; i < 20; i++) {
-      pointNums.push([Math.random() * 85, Math.random() * 80 + 20]);
+    for (let i = 0; i < 40; i++) {
+      // [x, y, tree type]
+      pointNums.push([Math.random() * 85, Math.random() * 80 + 20, Math.floor(Math.random() * 3) + 1]);
       pointNums.sort((a, b) => {
         return a[1] - b[1];
       });
     }
 
+    // generate points along the path
     for (let i = 0; i < 5; i++) {
       x = Math.max(Math.min(x + Math.random() * 40, 100 - 35), -35);
       y = Math.max(Math.min(y + (Math.random() - 0.5) * 40, 100), 0);
       points += `${x},${y} `;
     }
-    points += '50,100';
-    setTreePathData(points);
-    setTreePathNums(pointNums);
+
+    points += '50,100'; // last line on path goes to the end
+    setTreePathData(points); // path
+    setTreePathNums(pointNums); // random tree points
   }, []);
 
   return (
@@ -45,7 +49,7 @@ const TreeDisplay = () => {
       {treePathNums.map((point, ind) => (
         <img
           key={'tree-' + ind}
-          src="/images/tracks/tree.svg"
+          src={`/images/tracks/tree${point[2]}.svg`}
           alt="tree"
           className="absolute h-16"
           style={{ left: point[0] + '%', top: `calc(${point[1]}% - 4rem)` }}
@@ -238,7 +242,7 @@ const BoatDisplay = () => {
 
   const [waves, setWaves]: [any, Function] = useState([{ x: 150, y: 50, height: 20, dir: true, speed: 0.1 }]);
   const wavesPos = useRef([{ x: 150, y: 50, height: 20, dir: true, speed: 0.1 }]);
-  const waveHeight = 4;
+  const waveHeight = 6;
 
   function setBoat() {
     if (lineRef.current) {
@@ -356,7 +360,7 @@ const BoatDisplay = () => {
   // make 50 random waves
   useEffect(() => {
     let newWaves = [];
-    for (let i = 0; i < 100; i++) {
+    for (let i = 0; i < 18; i++) {
       newWaves.push(makeWave());
     }
     setWaves(newWaves);
