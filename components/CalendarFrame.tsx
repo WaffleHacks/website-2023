@@ -14,26 +14,24 @@ const CalendarFrame = () => {
   const [sections, setSections] = useState([
     [
       {
-        time: '5:30',
-        name: 'Event',
-        desc: 'this is a description, this is a description, this is a description, this is a description, this is a description',
+        time: '5:30 PM EST',
+        name: 'Opening Ceremony',
+        desc: 'Join us as we kick off WaffleHacks 2023!',
       },
-      { time: '7:00', name: 'Event', desc: 'this is a description' },
-      { time: '8:00', name: 'Event', desc: 'this is a description' },
-      { time: '9:00', name: 'Event', desc: 'this is a description' },
-      { time: '10:00', name: 'Event', desc: 'this is a description' },
-      { time: '11:00', name: 'Event', desc: 'this is a description' },
-      { time: '11:30', name: 'Event', desc: 'this is a description' },
-      { time: '11:30', name: 'Event', desc: 'this is a description' },
-      { time: '11:30', name: 'Event', desc: 'this is a description' },
     ],
     [
       {
-        time: '5:30',
+        time: '5:30 PM EST',
         name: 'Event',
-        desc: 'ahaha yep its saturday my dudes',
+        desc: 'No events scheduled yet :)',
       },
-      { time: '7:30', name: 'Event', desc: 'this is a description' },
+    ],
+    [
+      {
+        time: '5:30 PM EST',
+        name: 'Closing Ceremony',
+        desc: 'Join us as we celebrate all of your impressive projects!',
+      },
     ],
   ]);
   const [day, setDay] = useState(0);
@@ -72,9 +70,9 @@ const CalendarFrame = () => {
             </div>
           </div>
 
-          {/* bottom section with dates */}
+          {/* bottom section with dates / events */}
           <div
-            className="grid md:grid-cols-7 bg-neutral-100/[85%] border-black border-t-2"
+            className="grid md:grid-cols-4 lg:grid-cols-7 bg-neutral-100/[85%] border-black border-t-2"
             style={{ backdropFilter: 'blur(3px)' }}
           >
             {sections[day].map((val, ind) => (
@@ -86,7 +84,7 @@ const CalendarFrame = () => {
                 }
               >
                 {/* time */}
-                <span className="text-xl">{val.time}</span>
+                <span className="text-lg">{val.time}</span>
                 {/* title */}
                 <span className="text-lg font-bold mb-2">{val.name}</span>
                 {/* Description */}
