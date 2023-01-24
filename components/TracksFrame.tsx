@@ -1,7 +1,5 @@
-import Image from 'next/image';
 import { useEffect, useRef, useState } from 'react';
 
-// tree display
 const TreeDisplay = () => {
   const [treePathData, setTreePathData]: [string, Function] = useState('M0,8 C30,10 70,0 100,8');
   const [treePathNums, setTreePathNums]: [number[][], Function] = useState([]);
@@ -59,7 +57,6 @@ const TreeDisplay = () => {
   );
 };
 
-// cloud display
 const CloudDisplay = () => {
   const [clouds, setClouds]: [any, Function] = useState([{ x: 150, y: 50, speed: 0.1, type: 1 }]);
   const cloudPos = useRef([{ x: 150, y: 50, speed: 0.1, type: 1 }]);
@@ -502,6 +499,48 @@ const RocketDisplay = () => {
   );
 };
 
+interface TrackImgProps {
+  name: string;
+  src: string;
+  alt: string;
+  children: any;
+  isIsland?: boolean;
+}
+const TrackImg = ({ name, src, alt, children, isIsland }: TrackImgProps) => {
+  return (
+    <div className={`track-box w-full md:w-[40%] flex justify-center relative overflow-hidden`}>
+      <span className="absolute left-[5%] text-2xl font-bold">{name}</span>
+      <img className={'' + (isIsland ? 'track-island' : '')} src={src} alt={alt} />
+      <div className="absolute top-0 left-0 w-full h-full flex justify-center items-center">{children}</div>
+    </div>
+  );
+};
+
+interface ShortDescProps {
+  desc: string;
+  question: string;
+  prize: string;
+}
+const ShortDesc = ({ desc, question, prize }: ShortDescProps) => {
+  return (
+    <span
+      className="track-desc absolute w-[98.5%] bg-white/[80%] backdrop-blur-[3px] border-2 border-black border-dotted flex flex-col justify-end text-xl text-left md:text-sm lg:text-lg p-4 md:py-2 lg:py-4"
+      style={{ maxHeight: '85%' }}
+    >
+      {desc}
+      <br />
+      <br />
+      {question}
+      <br />
+      <br />
+      <div className="flex justify-between w-full">
+        <span>Prize: {prize}</span>
+        <span className="more-details cursor-default">More &gt;</span>
+      </div>
+    </span>
+  );
+};
+
 const TracksFrame = () => {
   return (
     <div id="tracks" className="bg-white p-8 md:text-left flex justify-center">
@@ -510,25 +549,14 @@ const TracksFrame = () => {
         <h1 className="text-4xl md:text-5xl">Tracks &amp; Prizes</h1>
         {/* tracks */}
         <div className="flex relative flex-wrap justify-center pt-6 gap-y-6 mb-6">
-          <span className="absolute left-[5%] text-2xl font-bold">Sustainability</span>
-
-          {/* travel image */}
-          <div className="track-box w-full md:w-[40%] flex justify-center relative overflow-hidden">
-            <img className="track-island" src="/images/tracks/sustainabilityIsland.png" alt="travel track" />
-            {/* description */}
-            <span
-              className="track-desc absolute w-[98.5%] bg-white/[80%] backdrop-blur-[3px] border-2 border-black border-dotted flex flex-col justify-end items-center text-xl md:text-sm lg:text-lg p-4 md:py-2 lg:py-4"
-              style={{ maxHeight: '85%' }}
-            >
-              This track is all about finding how you can make travel better - in a car, plane, boat, or whatever else.
-              <br />
-              <br />
-              What do you think can be made better about travelling?
-              <br />
-              <br />
-              Prize: Model Train Set
-            </span>
-          </div>
+          {/* sustainability */}
+          <TrackImg name="Sustainability" src="/images/tracks/sustainabilityIsland.png" alt="" isIsland={true}>
+            <ShortDesc
+              desc="This track is all about finding how you can make travel better - in a car, plane, boat, or whatever else."
+              question="What do you think can be made better about travelling?"
+              prize="Model Train Set"
+            />
+          </TrackImg>
 
           {/* trees and path */}
           <div className="track-art w-1/2 overflow-hidden hidden md:block relative">
@@ -554,43 +582,19 @@ const TracksFrame = () => {
           </div>
 
           {/* accessability image */}
-          <div className="track-box w-full md:w-1/2 flex justify-center relative overflow-hidden">
-            <img src="/images/tracks/accessabilityCard.svg" alt="accessability track" />
-
-            {/* description */}
-            <span
-              className="track-desc absolute w-[98.5%] bg-white flex flex-col justify-end items-center text-xl md:text-sm lg:text-lg p-4 md:py-2 lg:py-4"
-              style={{ maxHeight: '85%' }}
-            >
-              Description
-              <br />
-              <br />
-              Guiding question
-              <br />
-              <br />
-              Prize: something
-            </span>
-          </div>
+          <TrackImg name="Acessibility" src="/images/tracks/sustainabilityIsland.png" alt="" isIsland={true}>
+            <ShortDesc desc="Description" question="something" prize="yes" />
+          </TrackImg>
 
           {/* food insecurity image */}
-          <div className="track-box w-full md:w-1/2 flex justify-center relative overflow-hidden">
-            <img src="/images/tracks/foodInsCard.svg" alt="food insecurity track" />
+          <TrackImg name="Food Insecurity" src="/images/tracks/sustainabilityIsland.png" alt="" isIsland={true}>
+            <ShortDesc
+              desc="Come up with ways to make eating easier, whether that means finding healthy food, restaurants in the area, or setting up ways to connect people with food."
+              question="How can you connect people with more / better food?"
+              prize="Prize: Oven Mitts"
+            />
+          </TrackImg>
 
-            {/* description */}
-            <span
-              className="track-desc absolute w-[98.5%] bg-white flex flex-col justify-end items-center text-xl md:text-sm lg:text-lg p-4 md:py-2 lg:py-4"
-              style={{ maxHeight: '85%' }}
-            >
-              Come up with ways to make eating easier, whether that means finding healthy food, restaurants in the area,
-              or setting up ways to connect people with food.
-              <br />
-              <br />
-              How can you connect people with more / better food?
-              <br />
-              <br />
-              Prize: Oven Mitts
-            </span>
-          </div>
           {/* boat and water */}
           <div className="track-art w-1/2 hidden md:block relative">
             <BoatDisplay />
@@ -601,23 +605,9 @@ const TracksFrame = () => {
             <RocketDisplay />
           </div>
           {/* sustainability image */}
-          <div className="track-box w-full md:w-1/2 flex justify-center relative overflow-hidden">
-            <img src="/images/tracks/sustainCard.svg" alt="sustainability track" />
-
-            {/* description */}
-            <span
-              className="track-desc absolute w-[98.5%] bg-white flex flex-col justify-end items-center text-xl md:text-sm lg:text-lg p-4 md:py-2 lg:py-4"
-              style={{ maxHeight: '85%' }}
-            >
-              Description
-              <br />
-              <br />
-              Guiding question
-              <br />
-              <br />
-              Prize: something
-            </span>
-          </div>
+          <TrackImg name="Travel" src="/images/tracks/sustainabilityIsland.png" alt="" isIsland={true}>
+            <ShortDesc desc="Description" question="Guiding question" prize="Prize: something" />
+          </TrackImg>
         </div>
         {/* other prizes */}
         <div className="flex flex-col gap-y-4 items-center">

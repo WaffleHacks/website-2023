@@ -44,11 +44,11 @@ body {
   transition: opacity 0.5s ease, bottom 0.5s ease;
 }
 
-.track-box:hover + .track-art .track-desc {
+/* .track-box:hover + .track-art .track-desc {
   transition: opacity 0.3s ease, bottom 0.3s ease;
   opacity: 1;
   bottom: 1.25%;
-}
+} */
 
 .track-box:hover .track-desc {
   transition: opacity 0.3s ease, bottom 0.3s ease;
