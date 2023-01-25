@@ -520,11 +520,15 @@ interface ShortDescProps {
   desc: string;
   question: string;
   prize: string;
+  holding: boolean;
+  setHold: Function;
 }
-const ShortDesc = ({ desc, question, prize }: ShortDescProps) => {
+const ShortDesc = ({ desc, question, prize, holding, setHold }: ShortDescProps) => {
   return (
     <span
-      className="track-desc absolute w-[98.5%] bg-white/[80%] backdrop-blur-[3px] border-2 border-black border-dotted flex flex-col justify-end text-xl text-left md:text-sm lg:text-lg p-4 md:py-2 lg:py-4"
+      className={`track-desc ${
+        holding ? 'track-desc-holding' : ''
+      } absolute w-[98.5%] bg-white/[80%] backdrop-blur-[3px] border-2 border-black border-dotted flex flex-col justify-end text-xl text-left md:text-sm lg:text-lg p-4 md:py-2 lg:py-4`}
       style={{ maxHeight: '85%' }}
     >
       {desc}
@@ -535,13 +539,33 @@ const ShortDesc = ({ desc, question, prize }: ShortDescProps) => {
       <br />
       <div className="flex justify-between w-full">
         <span>Prize: {prize}</span>
-        <span className="more-details cursor-default">More &gt;</span>
+        <button className="more-details cursor-default" onClick={() => setHold()}>
+          {holding ? '< Less' : 'More >'}
+        </button>
       </div>
     </span>
   );
 };
 
+interface LongDescProps {
+  desc: string;
+  show: boolean;
+}
+const LongDesc = ({ desc, show }: LongDescProps) => {
+  return (
+    <span
+      className={`track-desc ${
+        show ? 'track-long-desc-on' : ''
+      } absolute w-[98.5%] bg-white/[90%] backdrop-blur-[3px] border-2 border-black border-dotted flex flex-col justify-end items-center text-xl md:text-sm lg:text-lg p-4 md:py-2 lg:py-4`}
+      style={{ maxHeight: '85%' }}
+    >
+      {desc}
+    </span>
+  );
+};
+
 const TracksFrame = () => {
+  let [showLongDesc, setShowLongDesc] = useState([false, false, false, false]);
   return (
     <div id="tracks" className="bg-white p-8 md:text-left flex justify-center">
       <div style={{ maxWidth: 'min(100vw, 80rem)' }}>
@@ -555,35 +579,38 @@ const TracksFrame = () => {
               desc="This track is all about finding how you can make travel better - in a car, plane, boat, or whatever else."
               question="What do you think can be made better about travelling?"
               prize="Model Train Set"
+              holding={showLongDesc[0]}
+              setHold={() => setShowLongDesc([!showLongDesc[0], showLongDesc[1], showLongDesc[2], showLongDesc[3]])}
             />
           </TrackImg>
 
           {/* trees and path */}
-          <div className="track-art w-1/2 overflow-hidden hidden md:block relative">
+          <div className="w-1/2 overflow-hidden hidden md:block relative">
             <TreeDisplay />
-
-            <span
-              className="track-desc absolute w-[98.5%] bg-white/[90%] backdrop-blur-[3px] border-2 border-black border-dotted flex flex-col justify-end items-center text-xl md:text-sm lg:text-lg p-4 md:py-2 lg:py-4"
-              style={{ maxHeight: '85%' }}
-            >
-              Looking for a change of scenery? This category challenges you to design and develop innovative,
-              user-friendly, and practical solutions for the travel industry. Maybe you&apos;ll develop a new booking
-              platform that streamlines the process of finding and reserving flights and hotels. Or maybe you&apos;ll
-              create an app that helps travelers plan and optimize their itineraries, taking into account things like
-              budget, duration of trip, and must-see attractions. There&apos;s infinite possibilities! Whatever your
-              idea may be, participants in this track have the opportunity to work on projects that have the potential
-              to revolutionize the way we travel. Come prepared to let your creativity roam free!
-            </span>
+            <LongDesc
+              show={showLongDesc[0]}
+              desc="Are you passionate about making a sustainable impact? From a global scale to creating change in your own community; if that's your jam, then create a project that can contribute to a better and more sustainable future! This category is open to any hack or solution that supports an industrial, business, environmental, or any applicable cause."
+            />
           </div>
 
           {/* plane and clouds */}
-          <div className="track-art w-1/2 hidden md:block relative">
+          <div className="w-1/2 overflow-hidden hidden md:block relative">
             <CloudDisplay />
+            <LongDesc
+              show={showLongDesc[1]}
+              desc="Get ready for a weekend of innovation and social impact at the accessibility track! This track is all about creating solutions to address specific, real-world challenges faced by people with disabilities. Whether you create an app to help blind or low vision individuals navigate unfamiliar environments, develop a browser extension to help people better navigate web content, or design a tool to allow people who are deaf or hard of hearing more easily and affordably access interpreting services, your goal is to make a real, tangible impact on the lives of people with disabilities. So come ready to roll up your sleeves and make a difference in the world of digital accessibility!"
+            />
           </div>
 
           {/* accessability image */}
           <TrackImg name="Acessibility" src="/images/tracks/sustainabilityIsland.png" alt="" isIsland={true}>
-            <ShortDesc desc="Description" question="something" prize="yes" />
+            <ShortDesc
+              desc="Description"
+              question="something"
+              prize="yes"
+              holding={showLongDesc[1]}
+              setHold={() => setShowLongDesc([showLongDesc[0], !showLongDesc[1], showLongDesc[2], showLongDesc[3]])}
+            />
           </TrackImg>
 
           {/* food insecurity image */}
@@ -592,21 +619,37 @@ const TracksFrame = () => {
               desc="Come up with ways to make eating easier, whether that means finding healthy food, restaurants in the area, or setting up ways to connect people with food."
               question="How can you connect people with more / better food?"
               prize="Prize: Oven Mitts"
+              holding={showLongDesc[2]}
+              setHold={() => setShowLongDesc([showLongDesc[0], showLongDesc[1], !showLongDesc[2], showLongDesc[3]])}
             />
           </TrackImg>
 
           {/* boat and water */}
-          <div className="track-art w-1/2 hidden md:block relative">
+          <div className="w-1/2 overflow-hidden hidden md:block relative">
             <BoatDisplay />
+            <LongDesc
+              show={showLongDesc[2]}
+              desc="It's time to take action and help tackle the issue of student food insecurity head on! This category challenges you to come up with innovative solutions that will make it easier for college and university students to access affordable, nutritious meals. Whether it's through new food assistance programs, revamping campus dining options, or using technology to connect students with resources, the possibilities are endless. And don't forget to think sustainably! We want to create solutions that will have a lasting impact and make a real difference for students."
+            />
           </div>
 
           {/* rocket ship */}
-          <div className="w-1/2 hidden md:block relative overflow-hidden">
+          <div className="w-1/2 overflow-hidden hidden md:block relative overflow-hidden">
             <RocketDisplay />
+            <LongDesc
+              show={showLongDesc[3]}
+              desc="Looking for a change of scenery? This category challenges you to design and develop innovative, user-friendly, and practical solutions for the travel industry. Maybe you'll develop a new booking platform that streamlines the process of finding and reserving flights and hotels. Or maybe you'll create an app that helps travelers plan and optimize their itineraries, taking into account things like budget, duration of trip, and must-see attractions. There's infinite possibilities! Whatever your idea may be, participants in this track have the opportunity to work on projects that have the potential to revolutionize the way we travel. Come prepared to let your creativity roam free!"
+            />
           </div>
           {/* sustainability image */}
           <TrackImg name="Travel" src="/images/tracks/sustainabilityIsland.png" alt="" isIsland={true}>
-            <ShortDesc desc="Description" question="Guiding question" prize="Prize: something" />
+            <ShortDesc
+              desc="Description"
+              question="Guiding question"
+              prize="Prize: something"
+              holding={showLongDesc[3]}
+              setHold={() => setShowLongDesc([showLongDesc[0], showLongDesc[1], showLongDesc[2], !showLongDesc[3]])}
+            />
           </TrackImg>
         </div>
         {/* other prizes */}
