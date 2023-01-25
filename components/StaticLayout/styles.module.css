@@ -1,0 +1,63 @@
+.content {
+    display: block;
+    padding: 5rem 5rem 0;
+}
+
+.content a {
+    @apply text-blue-600 hover:underline;
+}
+
+.content p {
+    font-size: 0.95rem;
+    margin: 18px 0;
+}
+
+.content ol {
+    margin: 16px 0;
+    padding-left: 40px;
+    list-style-type: decimal;
+}
+
+.content ul {
+    padding-left: 30px;
+    list-style-type: disc;
+}
+
+.content ul ul {
+    list-style-type: circle;
+}
+
+.content ul ul ul {
+    list-style-type: square;
+}
+
+.content li {
+    font-size: 0.95rem;
+}
+
+.content h1 {
+    text-align: center;
+    font-size: 2.5rem;
+}
+
+.content h2 {
+    font-weight: bolder;
+    text-decoration: underline;
+}
+
+.content h3 {
+    font-weight: bolder;
+    text-decoration: underline;
+}
+
+.content h4 {
+    text-decoration: underline;
+}
+
+.content h5 {
+    text-decoration: underline;
+}
+
+.content h6 {
+    font-size: 0.66rem;
+}
