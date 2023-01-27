@@ -522,8 +522,9 @@ interface ShortDescProps {
   prize: string;
   holding: boolean;
   setHold: Function;
+  setHover: Function;
 }
-const ShortDesc = ({ desc, question, prize, holding, setHold }: ShortDescProps) => {
+const ShortDesc = ({ desc, question, prize, holding, setHold, setHover }: ShortDescProps) => {
   return (
     <span
       className={`track-desc ${
@@ -539,8 +540,15 @@ const ShortDesc = ({ desc, question, prize, holding, setHold }: ShortDescProps) 
       <br />
       <div className="flex justify-between w-full">
         <span>Prize: {prize}</span>
-        <button className="more-details cursor-default" onClick={() => setHold()}>
-          {holding ? '< Less' : 'More >'}
+        <button
+          className="more-details text-xl cursor-pointer"
+          onClick={() => setHold()}
+          onMouseOver={() => setHover(true)}
+          onMouseLeave={() => setHover(false)}
+          onFocus={() => setHover(true)} // same as onMouseOver, for accessability
+          onBlur={() => setHover(false)}
+        >
+          <b>{holding ? '< Less' : 'More >'}</b>
         </button>
       </div>
     </span>
@@ -566,6 +574,18 @@ const LongDesc = ({ desc, show }: LongDescProps) => {
 
 const TracksFrame = () => {
   let [showLongDesc, setShowLongDesc] = useState([false, false, false, false]);
+  let [holding, setHolding] = useState([false, false, false, false]);
+
+  function holdItem(descNum: number) {
+    setShowLongDesc(showLongDesc.map((val, ind) => (ind == descNum ? !holding[descNum] : val)));
+    setHolding(holding.map((val, ind) => (ind == descNum ? !val : val)));
+  }
+  function hoverItem(descNum: number, show: boolean) {
+    // console.log('hover', show);
+    if (!holding[descNum]) {
+      setShowLongDesc(showLongDesc.map((val, ind) => (ind == descNum ? show : val)));
+    }
+  }
   return (
     <div id="tracks" className="bg-white p-8 md:text-left flex justify-center">
       <div style={{ maxWidth: 'min(100vw, 80rem)' }}>
@@ -580,7 +600,8 @@ const TracksFrame = () => {
               question="What do you think can be made better about travelling?"
               prize="Model Train Set"
               holding={showLongDesc[0]}
-              setHold={() => setShowLongDesc([!showLongDesc[0], showLongDesc[1], showLongDesc[2], showLongDesc[3]])}
+              setHold={() => holdItem(0)}
+              setHover={(show: boolean) => hoverItem(0, show)}
             />
           </TrackImg>
 
@@ -609,7 +630,8 @@ const TracksFrame = () => {
               question="something"
               prize="yes"
               holding={showLongDesc[1]}
-              setHold={() => setShowLongDesc([showLongDesc[0], !showLongDesc[1], showLongDesc[2], showLongDesc[3]])}
+              setHold={() => holdItem(1)}
+              setHover={(show: boolean) => hoverItem(1, show)}
             />
           </TrackImg>
 
@@ -620,7 +642,8 @@ const TracksFrame = () => {
               question="How can you connect people with more / better food?"
               prize="Prize: Oven Mitts"
               holding={showLongDesc[2]}
-              setHold={() => setShowLongDesc([showLongDesc[0], showLongDesc[1], !showLongDesc[2], showLongDesc[3]])}
+              setHold={() => holdItem(2)}
+              setHover={(show: boolean) => hoverItem(2, show)}
             />
           </TrackImg>
 
@@ -648,7 +671,8 @@ const TracksFrame = () => {
               question="Guiding question"
               prize="Prize: something"
               holding={showLongDesc[3]}
-              setHold={() => setShowLongDesc([showLongDesc[0], showLongDesc[1], showLongDesc[2], !showLongDesc[3]])}
+              setHold={() => holdItem(3)}
+              setHover={(show: boolean) => hoverItem(3, show)}
             />
           </TrackImg>
         </div>
