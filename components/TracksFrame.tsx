@@ -545,7 +545,7 @@ const ShortDesc = ({ desc, question, prize, holding, setHold, setHover }: ShortD
           onClick={() => setHold()}
           onMouseOver={() => setHover(true)}
           onMouseLeave={() => setHover(false)}
-          onFocus={() => setHover(true)} // same as onMouseOver, for accessability
+          onFocus={() => setHover(true)}
           onBlur={() => setHover(false)}
         >
           <b>{holding ? '< Less' : 'More >'}</b>
@@ -599,9 +599,9 @@ const TracksFrame = () => {
               desc="This track is all about finding how you can make travel better - in a car, plane, boat, or whatever else."
               question="What do you think can be made better about travelling?"
               prize="Model Train Set"
-              holding={showLongDesc[0]}
+              holding={holding[0]}
               setHold={() => holdItem(0)}
-              setHover={(show: boolean) => hoverItem(0, show)}
+              setHover={(show: boolean) => {}}
             />
           </TrackImg>
 
@@ -629,7 +629,7 @@ const TracksFrame = () => {
               desc="Description"
               question="something"
               prize="yes"
-              holding={showLongDesc[1]}
+              holding={holding[1]}
               setHold={() => holdItem(1)}
               setHover={(show: boolean) => hoverItem(1, show)}
             />
