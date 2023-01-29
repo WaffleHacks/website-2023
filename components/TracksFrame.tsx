@@ -631,7 +631,7 @@ const TracksFrame = () => {
               prize="yes"
               holding={holding[1]}
               setHold={() => holdItem(1)}
-              setHover={(show: boolean) => hoverItem(1, show)}
+              setHover={(show: boolean) => {}}
             />
           </TrackImg>
 
@@ -641,9 +641,9 @@ const TracksFrame = () => {
               desc="Come up with ways to make eating easier, whether that means finding healthy food, restaurants in the area, or setting up ways to connect people with food."
               question="How can you connect people with more / better food?"
               prize="Prize: Oven Mitts"
-              holding={showLongDesc[2]}
+              holding={holding[2]}
               setHold={() => holdItem(2)}
-              setHover={(show: boolean) => hoverItem(2, show)}
+              setHover={(show: boolean) => {}}
             />
           </TrackImg>
 
@@ -660,7 +660,7 @@ const TracksFrame = () => {
           <div className="w-1/2 overflow-hidden hidden md:block relative overflow-hidden">
             <RocketDisplay />
             <LongDesc
-              show={showLongDesc[3]}
+              show={holding[3]}
               desc="Looking for a change of scenery? This category challenges you to design and develop innovative, user-friendly, and practical solutions for the travel industry. Maybe you'll develop a new booking platform that streamlines the process of finding and reserving flights and hotels. Or maybe you'll create an app that helps travelers plan and optimize their itineraries, taking into account things like budget, duration of trip, and must-see attractions. There's infinite possibilities! Whatever your idea may be, participants in this track have the opportunity to work on projects that have the potential to revolutionize the way we travel. Come prepared to let your creativity roam free!"
             />
           </div>
@@ -670,9 +670,9 @@ const TracksFrame = () => {
               desc="Description"
               question="Guiding question"
               prize="Prize: something"
-              holding={showLongDesc[3]}
+              holding={holding[3]}
               setHold={() => holdItem(3)}
-              setHover={(show: boolean) => hoverItem(3, show)}
+              setHover={(show: boolean) => {}}
             />
           </TrackImg>
         </div>
