@@ -1,5 +1,9 @@
 import { useEffect, useRef, useState } from 'react';
 
+function map(num: number, in_min: number, in_max: number, out_min: number, out_max: number) {
+  return ((num - in_min) * (out_max - out_min)) / (in_max - in_min) + out_min;
+}
+
 const TreeDisplay = () => {
   const [treePathData, setTreePathData]: [string, Function] = useState('M0,8 C30,10 70,0 100,8');
   const [treePathNums, setTreePathNums]: [number[][], Function] = useState([]);
@@ -373,40 +377,42 @@ const BoatDisplay = () => {
   }, []);
 
   return (
-    <svg viewBox="0 0 100 100" className="absolute w-full h-full">
-      <path
-        d={pathData}
-        ref={lineRef}
-        fill="none"
-        stroke="black"
-        strokeWidth="0.5"
-        strokeDasharray="4,6"
-        strokeLinecap="round"
-      />
-      {waves.map((wave: any, i: number) => (
-        <image
-          key={i}
-          x={wave.x}
-          y={wave.y - wave.height}
-          width={waveHeight * 4}
-          height={waveHeight}
-          href="/images/tracks/wave.svg"
-          style={{ clipPath: `inset(0 0 ${waveHeight - wave.height}px 0)` }}
+    <>
+      <svg viewBox="0 0 100 100" className="absolute w-full h-full">
+        <path
+          d={pathData}
+          ref={lineRef}
+          fill="none"
+          stroke="black"
+          strokeWidth="0.5"
+          strokeDasharray="4,6"
+          strokeLinecap="round"
         />
-      ))}
+        {waves.map((wave: any, i: number) => (
+          <image
+            key={i}
+            x={wave.x}
+            y={wave.y - wave.height}
+            width={waveHeight * 4}
+            height={waveHeight}
+            href="/images/tracks/wave.svg"
+            style={{ clipPath: `inset(0 0 ${waveHeight - wave.height}px 0)` }}
+          />
+        ))}
 
-      <image
-        x={boatLoc.x - 12.5}
-        // y={boatLoc.y - 25}
-        y={boatLoc.y - 12.5}
-        width="25"
-        height="25"
-        // href="/images/tracks/boat.svg"
-        // style={{ transform: `rotateY(${boatLoc.angle}deg)`, transformOrigin: 'center', transformBox: 'fill-box' }}
-        href="/images/tracks/canoe.svg"
-        style={{ transform: `rotate(${boatLoc.angle}deg)`, transformOrigin: 'center', transformBox: 'fill-box' }}
-      />
-    </svg>
+        <image
+          x={boatLoc.x - 12.5}
+          // y={boatLoc.y - 25}
+          y={boatLoc.y - 12.5}
+          width="25"
+          height="25"
+          // href="/images/tracks/boat.svg"
+          // style={{ transform: `rotateY(${boatLoc.angle}deg)`, transformOrigin: 'center', transformBox: 'fill-box' }}
+          href="/images/tracks/canoe.svg"
+          style={{ transform: `rotate(${boatLoc.angle}deg)`, transformOrigin: 'center', transformBox: 'fill-box' }}
+        />
+      </svg>
+    </>
   );
 };
 
@@ -440,9 +446,7 @@ const RocketDisplay = () => {
     };
   }
 
-  function map(num: number, in_min: number, in_max: number, out_min: number, out_max: number) {
-    return ((num - in_min) * (out_max - out_min)) / (in_max - in_min) + out_min;
-  }
+  
 
   function moveStars() {
     let newStars = [];
@@ -478,13 +482,18 @@ const RocketDisplay = () => {
     <>
       {starsPos.map((star: any, i: number) => {
         let size = map(star.speed, 0.025, 0.05, 1, 2.5);
+        // if (star.x < 0) console.log(star.x);
+        let opacity = star.x >= 0 ? 1 : Math.max(0, 1 + star.x / 10);
+        if (star.x > 95){
+          opacity = Math.max(0, 1 - (star.x - 95) / 10);
+        }
         return (
           <img
             key={i}
             src={`/images/tracks/star${star.type}.svg`}
             alt=""
             className="absolute"
-            style={{ left: `${star.x}%`, top: `${star.y}%`, width: `${size}%`, height: `${size}%` }}
+            style={{ left: `${star.x}%`, top: `${star.y}%`, width: `${size}%`, height: `${size}%`, opacity: opacity }}
           />
         );
       })}
@@ -522,9 +531,8 @@ interface ShortDescProps {
   prize: string;
   holding: boolean;
   setHold: Function;
-  setHover: Function;
 }
-const ShortDesc = ({ desc, question, prize, holding, setHold, setHover }: ShortDescProps) => {
+const ShortDesc = ({ desc, question, prize, holding, setHold }: ShortDescProps) => {
   return (
     <span
       className={`track-desc ${
@@ -543,10 +551,6 @@ const ShortDesc = ({ desc, question, prize, holding, setHold, setHover }: ShortD
         <button
           className="more-details text-xl cursor-pointer"
           onClick={() => setHold()}
-          onMouseOver={() => setHover(true)}
-          onMouseLeave={() => setHover(false)}
-          onFocus={() => setHover(true)}
-          onBlur={() => setHover(false)}
         >
           <b>{holding ? '< Less' : 'More >'}</b>
         </button>
@@ -571,6 +575,25 @@ const LongDesc = ({ desc, show }: LongDescProps) => {
     </span>
   );
 };
+
+
+interface SmallPrizeProps{
+  name: string;
+  prize: string;
+  desc: string;
+}
+const SmallPrize = ({name, prize, desc}: SmallPrizeProps) => {
+  return (
+    <div className="track-prize relative">
+      <span className="track-prize-title">{name}</span>
+      <button className='small-track-desc-show flex-grow'></button>
+      <div className="small-track-desc bubble absolute bottom-[140%] left-1/2 translate-x-[-50%]">{desc}</div>
+      <span>
+        {prize}
+      </span>
+    </div>
+  )
+}
 
 const TracksFrame = () => {
   let [showLongDesc, setShowLongDesc] = useState([false, false, false, false]);
@@ -601,12 +624,11 @@ const TracksFrame = () => {
               prize="Model Train Set"
               holding={holding[0]}
               setHold={() => holdItem(0)}
-              setHover={(show: boolean) => {}}
             />
           </TrackImg>
 
           {/* trees and path */}
-          <div className="w-1/2 overflow-hidden hidden md:block relative">
+          <div className="w-1/2 hidden md:block relative">
             <TreeDisplay />
             <LongDesc
               show={showLongDesc[0]}
@@ -615,7 +637,7 @@ const TracksFrame = () => {
           </div>
 
           {/* plane and clouds */}
-          <div className="w-1/2 overflow-hidden hidden md:block relative">
+          <div className="w-1/2 hidden md:block relative">
             <CloudDisplay />
             <LongDesc
               show={showLongDesc[1]}
@@ -631,7 +653,6 @@ const TracksFrame = () => {
               prize="yes"
               holding={holding[1]}
               setHold={() => holdItem(1)}
-              setHover={(show: boolean) => {}}
             />
           </TrackImg>
 
@@ -643,7 +664,6 @@ const TracksFrame = () => {
               prize="Prize: Oven Mitts"
               holding={holding[2]}
               setHold={() => holdItem(2)}
-              setHover={(show: boolean) => {}}
             />
           </TrackImg>
 
@@ -657,7 +677,7 @@ const TracksFrame = () => {
           </div>
 
           {/* rocket ship */}
-          <div className="w-1/2 overflow-hidden hidden md:block relative overflow-hidden">
+          <div className="w-1/2 hidden md:block relative moverflow-hidden">
             <RocketDisplay />
             <LongDesc
               show={holding[3]}
@@ -672,49 +692,28 @@ const TracksFrame = () => {
               prize="Prize: something"
               holding={holding[3]}
               setHold={() => holdItem(3)}
-              setHover={(show: boolean) => {}}
             />
           </TrackImg>
         </div>
         {/* other prizes */}
         <div className="flex flex-col gap-y-4 items-center">
           {/* best beginner hack */}
-          <div className="track-prize">
-            <span className="track-prize-title">Best Beginner Hack</span>
-            <span>Deoderant</span>
-          </div>
+          <SmallPrize name="Best Beginner Hack" prize="Deoderant" desc="Your first time attending a hackathon or creating a hack? Then this track is for you! To be applicable for this track, at least half of your team must be first-time hackers. Any theme, any project, any proposal, or any design can be considered for this track. Projects will be evaluated based on creativity, usability, and technical complexity. Create your first project and learn while you're here!" />
 
           {/* best ui/ux */}
-          <div className="track-prize">
-            <span className="track-prize-title">Best UI/UX</span>
-            <span>Coloring Book</span>
-          </div>
+          <SmallPrize name="Best UI/UX" prize="Coloring Book" desc="Get ready to flex your design muscles and create the ultimate user-centered software product! Whether you're a seasoned designer or just starting out, this category is for anyone who is passionate about creating intuitive and engaging user experiences. You'll have the chance to come up with a brand new software product or give an existing one a fresh redesign, all while keeping in mind the needs and goals of the end user. Whether it's a mobile app, website, or something else entirely, the sky's the limit! Just make sure to consider factors like usability, aesthetics, and overall user satisfaction as you brainstorm and design. This category is open to designers, developers, and anyone else who is excited about UI/UX." />
 
           {/* diversity in culture */}
-          <div className="track-prize">
-            <span className="track-prize-title">Diversity In Culture</span>
-            <span>16KB Floppy Disk</span>
-          </div>
+          <SmallPrize name="Diversity In Culture" prize="16KB Floppy Disk" desc="The Diversity and Inclusion track encourages  attendees to come together and work on projects that promote diversity, equity, and inclusion in the tech industry and beyond. By embracing and celebrating different cultures and backgrounds, we can create a more inclusive and innovative community. Teams in this track have the chance to develop solutions that address issues of diversity and inclusion, such as creating tools to promote equal access to education and employment opportunities for people of all cultures and backgrounds, or designing platforms that amplify underrepresented voices and perspectives. Participants have the chance to make a real impact on conversations about diversity and inclusion in tech. The winning projects in this track will be recognized for their efforts to promote diversity and inclusion. Come join us and be a part of creating a more inclusive and culturally rich community!" />
 
           {/* best use of ai */}
-          <div className="track-prize">
-            <span className="track-prize-title">Best Use of AI</span>
-            <span>Free Access to Google Assistant</span>
-          </div>
+          <SmallPrize name="Best Use of AI" prize="Free Access to Google Assistant" desc="While we're all still wrapping our heads around the marvelous AI products that have come around in the last few years (months? weeks? days?), you can get started out actually building using them! You're free to use ChatGPT, DALL-E, GPT-3, Watson, or any other platform that you find interesting. This category is for people on their way to honing our newfound superpowers to make useful and fun products." />
 
           {/* best use of data */}
-          <div className="track-prize">
-            <span className="track-prize-title">Best Use of Data</span>
-            <span>Kaggle Dataset</span>
-          </div>
+          <SmallPrize name="Best Use of Data" prize="Kaggle Dataset" desc="Data is the most powerful resource of our times, and there're uncountable cool things you can do with it! Get cracking with a cool data API on visualizations, analysis, and integrate it seamlessly into your product! Whether you're a Kaggle champion or you were just introduced to the fascinating world of Data Science, this category is for anyone that seeks creative solutions by using this incredible resource." />
 
           {/* best use of wolfram */}
-          <div className="track-prize">
-            <span className="track-prize-title">Best Use of Wolfram</span>
-            <span>
-              Every Digit of 3<sup>218</sup> - 42
-            </span>
-          </div>
+          <SmallPrize name="Best Use of Wolfram" prize="Every Digit of 3^218 - 42" desc="Get ready to unleash the full power of Wolfram! This track allows you to show off your skills in cutting-edge computational tools and technologieis provided by Wolfram. You'll have the opportunity to work on projects that showcase the capabilities of powerful products such as Mathematica, Wolfram Alpha, and the Wolfram Language. Maybe you'll create a tool that helps researchers automate data analysis tasks. Or perhaps you'll create an app that uses natural language processing to understand and respond to user queries. Whatever your idea may be, our goal is to help you turn it into a reality that showcases the full potential of Wolfram's computational technologies. So come ready to innovate, create, and make a splash with Wolfram!" />
         </div>
       </div>
     </div>
