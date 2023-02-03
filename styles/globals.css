@@ -28,10 +28,13 @@ body {
 }
 .small-track-desc-show:hover + .small-track-desc {
   display: block;
-  
   animation: 0.3s ease-in 1s small-track-anim;
   animation-fill-mode: forwards;
-  
+}
+.small-track-desc-show:focus + .small-track-desc {
+  display: block;
+  animation: 0.3s ease-in small-track-anim;
+  animation-fill-mode: forwards;
 }
 @keyframes small-track-anim {
   0% {
