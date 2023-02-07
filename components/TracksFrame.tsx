@@ -250,6 +250,8 @@ const BoatDisplay = () => {
       [20, 5],
     ],
   ];
+  const svgRef = useRef(null);
+  const bboxVal = useRef(null);
 
   const [waves, setWaves]: [any, Function] = useState([{ x: 150, y: 50, height: 20, dir: true, speed: 0.1 }]);
   const wavesPos = useRef([{ x: 150, y: 50, height: 20, dir: true, speed: 0.1 }]);
@@ -257,6 +259,7 @@ const BoatDisplay = () => {
 
   function setBoat() {
     if (lineRef.current) {
+      // if boat is before start of path, move it linearly to start
       if (boatPointRef.current < 0) {
         let point = (lineRef.current as SVGGeometryElement).getPointAtLength(0);
         let p2 = (lineRef.current as SVGGeometryElement).getPointAtLength(1);
@@ -267,6 +270,7 @@ const BoatDisplay = () => {
         setBoatLoc({ x: x, y: y, angle: angle });
         boatPointRef.current += boatSpeed;
       }
+      // if boat is after end of path, move it linearly to end
       if (boatPointRef.current >= (lineRef.current as SVGGeometryElement).getTotalLength() - 0.5) {
         let dx = lastPos.current.x;
         let dy = lastPos.current.y + boatSpeed;
@@ -275,7 +279,9 @@ const BoatDisplay = () => {
         lastPos.current = { x: dx, y: dy, angle: angle };
         setBoatLoc({ x: dx, y: dy, angle: angle });
         boatPointRef.current += boatSpeed;
-      } else {
+      }
+      // if boat is on path, move it along path
+      else {
         let point = (lineRef.current as SVGGeometryElement).getPointAtLength(boatPointRef.current);
         let p2 = (lineRef.current as SVGGeometryElement).getPointAtLength(boatPointRef.current + 0.5);
         let angle = Math.atan2(p2.y - point.y, p2.x - point.x) * (180 / Math.PI);
@@ -366,7 +372,7 @@ const BoatDisplay = () => {
     setPathData(points);
   }, []);
 
-  // make 50 random waves
+  // make random waves
   useEffect(() => {
     let newWaves = [];
     for (let i = 0; i < 18; i++) {
@@ -376,9 +382,29 @@ const BoatDisplay = () => {
     wavesPos.current = newWaves;
   }, []);
 
+  var boatLeft = 0;
+  if (svgRef.current) {
+    if (!bboxVal.current) {
+      bboxVal.current = svgRef.current.getBBox();
+    }
+    let bbox = bboxVal.current;
+    var boatLeft = map(boatLoc.x + 12.5, bbox.x, bbox.x + bbox.width, 0, 100);
+    // let p = svgRef.current.createSVGPoint()
+    // p.x = boatLoc.x - 12.5;
+    // p.y = boatLoc.y - 12.5;
+    // console.log(p.matrixTransform(svgRef.current.getScreenCTM()));
+  }
+
   return (
     <>
-      <svg viewBox="0 0 100 100" className="absolute w-full h-full">
+      {/* <img
+          className="absolute h-[25%] z-10"
+          // href="/images/tracks/boat.svg"
+          // style={{ transform: `rotateY(${boatLoc.angle}deg)`, transformOrigin: 'center', transformBox: 'fill-box' }}
+          src="/images/tracks/canoe.svg" 
+          style={{ transform: `rotate(${boatLoc.angle}deg)`, transformOrigin: 'center', transformBox: 'fill-box', left: boatLeft+"%", top: (boatLoc.y - 12.5)+"%" }}
+        /> */}
+      <svg ref={svgRef} viewBox="0 0 100 100" className="absolute w-full h-full">
         <path
           d={pathData}
           ref={lineRef}
@@ -402,12 +428,8 @@ const BoatDisplay = () => {
 
         <image
           x={boatLoc.x - 12.5}
-          // y={boatLoc.y - 25}
           y={boatLoc.y - 12.5}
-          width="25"
           height="25"
-          // href="/images/tracks/boat.svg"
-          // style={{ transform: `rotateY(${boatLoc.angle}deg)`, transformOrigin: 'center', transformBox: 'fill-box' }}
           href="/images/tracks/canoe.svg"
           style={{ transform: `rotate(${boatLoc.angle}deg)`, transformOrigin: 'center', transformBox: 'fill-box' }}
         />
@@ -575,20 +597,35 @@ interface SmallPrizeProps {
   name: string;
   prize: string;
   desc: string;
+  show: Function;
+  isShowing: boolean;
 }
-const SmallPrize = ({ name, prize, desc }: SmallPrizeProps) => {
+const SmallPrize = ({ name, prize, desc, isShowing, show }: SmallPrizeProps) => {
   return (
-    <div className="track-prize relative">
-      <span className="track-prize-title">{name}</span>
-      <button className="small-track-desc-show flex-grow"></button>
-      <div className="small-track-desc bubble absolute bottom-[140%] left-1/2 translate-x-[-50%]">{desc}</div>
-      <span>{prize}</span>
-    </div>
+    <button className="track-prize relative" onClick={() => show()}>
+      <div className="w-full flex flex-row justify-between">
+        <span className="track-prize-title text-left">{name}</span>
+        <span className="text-right">{prize}</span>
+      </div>
+
+      {isShowing && <div className="pt-4 text-left">{desc}</div>}
+    </button>
   );
 };
 
 const TracksFrame = () => {
-  let [showLongDesc, setShowLongDesc] = useState([false, false, false, false]);
+  let [showLongDesc, setShowLongDesc] = useState([
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+  ]);
   let [holding, setHolding] = useState([false, false, false, false]);
 
   function holdItem(descNum: number) {
@@ -694,6 +731,10 @@ const TracksFrame = () => {
             name="Best Beginner Hack"
             prize="Deoderant"
             desc="Your first time attending a hackathon or creating a hack? Then this track is for you! To be applicable for this track, at least half of your team must be first-time hackers. Any theme, any project, any proposal, or any design can be considered for this track. Projects will be evaluated based on creativity, usability, and technical complexity. Create your first project and learn while you're here!"
+            isShowing={showLongDesc[4]}
+            show={() => {
+              setShowLongDesc(showLongDesc.map((val, ind) => (ind == 4 ? !val : val)));
+            }}
           />
 
           {/* best ui/ux */}
@@ -701,6 +742,10 @@ const TracksFrame = () => {
             name="Best UI/UX"
             prize="Coloring Book"
             desc="Get ready to flex your design muscles and create the ultimate user-centered software product! Whether you're a seasoned designer or just starting out, this category is for anyone who is passionate about creating intuitive and engaging user experiences. You'll have the chance to come up with a brand new software product or give an existing one a fresh redesign, all while keeping in mind the needs and goals of the end user. Whether it's a mobile app, website, or something else entirely, the sky's the limit! Just make sure to consider factors like usability, aesthetics, and overall user satisfaction as you brainstorm and design. This category is open to designers, developers, and anyone else who is excited about UI/UX."
+            isShowing={showLongDesc[5]}
+            show={() => {
+              setShowLongDesc(showLongDesc.map((val, ind) => (ind == 5 ? !val : val)));
+            }}
           />
 
           {/* diversity in culture */}
@@ -708,6 +753,10 @@ const TracksFrame = () => {
             name="Diversity In Culture"
             prize="16KB Floppy Disk"
             desc="The Diversity and Inclusion track encourages  attendees to come together and work on projects that promote diversity, equity, and inclusion in the tech industry and beyond. By embracing and celebrating different cultures and backgrounds, we can create a more inclusive and innovative community. Teams in this track have the chance to develop solutions that address issues of diversity and inclusion, such as creating tools to promote equal access to education and employment opportunities for people of all cultures and backgrounds, or designing platforms that amplify underrepresented voices and perspectives. Participants have the chance to make a real impact on conversations about diversity and inclusion in tech. The winning projects in this track will be recognized for their efforts to promote diversity and inclusion. Come join us and be a part of creating a more inclusive and culturally rich community!"
+            isShowing={showLongDesc[6]}
+            show={() => {
+              setShowLongDesc(showLongDesc.map((val, ind) => (ind == 6 ? !val : val)));
+            }}
           />
 
           {/* best use of ai */}
@@ -715,6 +764,10 @@ const TracksFrame = () => {
             name="Best Use of AI"
             prize="Free Access to Google Assistant"
             desc="While we're all still wrapping our heads around the marvelous AI products that have come around in the last few years (months? weeks? days?), you can get started out actually building using them! You're free to use ChatGPT, DALL-E, GPT-3, Watson, or any other platform that you find interesting. This category is for people on their way to honing our newfound superpowers to make useful and fun products."
+            isShowing={showLongDesc[7]}
+            show={() => {
+              setShowLongDesc(showLongDesc.map((val, ind) => (ind == 7 ? !val : val)));
+            }}
           />
 
           {/* best use of data */}
@@ -722,6 +775,10 @@ const TracksFrame = () => {
             name="Best Use of Data"
             prize="Kaggle Dataset"
             desc="Data is the most powerful resource of our times, and there're uncountable cool things you can do with it! Get cracking with a cool data API on visualizations, analysis, and integrate it seamlessly into your product! Whether you're a Kaggle champion or you were just introduced to the fascinating world of Data Science, this category is for anyone that seeks creative solutions by using this incredible resource."
+            isShowing={showLongDesc[8]}
+            show={() => {
+              setShowLongDesc(showLongDesc.map((val, ind) => (ind == 8 ? !val : val)));
+            }}
           />
 
           {/* best use of wolfram */}
@@ -729,6 +786,10 @@ const TracksFrame = () => {
             name="Best Use of Wolfram"
             prize="Every Digit of 3^218 - 42"
             desc="Get ready to unleash the full power of Wolfram! This track allows you to show off your skills in cutting-edge computational tools and technologieis provided by Wolfram. You'll have the opportunity to work on projects that showcase the capabilities of powerful products such as Mathematica, Wolfram Alpha, and the Wolfram Language. Maybe you'll create a tool that helps researchers automate data analysis tasks. Or perhaps you'll create an app that uses natural language processing to understand and respond to user queries. Whatever your idea may be, our goal is to help you turn it into a reality that showcases the full potential of Wolfram's computational technologies. So come ready to innovate, create, and make a splash with Wolfram!"
+            isShowing={showLongDesc[9]}
+            show={() => {
+              setShowLongDesc(showLongDesc.map((val, ind) => (ind == 9 ? !val : val)));
+            }}
           />
         </div>
       </div>

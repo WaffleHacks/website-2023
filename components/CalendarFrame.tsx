@@ -55,7 +55,7 @@ const CalendarFrame = () => {
                 fill={day == 0 ? '#0000005C' : '#000'}
                 svgProps={{
                   className: 'inline-block h-6 rotate-180',
-                  onClick: () => setDay(Math.min(day - 1, sections.length - 1)),
+                  onClick: () => setDay(Math.max(day - 1, 0)),
                 }}
               />
               <span className="text-3xl mx-4">{weekDays[day]}</span>

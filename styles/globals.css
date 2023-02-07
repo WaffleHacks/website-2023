@@ -17,25 +17,12 @@ body {
 }
 
 .track-prize {
-  @apply w-full md:w-7/12 rounded-lg border-2 border-black flex flex-col sm:flex-row justify-between px-4 py-2 
+  @apply w-full md:w-7/12 rounded-lg border-2 border-black flex flex-col justify-between px-4 py-2 
 }
 .track-prize-title {
   @apply font-bold md:font-normal text-lg md:text-base mb-1 md:mb-0
 }
-.small-track-desc {
-  display: none;
-  opacity: 0;
-}
-.small-track-desc-show:hover + .small-track-desc {
-  display: block;
-  animation: 0.3s ease-in 1s small-track-anim;
-  animation-fill-mode: forwards;
-}
-.small-track-desc-show:focus + .small-track-desc {
-  display: block;
-  animation: 0.3s ease-in small-track-anim;
-  animation-fill-mode: forwards;
-}
+
 @keyframes small-track-anim {
   0% {
     opacity: 0;
@@ -43,27 +30,6 @@ body {
   100% {
     opacity: 1;
   }
-}
-.bubble {
-  /* width: 30rem; */
-  width: 100%;
-  background: white; 
-  border: 2px solid black;
-  color: black;
-  padding: 1rem;
-  text-align: center;
-  border-radius: 0.3rem;
-}
-.bubble::after {
-  content: '';
-  display: inline-block;
-  width: 1rem;
-  height: 1rem;
-  background: #000;
-  position: absolute;
-  bottom: -1rem;
-  left: calc(50% - 0.5rem);
-  clip-path: polygon(0 0, 100% 0, 50% 100%);
 }
 
 .calendar-date {
