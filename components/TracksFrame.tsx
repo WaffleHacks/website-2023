@@ -250,8 +250,8 @@ const BoatDisplay = () => {
       [20, 5],
     ],
   ];
-  const svgRef = useRef(null);
-  const bboxVal = useRef(null);
+  const svgRef: any = useRef(null);
+  const bboxVal: any = useRef(null);
 
   const [waves, setWaves]: [any, Function] = useState([{ x: 150, y: 50, height: 20, dir: true, speed: 0.1 }]);
   const wavesPos = useRef([{ x: 150, y: 50, height: 20, dir: true, speed: 0.1 }]);
@@ -388,7 +388,10 @@ const BoatDisplay = () => {
       bboxVal.current = svgRef.current.getBBox();
     }
     let bbox = bboxVal.current;
-    var boatLeft = map(boatLoc.x + 12.5, bbox.x, bbox.x + bbox.width, 0, 100);
+    var boatLeft = 0;
+    if (bbox) {
+      boatLeft = map(boatLoc.x + 12.5, bbox.x, bbox.x + bbox.width, 0, 100);
+    }
     // let p = svgRef.current.createSVGPoint()
     // p.x = boatLoc.x - 12.5;
     // p.y = boatLoc.y - 12.5;
