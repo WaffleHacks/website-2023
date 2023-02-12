@@ -2,10 +2,20 @@
 @tailwind components;
 @tailwind utilities;
 
+
 @import url('https://fonts.googleapis.com/css2?family=Lexend:wght@100;200;300;400;500;600;700;800;900&display=swap');
+
+@font-face {
+  font-family: 'Caveat';
+  src: url(/fonts/Caveat-VariableFont_wght.ttf);
+}
 
 * {
   font-family: Lexend;
+}
+
+.handwriting, .handwriting * {
+  font-family: 'Caveat';
 }
 
 .App {
@@ -14,6 +24,36 @@
 
 body {
   background: #C0ECFF;
+}
+
+#runway {
+  bottom: 0;
+  transform: translateY(50%);
+  background: rgb(40, 40, 40, 0.7);
+  backdrop-filter: blur(2px);
+}
+
+#runway-nums {
+  writing-mode: vertical-rl;
+  line-height: 90%;
+  margin-right: 0.25rem;
+}
+
+#lf-note {
+  opacity: 0;
+  animation: 1s ease-in-out 0.5s 1 normal forwards running fadeIn;
+}
+.lf-note-modal {
+  animation: 0.2s ease-in-out normal forwards running fadeIn;
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
 }
 
 .track-prize {

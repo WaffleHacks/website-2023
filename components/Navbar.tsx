@@ -1,35 +1,16 @@
 import Link from 'next/link';
 import { useEffect, useRef, useState } from 'react';
-import Draggable from 'react-draggable';
 
-import { Button } from './atoms';
-import ModalSide from './ModalSide';
+import { Button } from './InnerComponents/atoms';
+import ModalSide from './InnerComponents/ModalSide';
 import NavbarOptions from './NavbarOptions';
 
 const Navbar = () => {
   const [modalOpen, setModalOpen] = useState(false);
 
-  const [scrollY, setScrollY] = useState(0);
-  const planeRef = useRef<HTMLImageElement>(null);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      var height = Math.max(document.body.scrollHeight, document.body.offsetHeight) - window.innerHeight;
-      if (planeRef.current) {
-        setScrollY((window.scrollY * (window.innerWidth - planeRef.current.clientWidth)) / height);
-      }
-    };
-    handleScroll();
-
-    window.addEventListener('scroll', handleScroll);
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-    };
-  }, []);
-
   return (
     <div
-      className="fixed top-0 flex flex-row justify-between bg-[#C0ECFF] w-full px-4 py-2 border-b-4 border-[#2258A1] z-50"
+      className="fixed top-0 flex flex-row justify-between bg-[#C0ECFF] w-full px-4 py-2 border-b-4 border-[#2258A1] z-20"
       style={{ boxShadow: '0px 6px 5px rgba(40, 131, 183, 0.36)' }}
     >
       <Link href="/" className="text-black flex items-center">
@@ -49,17 +30,6 @@ const Navbar = () => {
       <ModalSide open={modalOpen} setOpen={setModalOpen}>
         <NavbarOptions />
       </ModalSide>
-      <Draggable>
-        <img
-          id="nav-plane"
-          src="/images/waffleairplane.png"
-          alt="airplane"
-          ref={planeRef}
-          className="hidden md:block h-12 absolute top-[1.8rem]"
-          draggable={false}
-          style={{ left: scrollY + 'px' }}
-        />
-      </Draggable>
     </div>
   );
 };

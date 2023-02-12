@@ -1,4 +1,4 @@
-import { Button } from './atoms';
+import { Button } from './InnerComponents/atoms';
 
 const SponsorsFrame = () => {
   return (

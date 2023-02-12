@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-import Faq from './Faq';
+import Faq from './InnerComponents/Faq';
 
 const FaqFrame = () => {
   const [faqs, setFaqs] = useState([
