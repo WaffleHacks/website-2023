@@ -192,7 +192,7 @@ const LandingFrame = () => {
         <Modal className="lf-note-modal">
           <div className="relative">
             <img src="/images/scav/notePaper.svg" alt="" className="h-[90vh]" />
-            <div className="handwriting absolute left-0 top-0 px-[6vh] pt-[9vh] text-[3.5vh] text-left font-light">
+            <div className="handwriting absolute left-0 top-0 px-[6vh] pt-[6vh] text-[3.5vh] text-left font-light">
               <span className="block mb-[4vh]">Dear Hackers,</span>
               <span className="block mb-[3vh]">
                 You foiled my plan. Last year, I set up a most fabulous trap to protect my waffle. My hope. But you were
