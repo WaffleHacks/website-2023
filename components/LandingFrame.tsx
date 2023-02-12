@@ -199,9 +199,9 @@ const LandingFrame = () => {
                 smarter than I, and I lost my most valuable resource. So I worked hard to make another.
               </span>
               <span className="block mb-[2vh]">
-                I traveled far away to hide my recipe. So far that no one could possibly know I&quot;d been there. Not
-                even you. Now, if you&quot;d excuse me, I&quot;ll be practicing my waffle skills. And don&quot;t disturb
-                me while I&quot;m in my paradise.
+                I traveled far away to hide my recipe. So far that no one could possibly know I&rsquo;d been there. Not
+                even you. Now, if you&rsquo;d excuse me, I&rsquo;ll be practicing my waffle skills. And don&rsquo;t
+                disturb me while I&rsquo;m in my paradise.
               </span>
               <span className="block">xoxo,</span>
               <span>Wren</span>
