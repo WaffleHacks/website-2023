@@ -1,15 +1,14 @@
 import { Button } from './InnerComponents/atoms';
 
 const SponsorsFrame = () => {
-
   let sponsors = {
     pilot: [
-      '/images/logos/BDC_Logo.png',
+      { image: '/images/logos/BDC_Logo.png', link: 'https://www.belmontdata.org/', name: 'Belmont Data Collaborative' },
     ],
     first: [],
     business: [],
     economy: [],
-  }
+  };
 
   return (
     <div id="sponsors" className="bg-white p-8 md:text-left flex justify-center">
@@ -19,11 +18,11 @@ const SponsorsFrame = () => {
         <div className="mt-10 text-center w-full">
           <span className="text-2xl md:text-3xl block text-[#2258A1] font-semibold">PILOT&apos;S CABIN</span>
           <div>
-            {
-              sponsors.pilot.map((sponsor, index) => (
-                <img key={index} src={sponsor} className="h-28 mx-auto" />
-              ))
-            }
+            {sponsors.pilot.map((sponsor, index) => (
+              <a key={'sponsor-pilot-' + index} href={sponsor.link}>
+                <img key={index} src={sponsor.image} alt={sponsor.name} className="h-28 mx-auto" />
+              </a>
+            ))}
           </div>
           <span className="mt-8 block text-2xl md:text-3xl text-[#2258A1] font-semibold">FIRST CLASS</span>
           <div>
