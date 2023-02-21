@@ -6,7 +6,7 @@ const withMdx = require('@next/mdx')({
 const nextConfig = {
   pageExtensions: ['tsx', 'md', 'mdx'],
   reactStrictMode: true,
-  swcMinify: true,
+  swcMinify: true
 };
 
 module.exports = withMdx(nextConfig);
