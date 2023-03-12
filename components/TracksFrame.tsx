@@ -566,9 +566,9 @@ const ShortDesc = ({ desc, question, prize, holding, setHold }: ShortDescProps) 
       {desc}
       <br />
       <br />
-      {question}
+      {/* {question}
       <br />
-      <br />
+      <br /> */}
       <div className="flex justify-between w-full">
         <span>Prize: {prize}</span>
         <button className="more-details text-xl cursor-pointer" onClick={() => setHold()}>
@@ -651,7 +651,7 @@ const TracksFrame = () => {
           {/* sustainability */}
           <TrackImg name="Sustainability" src="/images/tracks/sustainabilityIsland.png" alt="" isIsland={true}>
             <ShortDesc
-              desc="This track is all about finding how you can make travel better - in a car, plane, boat, or whatever else."
+              desc="You can submit any hack or solution that contributes to a better future, no matter where on the globe you are. We're excited to see how you support industrial, environmental, business, and any other applicable causes."
               question="What do you think can be made better about travelling?"
               prize="Model Train Set"
               holding={holding[0]}
@@ -677,23 +677,23 @@ const TracksFrame = () => {
             />
           </div>
 
-          {/* accessability image */}
-          <TrackImg name="Acessibility" src="/images/tracks/sustainabilityIsland.png" alt="" isIsland={true}>
+          {/* travel image */}
+          <TrackImg name="Travel" src="/images/tracks/travel island.png" alt="" isIsland={true}>
             <ShortDesc
-              desc="Description"
-              question="something"
-              prize="yes"
-              holding={holding[1]}
-              setHold={() => holdItem(1)}
+              desc="In the Travel category, participants are challenged to create innovative and practical solutions for the travel industry, such as a new platform for booking or an app for helping travelers plan their trips. This track aims to revolutionize travel."
+              question="Guiding question"
+              prize="something"
+              holding={holding[3]}
+              setHold={() => holdItem(3)}
             />
           </TrackImg>
 
           {/* food insecurity image */}
-          <TrackImg name="Food Insecurity" src="/images/tracks/sustainabilityIsland.png" alt="" isIsland={true}>
+          <TrackImg name="Food Insecurity" src="/images/tracks/food insecurity island.png" alt="" isIsland={true}>
             <ShortDesc
-              desc="Come up with ways to make eating easier, whether that means finding healthy food, restaurants in the area, or setting up ways to connect people with food."
+              desc="Innovative solutions are needed to end student food insecurity! By utilizing technology to connect students with resources, we can revamp campus dining and create sustainable food assistance programs. There are endless possibilities, and we're ready to help college and university students find affordable, nutritious meals."
               question="How can you connect people with more / better food?"
-              prize="Prize: Oven Mitts"
+              prize="Oven Mitts"
               holding={holding[2]}
               setHold={() => holdItem(2)}
             />
@@ -716,14 +716,15 @@ const TracksFrame = () => {
               desc="Looking for a change of scenery? This category challenges you to design and develop innovative, user-friendly, and practical solutions for the travel industry. Maybe you'll develop a new booking platform that streamlines the process of finding and reserving flights and hotels. Or maybe you'll create an app that helps travelers plan and optimize their itineraries, taking into account things like budget, duration of trip, and must-see attractions. There's infinite possibilities! Whatever your idea may be, participants in this track have the opportunity to work on projects that have the potential to revolutionize the way we travel. Come prepared to let your creativity roam free!"
             />
           </div>
-          {/* sustainability image */}
-          <TrackImg name="Travel" src="/images/tracks/sustainabilityIsland.png" alt="" isIsland={true}>
+
+          {/* accessability image */}
+          <TrackImg name="Acessibility" src="/images/tracks/sustainabilityIsland.png" alt="" isIsland={true}>
             <ShortDesc
-              desc="Description"
-              question="Guiding question"
-              prize="Prize: something"
-              holding={holding[3]}
-              setHold={() => holdItem(3)}
+              desc="By creating innovative solutions for real-world challenges faced by people with disabilities, from developing apps for blind people to creating tools for the hard of hearing, we'll be able to change people's lives. Let's roll up our sleeves and make a difference in the world of digital accessibility!"
+              question="something"
+              prize="yes"
+              holding={holding[1]}
+              setHold={() => holdItem(1)}
             />
           </TrackImg>
         </div>

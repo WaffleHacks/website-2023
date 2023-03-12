@@ -19,7 +19,7 @@ const SponsorsFrame = () => {
           <span className="text-2xl md:text-3xl block text-[#2258A1] font-semibold">PILOT&apos;S CABIN</span>
           <div>
             {sponsors.pilot.map((sponsor, index) => (
-              <a key={'sponsor-pilot-' + index} href={sponsor.link}>
+              <a key={'sponsor-pilot-' + index} href={sponsor.link} target="_blank" rel="noreferrer">
                 <img key={index} src={sponsor.image} alt={sponsor.name} className="h-28 mx-auto" />
               </a>
             ))}

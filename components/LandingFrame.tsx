@@ -4,6 +4,7 @@ import { DraggableCore } from 'react-draggable';
 import { Button } from './InnerComponents/atoms';
 import BoardingPass from './InnerComponents/BoardingPass';
 import Modal from './InnerComponents/Modal';
+import WrenPoolDialogue from './InnerComponents/WrenPoolDialogue';
 
 const LandingFrame = () => {
   const [scrollY, setScrollY] = useState(0);
@@ -18,6 +19,8 @@ const LandingFrame = () => {
   });
   const [showNoteIcon, setShowNoteIcon] = useState(false);
   const [showNote, setShowNote] = useState(false);
+
+  const [showWren, setShowWren] = useState(false);
 
   function map(value: number, start1: number, stop1: number, start2: number, stop2: number) {
     return ((value - start1) / (stop1 - start1)) * (stop2 - start2) + start2;
@@ -82,7 +85,7 @@ const LandingFrame = () => {
       };
     } else {
       setPlaneLanded(true);
-      setPlaneY(planeY + window.scrollY);
+      setPlaneY(planeY);
       planeIsLanded.current = true;
       planeAnimation.current = {
         startTime: 0,
@@ -143,6 +146,13 @@ const LandingFrame = () => {
           <br />
           Waffle Paradise!
         </div>
+        <button
+          onClick={() => setShowWren(true)}
+          onKeyUp={() => setShowWren(true)}
+          className="absolute right-[6.45vw] top-[13.9vw] cursor-default hidden md:block"
+        >
+          <img src="/images/scav/lax.png" alt="lax guy" className="w-[0.8vw]" />
+        </button>
       </div>
 
       <div
@@ -173,7 +183,7 @@ const LandingFrame = () => {
               setShowNote(true);
             }}
           >
-            <img src="/images/scav/note.svg" alt="Scavenger Hunt Note" className="h-10" id="lf-note" />
+            <img src="/images/scav/note.svg" alt="Scavenger Hunt Note" className="w-10" id="lf-note" />
           </button>
         )}
       </div>
@@ -190,24 +200,11 @@ const LandingFrame = () => {
       </DraggableCore>
       {showNote && (
         <Modal className="lf-note-modal">
-          <div className="relative">
-            <img src="/images/scav/notePaper.svg" alt="" className="h-[90vh]" />
-            <div className="handwriting absolute left-0 top-0 px-[6vh] pt-[6vh] text-[3.5vh] text-left font-light">
-              <span className="block mb-[4vh]">Dear Hackers,</span>
-              <span className="block mb-[3vh]">
-                You foiled my plan. Last year, I set up a most fabulous trap to protect my waffle. My hope. But you were
-                smarter than I, and I lost my most valuable resource. So I worked hard to make another.
-              </span>
-              <span className="block mb-[2vh]">
-                I traveled far away to hide my recipe. So far that no one could possibly know I&rsquo;d been there. Not
-                even you. Now, if you&rsquo;d excuse me, I&rsquo;ll be practicing my waffle skills. And don&rsquo;t
-                disturb me while I&rsquo;m in my paradise.
-              </span>
-              <span className="block">xoxo,</span>
-              <span>Wren</span>
-            </div>
+          <div className="relative bg-white/[80%] p-8 rounded-[1.5vw] h-[70%] w-[60%] flex justify-center items-center">
+            {/* <img src="/images/scav/notePaper.svg" alt="" className="h-[90vh]" /> */}
+            <img src="/images/scav/box.svg" alt="" className="w-[80%]" />
 
-            <div className="absolute top-[1.9vh] right-[2.5vh]">
+            <div className="absolute top-[3vh] right-[3vh]">
               <button
                 onClick={() => {
                   setShowNote(false);
@@ -216,6 +213,24 @@ const LandingFrame = () => {
                 <img src="/images/scav/noteClose.svg" alt="Close Note" className="h-[4vh]" />
               </button>
             </div>
+          </div>
+        </Modal>
+      )}
+      {showWren && (
+        <Modal className="lf-note-modal">
+          <div className="relative w-[70vh] h-[60vh] bg-white rounded-[2vh] flex flex-col justify-between p-8 items-center">
+            {/* close button */}
+            <div className="absolute top-[1.9vh] right-[2.5vh]">
+              <button
+                onClick={() => {
+                  setShowWren(false);
+                }}
+              >
+                <img src="/images/scav/noteClose.svg" alt="Close Note" className="h-[4vh]" />
+              </button>
+            </div>
+
+            <WrenPoolDialogue />
           </div>
         </Modal>
       )}

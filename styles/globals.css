@@ -100,7 +100,7 @@ body {
 }
 
 .track-box:hover .track-desc, .track-desc.track-desc-holding {
-  transition: opacity 0.3s ease, bottom 0.3s ease;
+  transition: 0.5s opacity 0.3s ease, 0.5s bottom 0.3s ease;
   opacity: 1;
   bottom: 1.25%;
 }
