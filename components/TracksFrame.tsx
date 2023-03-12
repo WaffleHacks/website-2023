@@ -648,14 +648,14 @@ const TracksFrame = () => {
         <h1 className="text-4xl md:text-5xl">Tracks &amp; Prizes</h1>
         {/* tracks */}
         <div className="flex relative flex-wrap justify-center pt-6 gap-y-6 mb-6">
-          {/* sustainability */}
-          <TrackImg name="Sustainability" src="/images/tracks/sustainabilityIsland.png" alt="" isIsland={true}>
+          {/* food insecurity image */}
+          <TrackImg name="Food Insecurity" src="/images/tracks/food insecurity island.png" alt="" isIsland={true}>
             <ShortDesc
-              desc="You can submit any hack or solution that contributes to a better future, no matter where on the globe you are. We're excited to see how you support industrial, environmental, business, and any other applicable causes."
-              question="What do you think can be made better about travelling?"
-              prize="Model Train Set"
-              holding={holding[0]}
-              setHold={() => holdItem(0)}
+              desc="Innovative solutions are needed to end student food insecurity! By utilizing technology to connect students with resources, we can revamp campus dining and create sustainable food assistance programs. There are endless possibilities, and we're ready to help college and university students find affordable, nutritious meals."
+              question="How can you connect people with more / better food?"
+              prize="Oven Mitts"
+              holding={holding[2]}
+              setHold={() => holdItem(2)}
             />
           </TrackImg>
 
@@ -688,14 +688,14 @@ const TracksFrame = () => {
             />
           </TrackImg>
 
-          {/* food insecurity image */}
-          <TrackImg name="Food Insecurity" src="/images/tracks/food insecurity island.png" alt="" isIsland={true}>
+          {/* sustainability */}
+          <TrackImg name="Sustainability" src="/images/tracks/sustainabilityIsland.png" alt="" isIsland={true}>
             <ShortDesc
-              desc="Innovative solutions are needed to end student food insecurity! By utilizing technology to connect students with resources, we can revamp campus dining and create sustainable food assistance programs. There are endless possibilities, and we're ready to help college and university students find affordable, nutritious meals."
-              question="How can you connect people with more / better food?"
-              prize="Oven Mitts"
-              holding={holding[2]}
-              setHold={() => holdItem(2)}
+              desc="You can submit any hack or solution that contributes to a better future, no matter where on the globe you are. We're excited to see how you support industrial, environmental, business, and any other applicable causes."
+              question="What do you think can be made better about travelling?"
+              prize="Model Train Set"
+              holding={holding[0]}
+              setHold={() => holdItem(0)}
             />
           </TrackImg>
 
