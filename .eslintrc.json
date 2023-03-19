@@ -8,6 +8,12 @@
     "plugin:jsx-a11y/recommended"
   ],
   "rules": {
+    "prettier/prettier": [
+      "error",
+      {
+        "endOfLine": "auto"
+      }
+    ],
     "import/order": [
       "error",
       {
@@ -19,7 +25,7 @@
         }
       }
     ],
-    "sort-imports": ["error", {"ignoreDeclarationSort": true}]
+    "sort-imports": ["error", { "ignoreDeclarationSort": true }]
   },
   "settings": {
     "import/resolver": {

@@ -3,6 +3,7 @@ import { useState } from 'react';
 import Image from '@/components/Image';
 
 import { Button } from './atoms';
+import MLHBadge from './MLHBadge';
 import ModalSide from './ModalSide';
 import NavbarOptions from './NavbarOptions';
 
@@ -31,6 +32,8 @@ const Navbar = () => {
       <ModalSide open={modalOpen} setOpen={setModalOpen}>
         <NavbarOptions />
       </ModalSide>
+
+      <MLHBadge />
     </div>
   );
 };
