@@ -30,6 +30,23 @@ const Navbar = () => {
       <ModalSide open={modalOpen} setOpen={setModalOpen}>
         <NavbarOptions />
       </ModalSide>
+
+      {/* MLH Trust Badge */}
+      <div className="absolute h-full top-[100%] right-0 md:right-[50px] w-[10%] z-[-1]">
+        <a
+          id="mlh-trust-badge"
+          style={{ display: 'block', maxWidth: '100px', minWidth: '60px' }}
+          href="https://mlh.io/na?utm_source=na-hackathon&utm_medium=TrustBadge&utm_campaign=2023-season&utm_content=gray"
+          target="_blank"
+          rel="noreferrer"
+        >
+          <img
+            src="https://s3.amazonaws.com/logged-assets/trust-badge/2023/mlh-trust-badge-2023-gray.svg"
+            alt="Major League Hacking 2023 Hackathon Season"
+            style={{ width: '100%' }}
+          />
+        </a>
+      </div>
     </div>
   );
 };
