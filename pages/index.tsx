@@ -13,12 +13,12 @@ export default function Home() {
     <div className="App">
       <Navbar />
       <LandingFrame />
-      <AboutFrame />
+      {/* <AboutFrame />
       <TracksFrame />
       <CalendarFrame />
       <FaqFrame />
       <CrewFrame />
-      <SponsorsFrame />
+      <SponsorsFrame /> */}
       <Footer />
     </div>
   );

@@ -3,8 +3,6 @@ import { DraggableCore } from 'react-draggable';
 
 import { Button } from './InnerComponents/atoms';
 import BoardingPass from './InnerComponents/BoardingPass';
-import Modal from './InnerComponents/Modal';
-import WrenPoolDialogue from './InnerComponents/WrenPoolDialogue';
 
 const LandingFrame = () => {
   const [scrollY, setScrollY] = useState(0);
@@ -18,9 +16,6 @@ const LandingFrame = () => {
     startX: 0,
   });
   const [showNoteIcon, setShowNoteIcon] = useState(false);
-  const [showNote, setShowNote] = useState(false);
-
-  const [showWren, setShowWren] = useState(false);
 
   function map(value: number, start1: number, stop1: number, start2: number, stop2: number) {
     return ((value - start1) / (stop1 - start1)) * (stop2 - start2) + start2;
@@ -84,13 +79,6 @@ const LandingFrame = () => {
         startX: 0,
       };
     } else {
-      setPlaneLanded(true);
-      setPlaneY(planeY);
-      planeIsLanded.current = true;
-      planeAnimation.current = {
-        startTime: 0,
-        startX: planeOffsetX + scrollY,
-      };
     }
   }
 
@@ -146,13 +134,6 @@ const LandingFrame = () => {
           <br />
           Waffle Paradise!
         </div>
-        <button
-          onClick={() => setShowWren(true)}
-          onKeyUp={() => setShowWren(true)}
-          className="absolute right-[6.45vw] top-[13.9vw] cursor-default hidden md:block"
-        >
-          <img src="/images/scav/lax.png" alt="lax guy" className="w-[0.8vw]" />
-        </button>
       </div>
 
       <div
@@ -176,16 +157,6 @@ const LandingFrame = () => {
           <span>R</span>
         </div>
         <div className="border-white border-t-2 flex-grow border-dashed"></div>
-        {showNoteIcon && (
-          <button
-            className="absolute right-1/2"
-            onClick={() => {
-              setShowNote(true);
-            }}
-          >
-            <img src="/images/scav/note.svg" alt="Scavenger Hunt Note" className="w-10" id="lf-note" />
-          </button>
-        )}
       </div>
       <DraggableCore onDrag={dragPlane} onStop={dropPlane}>
         <img
@@ -198,42 +169,6 @@ const LandingFrame = () => {
           style={{ left: scrollY + planeOffsetX + 'px', top: planeY + 'px' }}
         />
       </DraggableCore>
-      {showNote && (
-        <Modal className="lf-note-modal">
-          <div className="relative bg-white/[80%] p-8 rounded-[1.5vw] h-[70%] w-[60%] flex justify-center items-center">
-            {/* <img src="/images/scav/notePaper.svg" alt="" className="h-[90vh]" /> */}
-            <img src="/images/scav/box.svg" alt="" className="w-[80%]" />
-
-            <div className="absolute top-[3vh] right-[3vh]">
-              <button
-                onClick={() => {
-                  setShowNote(false);
-                }}
-              >
-                <img src="/images/scav/noteClose.svg" alt="Close Note" className="h-[4vh]" />
-              </button>
-            </div>
-          </div>
-        </Modal>
-      )}
-      {showWren && (
-        <Modal className="lf-note-modal">
-          <div className="relative w-[70vh] h-[60vh] bg-white rounded-[2vh] flex flex-col justify-between p-8 items-center">
-            {/* close button */}
-            <div className="absolute top-[1.9vh] right-[2.5vh]">
-              <button
-                onClick={() => {
-                  setShowWren(false);
-                }}
-              >
-                <img src="/images/scav/noteClose.svg" alt="Close Note" className="h-[4vh]" />
-              </button>
-            </div>
-
-            <WrenPoolDialogue />
-          </div>
-        </Modal>
-      )}
     </div>
   );
 };
