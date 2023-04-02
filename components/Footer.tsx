@@ -5,7 +5,6 @@ const Footer = () => {
     <div id="footer" className="flex flex-col items-center py-4 mt-8">
       <span className="mb-4">© WaffleHacks 2023</span>
       <div className="flex flex-row gap-4 flex-wrap px-8 justify-around">
-        <Link href="/">Home</Link>
         <Link href="/privacy" target="_blank">
           Privacy Policy
         </Link>

@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { useEffect, useRef, useState } from 'react';
+import { useState } from 'react';
 
 import { Button } from './InnerComponents/atoms';
 import ModalSide from './InnerComponents/ModalSide';
