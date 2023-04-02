@@ -29,7 +29,14 @@ const LandingFrame = () => {
   function setPlaneX() {
     let height = Math.max(document.body.scrollHeight, document.body.offsetHeight) - window.innerHeight;
     if (planeRef.current) {
-      setScrollY((window.scrollY * (window.innerWidth - planeRef.current.clientWidth)) / height);
+      let nextScroll = (window.scrollY * (window.innerWidth - planeRef.current.clientWidth)) / height;
+      if (nextScroll < planeRef.current.offsetLeft) {
+        planeRef.current.style.transform = "rotateY(180deg)";
+      }
+      else {
+        planeRef.current.style.transform = "rotateY(0)";
+      }
+      setScrollY(nextScroll);
     }
   }
 
