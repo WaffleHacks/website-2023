@@ -31,10 +31,9 @@ const LandingFrame = () => {
     if (planeRef.current) {
       let nextScroll = (window.scrollY * (window.innerWidth - planeRef.current.clientWidth)) / height;
       if (nextScroll < planeRef.current.offsetLeft) {
-        planeRef.current.style.transform = "rotateY(180deg)";
-      }
-      else {
-        planeRef.current.style.transform = "rotateY(0)";
+        planeRef.current.style.transform = 'rotateY(180deg)';
+      } else {
+        planeRef.current.style.transform = 'rotateY(0)';
       }
       setScrollY(nextScroll);
     }
