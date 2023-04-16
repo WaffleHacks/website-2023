@@ -7,6 +7,7 @@ import Modal from './InnerComponents/Modal';
 import WrenPoolDialogue from './InnerComponents/WrenPoolDialogue';
 
 const LandingFrame = () => {
+  const SCAV = false;
   const [scrollY, setScrollY] = useState(0);
   const [planeOffsetX, setPlaneOffsetX] = useState(0);
   const [planeY, setPlaneY] = useState(30);
@@ -19,7 +20,6 @@ const LandingFrame = () => {
   });
   const [showNoteIcon, setShowNoteIcon] = useState(false);
   const [showNote, setShowNote] = useState(false);
-
   const [showWren, setShowWren] = useState(false);
 
   function map(value: number, start1: number, stop1: number, start2: number, stop2: number) {
@@ -30,11 +30,11 @@ const LandingFrame = () => {
     let height = Math.max(document.body.scrollHeight, document.body.offsetHeight) - window.innerHeight;
     if (planeRef.current) {
       let nextScroll = (window.scrollY * (window.innerWidth - planeRef.current.clientWidth)) / height;
-      if (nextScroll < planeRef.current.offsetLeft) {
-        planeRef.current.style.transform = 'rotateY(180deg)';
-      } else {
-        planeRef.current.style.transform = 'rotateY(0)';
-      }
+      // if (nextScroll < planeRef.current.offsetLeft) {
+      //   planeRef.current.style.transform = 'rotateY(180deg)';
+      // } else {
+      //   planeRef.current.style.transform = 'rotateY(0)';
+      // }
       setScrollY(nextScroll);
     }
   }
@@ -90,13 +90,20 @@ const LandingFrame = () => {
         startX: 0,
       };
     } else {
-      setPlaneLanded(true);
-      setPlaneY(planeY);
-      planeIsLanded.current = true;
-      planeAnimation.current = {
-        startTime: 0,
-        startX: planeOffsetX + scrollY,
-      };
+      if (SCAV) {
+        setPlaneLanded(true);
+        setPlaneY(planeY);
+        planeIsLanded.current = true;
+        planeAnimation.current = {
+          startTime: 0,
+          startX: planeOffsetX + scrollY,
+        };
+      } else {
+        setPlaneY(30);
+        setPlaneX();
+        setPlaneOffsetX(0);
+        setPlaneLanded(false);
+      }
     }
   }
 
@@ -152,13 +159,15 @@ const LandingFrame = () => {
           <br />
           Waffle Paradise!
         </div>
-        <button
-          onClick={() => setShowWren(true)}
-          onKeyUp={() => setShowWren(true)}
-          className="absolute right-[6.45vw] top-[13.9vw] cursor-default hidden md:block"
-        >
-          <img src="/images/scav/lax.png" alt="lax guy" className="w-[0.8vw]" />
-        </button>
+        {SCAV && (
+          <button
+            onClick={() => setShowWren(SCAV)}
+            onKeyUp={() => setShowWren(SCAV)}
+            className="absolute right-[6.45vw] top-[13.9vw] cursor-default hidden md:block"
+          >
+            <img src="/images/scav/lax.png" alt="lax guy" className="w-[0.8vw]" />
+          </button>
+        )}
       </div>
 
       <div
@@ -186,7 +195,7 @@ const LandingFrame = () => {
           <button
             className="absolute right-1/2"
             onClick={() => {
-              setShowNote(true);
+              setShowNote(SCAV);
             }}
           >
             <img src="/images/scav/note.svg" alt="Scavenger Hunt Note" className="w-10" id="lf-note" />
@@ -204,7 +213,7 @@ const LandingFrame = () => {
           style={{ left: scrollY + planeOffsetX + 'px', top: planeY + 'px' }}
         />
       </DraggableCore>
-      {showNote && (
+      {SCAV && showNote && (
         <Modal className="lf-note-modal">
           <div className="relative bg-white/[80%] p-8 rounded-[1.5vw] h-[70%] w-[60%] flex justify-center items-center">
             {/* <img src="/images/scav/notePaper.svg" alt="" className="h-[90vh]" /> */}
@@ -222,7 +231,7 @@ const LandingFrame = () => {
           </div>
         </Modal>
       )}
-      {showWren && (
+      {SCAV && showWren && (
         <Modal className="lf-note-modal">
           <div className="relative w-[70vh] h-[60vh] bg-white rounded-[2vh] flex flex-col justify-between p-8 items-center">
             {/* close button */}
