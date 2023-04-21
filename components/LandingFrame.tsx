@@ -137,9 +137,11 @@ const LandingFrame = () => {
           WaffleHacks 2023
         </span>
         <BoardingPass />
-        <Button disabled className="mt-8" variant="lg">
-          Your Ticket - Coming Soon
-        </Button>
+        <a href="https://apply.wafflehacks.org/" target="_blank" rel="noreferrer">
+          <Button className="mt-8" variant="lg">
+            Your Ticket
+          </Button>
+        </a>
       </div>
       {/* travel to waffle paradise */}
       <div className="md:flex-grow md:flex-grow-0 md:w-[37%] flex flex-col items-center md:pt-[10vw] relative px-8 md:px-0 pb-8 md:pb-0">

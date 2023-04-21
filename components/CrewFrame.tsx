@@ -153,16 +153,6 @@ const CrewFrame = () => {
             </span>
           </div>
         </SwiperSlide>
-
-        {/* Nishka */}
-        <SwiperSlide>
-          <div className="flex flex-col items-center w-44">
-            <img src="/images/crew/Nishka.png" alt="Nishka" className="w-36" />
-            <span className="text-center">
-              <b>Nishka</b>
-            </span>
-          </div>
-        </SwiperSlide>
       </Swiper>
     </div>
   );
