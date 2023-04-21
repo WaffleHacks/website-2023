@@ -34,9 +34,9 @@ const SponsorsFrame = () => {
 
         <div id="applynow" className="mt-12 flex flex-col items-center text-3xl">
           <span>Interested? Then join us in Waffle Paradise!</span>
-          <Button disabled className="text-2xl mt-4">
-            Coming Soon...
-          </Button>
+          <a href="https://apply.wafflehacks.org">
+            <Button className="text-2xl mt-4">Apply Now</Button>
+          </a>
         </div>
       </div>
     </div>
