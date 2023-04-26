@@ -16,14 +16,14 @@ const FaqFrame = () => {
       'How many people per team?',
       `A team should consist of a minimum of 1 person to a max of 4. There will only be 4 prizes distributed per team. You are free to choose whoever is going to be on your team either prior or during the day of the event. You are also free to work on your own.`,
     ],
-    ['When is the registration deadline?', `June 16th, by 11:59 PM (EST)`],
+    ['When is the registration deadline?', `June 22nd, by 11:59 PM (EST)`],
     [
       'Do I have to submit a project to join?',
       `Nope! You are free to attend any of our workshops and events if you would so choose to.`,
     ],
     [
       'What are the prize categories?',
-      `We have prizes for each of the four tracks, as well as two more: Best Hack for Cozy Theme UI/UX and Best Diversity &amp; Inclusion Hack! Check the [devpost](https://wffl.link/devpost) for more details!`,
+      `We have prizes for each of the four tracks, as well as 6 more: Best Beginner Hack, Best UI/UX, Diversity &amp; Inclusion Hack, Best Use of AI, Best Use of Data, and Best Use of Wolfram! Check the __[devpost](https://wffl.link/devpost)__ for more details!`,
     ],
     [
       'Any guidance for beginners?',
@@ -36,7 +36,7 @@ const FaqFrame = () => {
     ],
     [
       'I have more questions!',
-      `- If you have any questions or concerns, please feel free to email us at [operations@wafflehacks.org](mailto:operations@wafflehacks.org)
+      `- If you have any questions or concerns, please feel free to email us at __[operations@wafflehacks.org](mailto:operations@wafflehacks.org)__
 - If you have any questions or concerns during the event, you can always chat with us in person or in the Discord channel, and we will do our best to help you!`,
     ],
   ]);

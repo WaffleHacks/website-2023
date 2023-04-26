@@ -26,7 +26,9 @@ const Navbar = () => {
         style={{ maxWidth: '40rem' }}
       >
         <NavbarOptions />
-        <Button disabled>Coming Soon...</Button>
+        <a href="https://apply.wafflehacks.org/" target="_blank" rel="noreferrer">
+          <Button> Apply Now </Button>
+        </a>
       </div>
       <button className="flex items-center cursor-pointer md:hidden" onClick={() => setModalOpen(true)}>
         <Image src="/images/waffleMenu.svg" mimeType="image/svg+xml" alt="menu" className="w-6 mr-2" />

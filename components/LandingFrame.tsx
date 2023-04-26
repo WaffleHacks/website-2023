@@ -4,8 +4,11 @@ import { DraggableCore } from 'react-draggable';
 import Image from './Image';
 import { Button } from './InnerComponents/atoms';
 import BoardingPass from './InnerComponents/BoardingPass';
+import Modal from './InnerComponents/Modal';
+import WrenPoolDialogue from './InnerComponents/WrenPoolDialogue';
 
 const LandingFrame = () => {
+  const SCAV = false;
   const [scrollY, setScrollY] = useState(0);
   const [planeOffsetX, setPlaneOffsetX] = useState(0);
   const [planeY, setPlaneY] = useState(30);
@@ -17,6 +20,8 @@ const LandingFrame = () => {
     startX: 0,
   });
   const [showNoteIcon, setShowNoteIcon] = useState(false);
+  const [showNote, setShowNote] = useState(false);
+  const [showWren, setShowWren] = useState(false);
 
   function map(value: number, start1: number, stop1: number, start2: number, stop2: number) {
     return ((value - start1) / (stop1 - start1)) * (stop2 - start2) + start2;
@@ -25,7 +30,13 @@ const LandingFrame = () => {
   function setPlaneX() {
     let height = Math.max(document.body.scrollHeight, document.body.offsetHeight) - window.innerHeight;
     if (planeRef.current) {
-      setScrollY((window.scrollY * (window.innerWidth - planeRef.current.clientWidth)) / height);
+      let nextScroll = (window.scrollY * (window.innerWidth - planeRef.current.clientWidth)) / height;
+      // if (nextScroll < planeRef.current.offsetLeft) {
+      //   planeRef.current.style.transform = 'rotateY(180deg)';
+      // } else {
+      //   planeRef.current.style.transform = 'rotateY(0)';
+      // }
+      setScrollY(nextScroll);
     }
   }
 
@@ -80,6 +91,20 @@ const LandingFrame = () => {
         startX: 0,
       };
     } else {
+      if (SCAV) {
+        setPlaneLanded(true);
+        setPlaneY(planeY);
+        planeIsLanded.current = true;
+        planeAnimation.current = {
+          startTime: 0,
+          startX: planeOffsetX + scrollY,
+        };
+      } else {
+        setPlaneY(30);
+        setPlaneX();
+        setPlaneOffsetX(0);
+        setPlaneLanded(false);
+      }
     }
   }
 
@@ -113,9 +138,11 @@ const LandingFrame = () => {
           WaffleHacks 2023
         </span>
         <BoardingPass />
-        <Button disabled className="mt-8" variant="lg">
-          Your Ticket - Coming Soon
-        </Button>
+        <a href="https://apply.wafflehacks.org/" target="_blank" rel="noreferrer">
+          <Button className="mt-8" variant="lg">
+            Your Ticket
+          </Button>
+        </a>
       </div>
       {/* travel to waffle paradise */}
       <div className="md:flex-grow md:flex-grow-0 md:w-[37%] flex flex-col items-center md:pt-[10vw] relative px-8 md:px-0 pb-8 md:pb-0">
@@ -141,6 +168,15 @@ const LandingFrame = () => {
           <br />
           Waffle Paradise!
         </div>
+        {SCAV && (
+          <button
+            onClick={() => setShowWren(SCAV)}
+            onKeyUp={() => setShowWren(SCAV)}
+            className="absolute right-[6.45vw] top-[13.9vw] cursor-default hidden md:block"
+          >
+            <img src="/images/scav/lax.png" alt="lax guy" className="w-[0.8vw]" />
+          </button>
+        )}
       </div>
 
       <div
@@ -164,6 +200,16 @@ const LandingFrame = () => {
           <span>R</span>
         </div>
         <div className="border-white border-t-2 flex-grow border-dashed"></div>
+        {showNoteIcon && (
+          <button
+            className="absolute right-1/2"
+            onClick={() => {
+              setShowNote(SCAV);
+            }}
+          >
+            <img src="/images/scav/note.svg" alt="Scavenger Hunt Note" className="w-10" id="lf-note" />
+          </button>
+        )}
       </div>
       <DraggableCore onDrag={dragPlane} onStop={dropPlane}>
         <img
@@ -176,6 +222,42 @@ const LandingFrame = () => {
           style={{ left: scrollY + planeOffsetX + 'px', top: planeY + 'px' }}
         />
       </DraggableCore>
+      {SCAV && showNote && (
+        <Modal className="lf-note-modal">
+          <div className="relative bg-white/[80%] p-8 rounded-[1.5vw] h-[70%] w-[60%] flex justify-center items-center">
+            {/* <img src="/images/scav/notePaper.svg" alt="" className="h-[90vh]" /> */}
+            <img src="/images/scav/box.svg" alt="" className="w-[80%]" />
+
+            <div className="absolute top-[3vh] right-[3vh]">
+              <button
+                onClick={() => {
+                  setShowNote(false);
+                }}
+              >
+                <img src="/images/scav/noteClose.svg" alt="Close Note" className="h-[4vh]" />
+              </button>
+            </div>
+          </div>
+        </Modal>
+      )}
+      {SCAV && showWren && (
+        <Modal className="lf-note-modal">
+          <div className="relative w-[70vh] h-[60vh] bg-white rounded-[2vh] flex flex-col justify-between p-8 items-center">
+            {/* close button */}
+            <div className="absolute top-[1.9vh] right-[2.5vh]">
+              <button
+                onClick={() => {
+                  setShowWren(false);
+                }}
+              >
+                <img src="/images/scav/noteClose.svg" alt="Close Note" className="h-[4vh]" />
+              </button>
+            </div>
+
+            <WrenPoolDialogue />
+          </div>
+        </Modal>
+      )}
     </div>
   );
 };

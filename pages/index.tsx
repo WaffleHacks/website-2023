@@ -1,17 +1,25 @@
-import Footer from '@/components/Footer';
-import LandingFrame from '@/components/LandingFrame';
-import Navbar from '@/components/Navbar';
-import SEO from '@/components/SEO';
-import styles from '@/styles/Index.module.css';
+import AboutFrame from '../components/AboutFrame';
+import CalendarFrame from '../components/CalendarFrame';
+import CrewFrame from '../components/CrewFrame';
+import FaqFrame from '../components/FaqFrame';
+import Footer from '../components/Footer';
+import LandingFrame from '../components/LandingFrame';
+import Navbar from '../components/Navbar';
+import SponsorsFrame from '../components/SponsorsFrame';
+import TracksFrame from '../components/TracksFrame';
 
 export default function Home() {
   return (
-    <SEO>
-      <div className={styles.container}>
-        <Navbar />
-        <LandingFrame />
-        <Footer />
-      </div>
-    </SEO>
+    <div className="App">
+      <Navbar />
+      <LandingFrame />
+      <AboutFrame />
+      <TracksFrame />
+      <CalendarFrame />
+      <FaqFrame />
+      <CrewFrame />
+      <SponsorsFrame />
+      <Footer />
+    </div>
   );
 }

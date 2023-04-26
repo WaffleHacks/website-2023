@@ -25,24 +25,18 @@ const SponsorsFrame = () => {
             ))}
           </div>
           <span className="mt-8 block text-2xl md:text-3xl text-[#2258A1] font-semibold">FIRST CLASS</span>
-          <div>
-            <span>Sponsor Images</span>
-          </div>
+          <div>{/* <span>Sponsor Images</span> */}</div>
           <span className="mt-8 block text-2xl md:text-3xl text-[#2258A1] font-semibold">BUSINESS CLASS</span>
-          <div>
-            <span>Sponsor Images</span>
-          </div>
+          <div>{/* <span>Sponsor Images</span> */}</div>
           <span className="mt-8 block text-2xl md:text-3xl text-[#2258A1] font-semibold">ECONOMY</span>
-          <div>
-            <span>Sponsor Images</span>
-          </div>
+          <div>{/* <span>Sponsor Images</span> */}</div>
         </div>
 
         <div id="applynow" className="mt-12 flex flex-col items-center text-3xl">
           <span>Interested? Then join us in Waffle Paradise!</span>
-          <Button disabled className="text-2xl mt-4">
-            Coming Soon...
-          </Button>
+          <a href="https://apply.wafflehacks.org">
+            <Button className="text-2xl mt-4">Apply Now</Button>
+          </a>
         </div>
       </div>
     </div>

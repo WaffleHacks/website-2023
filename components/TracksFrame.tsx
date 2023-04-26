@@ -560,20 +560,19 @@ const ShortDesc = ({ desc, question, prize, holding, setHold }: ShortDescProps) 
     <span
       className={`track-desc ${
         holding ? 'track-desc-holding' : ''
-      } absolute w-[98.5%] bg-white/[80%] backdrop-blur-[3px] border-2 border-black border-dotted flex flex-col justify-end text-xl text-left md:text-sm lg:text-lg p-4 md:py-2 lg:py-4`}
+      } absolute w-[98.5%] bg-white/[80%] backdrop-blur-[3px] overflow-hidden border-2 border-black border-dotted flex flex-col justify-end text-xl text-left md:text-sm lg:text-lg p-4 md:py-2 lg:py-4`}
       style={{ maxHeight: '85%' }}
     >
-      {desc}
-      <br />
-      <br />
-      {/* {question}
-      <br />
-      <br /> */}
-      <div className="flex justify-between w-full">
-        <span>Prize: {prize}</span>
-        <button className="more-details text-xl cursor-pointer" onClick={() => setHold()}>
-          <b>{holding ? '< Less' : 'More >'}</b>
-        </button>
+      <div className="overflow-y-auto">
+        {desc}
+        <br />
+        <br />
+        <div className="flex justify-between w-full">
+          <span>Prize: {prize}</span>
+          <button className="more-details cursor-pointer hidden md:block" onClick={() => setHold()}>
+            <b>{holding ? '< Less' : 'More >'}</b>
+          </button>
+        </div>
       </div>
     </span>
   );
@@ -588,10 +587,10 @@ const LongDesc = ({ desc, show }: LongDescProps) => {
     <span
       className={`track-desc ${
         show ? 'track-long-desc-on' : ''
-      } absolute w-[98.5%] bg-white/[90%] backdrop-blur-[3px] border-2 border-black border-dotted flex flex-col justify-end items-center text-xl md:text-sm lg:text-lg p-4 md:py-2 lg:py-4`}
+      } absolute w-[98.5%] bg-white/[90%] backdrop-blur-[3px] overflow-hidden border-2 border-black border-dotted flex flex-col justify-end items-center text-xl md:text-sm lg:text-lg p-4 md:py-2 lg:py-4`}
       style={{ maxHeight: '85%' }}
     >
-      {desc}
+      <div className="overflow-y-auto">{desc}</div>
     </span>
   );
 };
@@ -653,9 +652,9 @@ const TracksFrame = () => {
             <ShortDesc
               desc="Innovative solutions are needed to end student food insecurity! By utilizing technology to connect students with resources, we can revamp campus dining and create sustainable food assistance programs. There are endless possibilities, and we're ready to help college and university students find affordable, nutritious meals."
               question="How can you connect people with more / better food?"
-              prize="Oven Mitts"
-              holding={holding[2]}
-              setHold={() => holdItem(2)}
+              prize="TBD"
+              holding={holding[0]}
+              setHold={() => holdItem(0)}
             />
           </TrackImg>
 
@@ -682,9 +681,9 @@ const TracksFrame = () => {
             <ShortDesc
               desc="In the Travel category, participants are challenged to create innovative and practical solutions for the travel industry, such as a new platform for booking or an app for helping travelers plan their trips. This track aims to revolutionize travel."
               question="Guiding question"
-              prize="something"
-              holding={holding[3]}
-              setHold={() => holdItem(3)}
+              prize="TBD"
+              holding={holding[1]}
+              setHold={() => holdItem(1)}
             />
           </TrackImg>
 
@@ -693,9 +692,9 @@ const TracksFrame = () => {
             <ShortDesc
               desc="You can submit any hack or solution that contributes to a better future, no matter where on the globe you are. We're excited to see how you support industrial, environmental, business, and any other applicable causes."
               question="What do you think can be made better about travelling?"
-              prize="Model Train Set"
-              holding={holding[0]}
-              setHold={() => holdItem(0)}
+              prize="TBD"
+              holding={holding[2]}
+              setHold={() => holdItem(2)}
             />
           </TrackImg>
 
@@ -718,13 +717,13 @@ const TracksFrame = () => {
           </div>
 
           {/* accessability image */}
-          <TrackImg name="Acessibility" src="/images/tracks/sustainabilityIsland.png" alt="" isIsland={true}>
+          <TrackImg name="Acessibility" src="/images/tracks/accessibility island.png" alt="" isIsland={true}>
             <ShortDesc
               desc="By creating innovative solutions for real-world challenges faced by people with disabilities, from developing apps for blind people to creating tools for the hard of hearing, we'll be able to change people's lives. Let's roll up our sleeves and make a difference in the world of digital accessibility!"
               question="something"
-              prize="yes"
-              holding={holding[1]}
-              setHold={() => holdItem(1)}
+              prize="TBD"
+              holding={holding[3]}
+              setHold={() => holdItem(3)}
             />
           </TrackImg>
         </div>
@@ -733,7 +732,7 @@ const TracksFrame = () => {
           {/* best beginner hack */}
           <SmallPrize
             name="Best Beginner Hack"
-            prize="Deoderant"
+            prize="TBD"
             desc="Your first time attending a hackathon or creating a hack? Then this track is for you! To be applicable for this track, at least half of your team must be first-time hackers. Any theme, any project, any proposal, or any design can be considered for this track. Projects will be evaluated based on creativity, usability, and technical complexity. Create your first project and learn while you're here!"
             isShowing={showLongDesc[4]}
             show={() => {
@@ -744,7 +743,7 @@ const TracksFrame = () => {
           {/* best ui/ux */}
           <SmallPrize
             name="Best UI/UX"
-            prize="Coloring Book"
+            prize="TBD"
             desc="Get ready to flex your design muscles and create the ultimate user-centered software product! Whether you're a seasoned designer or just starting out, this category is for anyone who is passionate about creating intuitive and engaging user experiences. You'll have the chance to come up with a brand new software product or give an existing one a fresh redesign, all while keeping in mind the needs and goals of the end user. Whether it's a mobile app, website, or something else entirely, the sky's the limit! Just make sure to consider factors like usability, aesthetics, and overall user satisfaction as you brainstorm and design. This category is open to designers, developers, and anyone else who is excited about UI/UX."
             isShowing={showLongDesc[5]}
             show={() => {
@@ -755,7 +754,7 @@ const TracksFrame = () => {
           {/* diversity in culture */}
           <SmallPrize
             name="Diversity In Culture"
-            prize="16KB Floppy Disk"
+            prize="TBD"
             desc="The Diversity and Inclusion track encourages  attendees to come together and work on projects that promote diversity, equity, and inclusion in the tech industry and beyond. By embracing and celebrating different cultures and backgrounds, we can create a more inclusive and innovative community. Teams in this track have the chance to develop solutions that address issues of diversity and inclusion, such as creating tools to promote equal access to education and employment opportunities for people of all cultures and backgrounds, or designing platforms that amplify underrepresented voices and perspectives. Participants have the chance to make a real impact on conversations about diversity and inclusion in tech. The winning projects in this track will be recognized for their efforts to promote diversity and inclusion. Come join us and be a part of creating a more inclusive and culturally rich community!"
             isShowing={showLongDesc[6]}
             show={() => {
@@ -766,7 +765,7 @@ const TracksFrame = () => {
           {/* best use of ai */}
           <SmallPrize
             name="Best Use of AI"
-            prize="Free Access to Google Assistant"
+            prize="TBD"
             desc="While we're all still wrapping our heads around the marvelous AI products that have come around in the last few years (months? weeks? days?), you can get started out actually building using them! You're free to use ChatGPT, DALL-E, GPT-3, Watson, or any other platform that you find interesting. This category is for people on their way to honing our newfound superpowers to make useful and fun products."
             isShowing={showLongDesc[7]}
             show={() => {
@@ -777,7 +776,7 @@ const TracksFrame = () => {
           {/* best use of data */}
           <SmallPrize
             name="Best Use of Data"
-            prize="Kaggle Dataset"
+            prize="TBD"
             desc="Data is the most powerful resource of our times, and there're uncountable cool things you can do with it! Get cracking with a cool data API on visualizations, analysis, and integrate it seamlessly into your product! Whether you're a Kaggle champion or you were just introduced to the fascinating world of Data Science, this category is for anyone that seeks creative solutions by using this incredible resource."
             isShowing={showLongDesc[8]}
             show={() => {
@@ -788,7 +787,7 @@ const TracksFrame = () => {
           {/* best use of wolfram */}
           <SmallPrize
             name="Best Use of Wolfram"
-            prize="Every Digit of 3^218 - 42"
+            prize="TBD"
             desc="Get ready to unleash the full power of Wolfram! This track allows you to show off your skills in cutting-edge computational tools and technologieis provided by Wolfram. You'll have the opportunity to work on projects that showcase the capabilities of powerful products such as Mathematica, Wolfram Alpha, and the Wolfram Language. Maybe you'll create a tool that helps researchers automate data analysis tasks. Or perhaps you'll create an app that uses natural language processing to understand and respond to user queries. Whatever your idea may be, our goal is to help you turn it into a reality that showcases the full potential of Wolfram's computational technologies. So come ready to innovate, create, and make a splash with Wolfram!"
             isShowing={showLongDesc[9]}
             show={() => {

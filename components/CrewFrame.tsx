@@ -22,12 +22,12 @@ const CrewFrame = () => {
         modules={[Mousewheel, Navigation]}
         className="mySwiper w-screen"
       >
-        {/* Jendy */}
+        {/* Miracle */}
         <SwiperSlide>
           <div className="flex flex-col items-center w-44">
-            <img src="/images/crew/Jendy.png" alt="Jendy" className="w-36" />
+            <img src="/images/crew/Miracle.png" alt="Miracle" className="w-36" />
             <span className="text-center">
-              <b>Jendy</b>
+              <b>Miracle</b>
             </span>
           </div>
         </SwiperSlide>
@@ -40,30 +40,30 @@ const CrewFrame = () => {
             </span>
           </div>
         </SwiperSlide>
-        {/* Miracle */}
+        {/* Jendy */}
         <SwiperSlide>
           <div className="flex flex-col items-center w-44">
-            <img src="/images/crew/Miracle.png" alt="Miracle" className="w-36" />
+            <img src="/images/crew/Jendy.png" alt="Jendy" className="w-36" />
             <span className="text-center">
-              <b>Miracle</b>
+              <b>Jendy</b>
             </span>
           </div>
         </SwiperSlide>
-        {/* Samihah */}
+        {/* Sammi */}
         <SwiperSlide>
           <div className="flex flex-col items-center w-44">
-            <img src="/images/crew/Samihah.png" alt="Samihah" className="w-36" />
+            <img src="/images/crew/Sammi.png" alt="Sammi" className="w-36" />
             <span className="text-center">
-              <b>Samihah</b>
+              <b>Sammi</b>
             </span>
           </div>
         </SwiperSlide>
-        {/* Alex */}
+        {/* Amara */}
         <SwiperSlide>
           <div className="flex flex-col items-center w-44 h-52">
-            <img src="/images/crew/Alex.png" alt="Alex" className="w-36" />
+            <img src="/images/crew/Amara.png" alt="Amara" className="w-36" />
             <span className="text-center">
-              <b>Alex</b>
+              <b>Amara</b>
             </span>
           </div>
         </SwiperSlide>
@@ -76,6 +76,24 @@ const CrewFrame = () => {
             </span>
           </div>
         </SwiperSlide>
+        {/* Arjun */}
+        <SwiperSlide>
+          <div className="flex flex-col items-center w-44">
+            <img src="/images/crew/Arjun.png" alt="Arjun" className="w-36" />
+            <span className="text-center">
+              <b>Arjun</b>
+            </span>
+          </div>
+        </SwiperSlide>
+        {/* Alex */}
+        <SwiperSlide>
+          <div className="flex flex-col items-center w-44">
+            <img src="/images/crew/Alex.png" alt="Alex" className="w-36" />
+            <span className="text-center">
+              <b>Alex</b>
+            </span>
+          </div>
+        </SwiperSlide>
         {/* Bisman */}
         <SwiperSlide>
           <div className="flex flex-col items-center w-44">
@@ -85,6 +103,7 @@ const CrewFrame = () => {
             </span>
           </div>
         </SwiperSlide>
+
         {/* Ethan */}
         <SwiperSlide>
           <div className="flex flex-col items-center w-44">
@@ -94,6 +113,7 @@ const CrewFrame = () => {
             </span>
           </div>
         </SwiperSlide>
+
         {/* Nathan */}
         <SwiperSlide>
           <div className="flex flex-col items-center w-44">
@@ -104,12 +124,32 @@ const CrewFrame = () => {
           </div>
         </SwiperSlide>
 
+        {/* Samihah */}
+        <SwiperSlide>
+          <div className="flex flex-col items-center w-44">
+            <img src="/images/crew/Samihah.png" alt="Samihah" className="w-36" />
+            <span className="text-center">
+              <b>Samihah</b>
+            </span>
+          </div>
+        </SwiperSlide>
+
         {/* Jasmine */}
         <SwiperSlide>
           <div className="flex flex-col items-center w-44">
             <img src="/images/crew/Jasmine.png" alt="Jasmine" className="w-36" />
             <span className="text-center">
               <b>Jasmine</b>
+            </span>
+          </div>
+        </SwiperSlide>
+
+        {/* Christina */}
+        <SwiperSlide>
+          <div className="flex flex-col items-center w-44">
+            <img src="/images/crew/Christina.png" alt="Christina" className="w-36" />
+            <span className="text-center">
+              <b>Christina</b>
             </span>
           </div>
         </SwiperSlide>

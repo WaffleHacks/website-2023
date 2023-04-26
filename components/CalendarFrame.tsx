@@ -18,17 +18,22 @@ const CalendarFrame = () => {
         name: 'Opening Ceremony',
         desc: 'Join us as we kick off WaffleHacks 2023!',
       },
-    ],
-    [
       {
-        time: '5:30 PM EST',
-        name: 'Event',
-        desc: 'No events scheduled yet :)',
+        time: 'TBD',
+        name: 'Events coming soon!',
+        desc: '',
       },
     ],
     [
       {
-        time: '5:30 PM EST',
+        time: 'TBD',
+        name: 'Events coming soon!',
+        desc: '',
+      },
+    ],
+    [
+      {
+        time: '5:00 PM EST',
         name: 'Closing Ceremony',
         desc: 'Join us as we celebrate all of your impressive projects!',
       },
