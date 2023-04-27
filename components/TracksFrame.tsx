@@ -717,7 +717,7 @@ const TracksFrame = () => {
           </div>
 
           {/* accessability image */}
-          <TrackImg name="Acessibility" src="/images/tracks/accessibility island.png" alt="" isIsland={true}>
+          <TrackImg name="Accessibility" src="/images/tracks/accessibility island.png" alt="" isIsland={true}>
             <ShortDesc
               desc="By creating innovative solutions for real-world challenges faced by people with disabilities, from developing apps for blind people to creating tools for the hard of hearing, we'll be able to change people's lives. Let's roll up our sleeves and make a difference in the world of digital accessibility!"
               question="something"
