@@ -1,19 +1,6 @@
 import { useState } from 'react';
 
-import DialogueBox from './DialogueBox';
-
-interface ButtonDesc {
-  text: JSX.Element;
-  classes: string;
-  linkTo: number;
-}
-
-interface DialogueBoxProps {
-  topimg: string;
-  imgAlt: string;
-  text: JSX.Element;
-  buttonOptions: ButtonDesc[];
-}
+import DialogueBox, { ButtonDesc, DialogueBoxProps } from './DialogueBox';
 
 interface DialogueSystemProps {
   dialogue: DialogueBoxProps[];

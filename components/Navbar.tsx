@@ -1,14 +1,24 @@
 import Link from 'next/link';
-import { useState } from 'react';
+import { useContext, useRef, useState } from 'react';
+import Draggable, { DraggableEvent } from 'react-draggable';
 
 import Image from '@/components/Image';
+import { ScavContext } from '@/pages';
 
 import { Button } from './InnerComponents/atoms';
 import ModalSide from './InnerComponents/ModalSide';
 import NavbarOptions from './NavbarOptions';
 
 const Navbar = () => {
+  const SCAV: any = useContext(ScavContext);
+
+  const MLHRef = useRef(null);
+
   const [modalOpen, setModalOpen] = useState(false);
+
+  function stopProp(e: DraggableEvent) {
+    e.stopPropagation();
+  }
 
   return (
     <div
@@ -38,21 +48,25 @@ const Navbar = () => {
       </ModalSide>
 
       {/* MLH Trust Badge */}
-      <div className="absolute h-full top-[100%] right-0 md:right-[50px] w-[10%] z-[-1]">
-        <a
-          id="mlh-trust-badge"
-          style={{ display: 'block', maxWidth: '100px', minWidth: '60px' }}
-          href="https://mlh.io/na?utm_source=na-hackathon&utm_medium=TrustBadge&utm_campaign=2023-season&utm_content=gray"
-          target="_blank"
-          rel="noreferrer"
-        >
-          <img
-            src="https://s3.amazonaws.com/logged-assets/trust-badge/2023/mlh-trust-badge-2023-gray.svg"
-            alt="Major League Hacking 2023 Hackathon Season"
-            style={{ width: '100%' }}
-          />
-        </a>
-      </div>
+      <Draggable nodeRef={MLHRef} axis="x" onStop={(e) => stopProp(e)} disabled={!SCAV.on}>
+        <div ref={MLHRef} className="absolute h-full top-[100%] right-0 md:right-[50px] w-[10%] z-[-1]">
+          <a
+            id="mlh-trust-badge"
+            style={{ display: 'block', maxWidth: '100px', minWidth: '60px' }}
+            href="https://mlh.io/na?utm_source=na-hackathon&utm_medium=TrustBadge&utm_campaign=2023-season&utm_content=gray"
+            target="_blank"
+            rel="noreferrer"
+            draggable={false}
+          >
+            <img
+              src="https://s3.amazonaws.com/logged-assets/trust-badge/2023/mlh-trust-badge-2023-gray.svg"
+              alt="Major League Hacking 2023 Hackathon Season"
+              style={{ width: '100%' }}
+              draggable={false}
+            />
+          </a>
+        </div>
+      </Draggable>
     </div>
   );
 };

@@ -1,7 +1,7 @@
 const BoardingPass = () => {
   let now = Date.now();
-  // make a date for June 17, 2022
-  let endDate = Date.parse(new Date(2023, 6, 23).toDateString());
+
+  let endDate = Date.parse(new Date(2023, 5, 23).toDateString());
   let timeLeft = endDate - now;
   let daysLeft = Math.max(0, Math.ceil(timeLeft / (1000 * 60 * 60 * 24)));
 

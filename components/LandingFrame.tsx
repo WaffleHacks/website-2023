@@ -1,5 +1,7 @@
-import { useEffect, useRef, useState } from 'react';
+import { useContext, useEffect, useRef, useState } from 'react';
 import { DraggableCore } from 'react-draggable';
+
+import { ScavContext } from '@/pages';
 
 import Image from './Image';
 import { Button } from './InnerComponents/atoms';
@@ -8,7 +10,7 @@ import Modal from './InnerComponents/Modal';
 import WrenPoolDialogue from './InnerComponents/WrenPoolDialogue';
 
 const LandingFrame = () => {
-  const SCAV = false;
+  const SCAV: any = useContext(ScavContext);
   const [scrollY, setScrollY] = useState(0);
   const [planeOffsetX, setPlaneOffsetX] = useState(0);
   const [planeY, setPlaneY] = useState(30);
@@ -91,7 +93,7 @@ const LandingFrame = () => {
         startX: 0,
       };
     } else {
-      if (SCAV) {
+      if (SCAV.on) {
         setPlaneLanded(true);
         setPlaneY(planeY);
         planeIsLanded.current = true;
@@ -146,13 +148,33 @@ const LandingFrame = () => {
       </div>
       {/* travel to waffle paradise */}
       <div className="md:flex-grow md:flex-grow-0 md:w-[37%] flex flex-col items-center md:pt-[10vw] relative px-8 md:px-0 pb-8 md:pb-0">
-        <Image
-          alt="islands"
-          src="/images/islands.png"
-          mimeType="image/png"
-          className="mt-4 md:ml-6 md:mt-0 md:w-11/12"
-          style={{ aspectRatio: 1 }}
-        />
+        <div className="relative mt-4 md:ml-[2.5vw] md:mt[0.25vw] md:mt-0 md:w-11/12">
+          <Image alt="islands" src="/images/islands.png" mimeType="image/png" className="" style={{ aspectRatio: 1 }} />
+
+          {SCAV.on && SCAV.path == 0 && (
+            <>
+              <button
+                onClick={() => setShowWren(SCAV.on)}
+                onKeyUp={() => setShowWren(SCAV.on)}
+                className="absolute right-[14%] top-[13%] cursor-default hidden md:block"
+              >
+                <img src="/images/scav/lax.png" alt="lax guy" className="w-[0.8vw]" />
+              </button>
+            </>
+          )}
+
+          {SCAV.on && SCAV.path == 2 && (
+            <>
+              <button
+                onClick={() => {}}
+                onKeyUp={() => {}}
+                className="absolute right-[8%] top-[27%] cursor-default hidden md:block"
+              >
+                <img src="/images/scav/wren house.png" alt="Wren's house" className="w-[4vw]" />
+              </button>
+            </>
+          )}
+        </div>
         <div
           className="absolute top-4 left-4 md:left-[-3vw] md:top-[5vw] rotate-[-10.35deg] px-12 py-4 rounded-lg text-center text-[#2258A1] font-bold"
           style={{
@@ -168,15 +190,6 @@ const LandingFrame = () => {
           <br />
           Waffle Paradise!
         </div>
-        {SCAV && (
-          <button
-            onClick={() => setShowWren(SCAV)}
-            onKeyUp={() => setShowWren(SCAV)}
-            className="absolute right-[6.45vw] top-[13.9vw] cursor-default hidden md:block"
-          >
-            <img src="/images/scav/lax.png" alt="lax guy" className="w-[0.8vw]" />
-          </button>
-        )}
       </div>
 
       <div
@@ -204,14 +217,14 @@ const LandingFrame = () => {
           <button
             className="absolute right-1/2"
             onClick={() => {
-              setShowNote(SCAV);
+              setShowNote(SCAV.on);
             }}
           >
             <img src="/images/scav/note.svg" alt="Scavenger Hunt Note" className="w-10" id="lf-note" />
           </button>
         )}
       </div>
-      <DraggableCore onDrag={dragPlane} onStop={dropPlane}>
+      <DraggableCore nodeRef={planeRef} onDrag={dragPlane} onStop={dropPlane}>
         <img
           id="nav-plane"
           src="/images/waffleairplane.png"
@@ -222,7 +235,7 @@ const LandingFrame = () => {
           style={{ left: scrollY + planeOffsetX + 'px', top: planeY + 'px' }}
         />
       </DraggableCore>
-      {SCAV && showNote && (
+      {SCAV.on && showNote && (
         <Modal className="lf-note-modal">
           <div className="relative bg-white/[80%] p-8 rounded-[1.5vw] h-[70%] w-[60%] flex justify-center items-center">
             {/* <img src="/images/scav/notePaper.svg" alt="" className="h-[90vh]" /> */}
@@ -240,7 +253,7 @@ const LandingFrame = () => {
           </div>
         </Modal>
       )}
-      {SCAV && showWren && (
+      {SCAV.on && showWren && (
         <Modal className="lf-note-modal">
           <div className="relative w-[70vh] h-[60vh] bg-white rounded-[2vh] flex flex-col justify-between p-8 items-center">
             {/* close button */}
@@ -254,7 +267,7 @@ const LandingFrame = () => {
               </button>
             </div>
 
-            <WrenPoolDialogue />
+            <WrenPoolDialogue close={() => setShowWren(false)} />
           </div>
         </Modal>
       )}
