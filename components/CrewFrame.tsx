@@ -4,6 +4,7 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 // Import Swiper styles
 import 'swiper/css';
 import 'swiper/css/pagination';
+import 'swiper/css/navigation';
 
 const CrewFrame = () => {
   return (
@@ -14,13 +15,13 @@ const CrewFrame = () => {
       <Swiper
         slidesPerView={'auto'}
         navigation={true}
-        mousewheel={true}
+        mousewheel={false}
         spaceBetween={5}
-        pagination={{
-          clickable: true,
-        }}
+        // pagination={{
+        //   clickable: true,
+        // }}
         modules={[Mousewheel, Navigation]}
-        className="mySwiper w-screen"
+        className="mySwiper w-full"
       >
         {/* Miracle */}
         <SwiperSlide>
