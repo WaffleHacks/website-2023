@@ -7,7 +7,7 @@ const SponsorsFrame = () => {
     ],
     first: [],
     business: [],
-    economy: [],
+    economy: [{ image: '/images/logos/bugsnag.png', link: 'https://www.bugsnag.com', name: 'BugSnag' }],
   };
 
   return (
@@ -29,7 +29,13 @@ const SponsorsFrame = () => {
           <span className="mt-8 block text-2xl md:text-3xl text-[#2258A1] font-semibold">BUSINESS CLASS</span>
           <div>{/* <span>Sponsor Images</span> */}</div>
           <span className="mt-8 block text-2xl md:text-3xl text-[#2258A1] font-semibold">ECONOMY</span>
-          <div>{/* <span>Sponsor Images</span> */}</div>
+          <div>
+            {sponsors.economy.map((sponsor, index) => (
+              <a key={'sponsor-pilot-' + index} href={sponsor.link} target="_blank" rel="noreferrer">
+                <img key={index} src={sponsor.image} alt={sponsor.name} className="h-16 mx-auto" />
+              </a>
+            ))}
+          </div>
         </div>
 
         <div id="applynow" className="mt-12 flex flex-col items-center text-3xl">
