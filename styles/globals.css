@@ -138,6 +138,36 @@ body {
   }
 }
 
+.speech-bubble {
+  background: #fff;
+  border-radius: 0.4rem;
+  box-shadow: 0 0 0.5em rgba(0, 0, 0, 0.6);
+}
+.speech-bubble::after {
+  content: '';
+  display: inline-block;
+  width: 1rem;
+  height: 1rem;
+  background: #fff;
+  position: absolute;
+  bottom: -0.5rem;
+  left: calc(100% - 0.5rem);
+  transform: rotate(-45deg);
+  clip-path: polygon(0 0, 100% 0, 50% 100%);
+}
+
+/* Chrome, Safari, Edge, Opera */
+.vault input::-webkit-outer-spin-button,
+.vault input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+.vault input[type=number] {
+  -moz-appearance: textfield;
+}
+
 
 @media (max-width: 768px) {
   .track-box:hover .track-desc {

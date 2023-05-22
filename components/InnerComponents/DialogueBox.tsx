@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import { JsxElement } from 'typescript';
 
 export interface ButtonDesc {
@@ -16,7 +17,11 @@ export interface DialogueBoxProps {
 }
 
 const DialogueBox = ({ topimg, imgAlt, text, buttonOptions, toNext, onStart }: DialogueBoxProps) => {
-  if (onStart) onStart();
+  useEffect(() => {
+    if (onStart) {
+      onStart();
+    }
+  }, [onStart]);
   return (
     <div className="flex flex-col justify-between items-center h-full w-full">
       <img src={topimg} className="w-4/6" alt={imgAlt} />

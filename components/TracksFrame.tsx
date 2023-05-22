@@ -1,5 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 
+import Image from './Image';
+
 function map(num: number, in_min: number, in_max: number, out_min: number, out_max: number) {
   return ((num - in_min) * (out_max - out_min)) / (in_max - in_min) + out_min;
 }
@@ -392,21 +394,10 @@ const BoatDisplay = () => {
     if (bbox) {
       boatLeft = map(boatLoc.x + 12.5, bbox.x, bbox.x + bbox.width, 0, 100);
     }
-    // let p = svgRef.current.createSVGPoint()
-    // p.x = boatLoc.x - 12.5;
-    // p.y = boatLoc.y - 12.5;
-    // console.log(p.matrixTransform(svgRef.current.getScreenCTM()));
   }
 
   return (
     <>
-      {/* <img
-          className="absolute h-[25%] z-10"
-          // href="/images/tracks/boat.svg"
-          // style={{ transform: `rotateY(${boatLoc.angle}deg)`, transformOrigin: 'center', transformBox: 'fill-box' }}
-          src="/images/tracks/canoe.svg" 
-          style={{ transform: `rotate(${boatLoc.angle}deg)`, transformOrigin: 'center', transformBox: 'fill-box', left: boatLeft+"%", top: (boatLoc.y - 12.5)+"%" }}
-        /> */}
       <svg ref={svgRef} viewBox="0 0 100 100" className="absolute w-full h-full">
         <path
           d={pathData}

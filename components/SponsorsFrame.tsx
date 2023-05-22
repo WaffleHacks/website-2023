@@ -1,3 +1,4 @@
+import Image from './Image';
 import { Button } from './InnerComponents/atoms';
 
 const SponsorsFrame = () => {
@@ -20,7 +21,7 @@ const SponsorsFrame = () => {
           <div>
             {sponsors.pilot.map((sponsor, index) => (
               <a key={'sponsor-pilot-' + index} href={sponsor.link} target="_blank" rel="noreferrer">
-                <img key={index} src={sponsor.image} alt={sponsor.name} className="h-28 mx-auto" />
+                <Image key={index} src={sponsor.image} alt={sponsor.name} className="h-28 mx-auto" />
               </a>
             ))}
           </div>
@@ -32,7 +33,7 @@ const SponsorsFrame = () => {
           <div>
             {sponsors.economy.map((sponsor, index) => (
               <a key={'sponsor-pilot-' + index} href={sponsor.link} target="_blank" rel="noreferrer">
-                <img key={index} src={sponsor.image} alt={sponsor.name} className="h-16 mx-auto" />
+                <Image key={index} src={sponsor.image} alt={sponsor.name} className="h-16 mx-auto" />
               </a>
             ))}
           </div>

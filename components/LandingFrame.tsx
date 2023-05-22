@@ -6,7 +6,9 @@ import { ScavContext } from '@/pages';
 import Image from './Image';
 import { Button } from './InnerComponents/atoms';
 import BoardingPass from './InnerComponents/BoardingPass';
+import CloseModalButton from './InnerComponents/CloseModalButton';
 import Modal from './InnerComponents/Modal';
+import WrenHouseDialog from './InnerComponents/WrenHouseDialog';
 import WrenPoolDialogue from './InnerComponents/WrenPoolDialogue';
 
 const LandingFrame = () => {
@@ -24,6 +26,7 @@ const LandingFrame = () => {
   const [showNoteIcon, setShowNoteIcon] = useState(false);
   const [showNote, setShowNote] = useState(false);
   const [showWren, setShowWren] = useState(false);
+  const [showHouse, setShowHouse] = useState(false);
 
   function map(value: number, start1: number, stop1: number, start2: number, stop2: number) {
     return ((value - start1) / (stop1 - start1)) * (stop2 - start2) + start2;
@@ -155,7 +158,6 @@ const LandingFrame = () => {
             <>
               <button
                 onClick={() => setShowWren(SCAV.on)}
-                onKeyUp={() => setShowWren(SCAV.on)}
                 className="absolute right-[14%] top-[13%] cursor-default hidden md:block"
               >
                 <img src="/images/scav/lax.png" alt="lax guy" className="w-[0.8vw]" />
@@ -166,8 +168,7 @@ const LandingFrame = () => {
           {SCAV.on && SCAV.path == 2 && (
             <>
               <button
-                onClick={() => {}}
-                onKeyUp={() => {}}
+                onClick={() => setShowHouse(true)}
                 className="absolute right-[8%] top-[27%] cursor-default hidden md:block"
               >
                 <img src="/images/scav/wren house.png" alt="Wren's house" className="w-[4vw]" />
@@ -213,7 +214,7 @@ const LandingFrame = () => {
           <span>R</span>
         </div>
         <div className="border-white border-t-2 flex-grow border-dashed"></div>
-        {showNoteIcon && (
+        {showNoteIcon && SCAV.path == 0 && (
           <button
             className="absolute right-1/2"
             onClick={() => {
@@ -235,21 +236,13 @@ const LandingFrame = () => {
           style={{ left: scrollY + planeOffsetX + 'px', top: planeY + 'px' }}
         />
       </DraggableCore>
+
+      {/* SCAV STUFF */}
       {SCAV.on && showNote && (
         <Modal className="lf-note-modal">
           <div className="relative bg-white/[80%] p-8 rounded-[1.5vw] h-[70%] w-[60%] flex justify-center items-center">
-            {/* <img src="/images/scav/notePaper.svg" alt="" className="h-[90vh]" /> */}
+            <CloseModalButton onClose={() => setShowNote(false)} />
             <img src="/images/scav/box.svg" alt="" className="w-[80%]" />
-
-            <div className="absolute top-[3vh] right-[3vh]">
-              <button
-                onClick={() => {
-                  setShowNote(false);
-                }}
-              >
-                <img src="/images/scav/noteClose.svg" alt="Close Note" className="h-[4vh]" />
-              </button>
-            </div>
           </div>
         </Modal>
       )}
@@ -257,17 +250,16 @@ const LandingFrame = () => {
         <Modal className="lf-note-modal">
           <div className="relative w-[70vh] h-[60vh] bg-white rounded-[2vh] flex flex-col justify-between p-8 items-center">
             {/* close button */}
-            <div className="absolute top-[1.9vh] right-[2.5vh]">
-              <button
-                onClick={() => {
-                  setShowWren(false);
-                }}
-              >
-                <img src="/images/scav/noteClose.svg" alt="Close Note" className="h-[4vh]" />
-              </button>
-            </div>
-
+            <CloseModalButton onClose={() => setShowWren(false)} />
             <WrenPoolDialogue close={() => setShowWren(false)} />
+          </div>
+        </Modal>
+      )}
+      {SCAV.on && showHouse && (
+        <Modal className="lf-note-modal">
+          <div className="relative w-10/12 h-10/12 rounded-xl overflow-hidden border-white border-4 ">
+            <CloseModalButton onClose={() => setShowHouse(false)} className="bg-white" />
+            <WrenHouseDialog />
           </div>
         </Modal>
       )}

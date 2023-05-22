@@ -1,6 +1,8 @@
 import { Mousewheel, Navigation, Pagination } from 'swiper';
 import { Swiper, SwiperSlide } from 'swiper/react';
 
+import Image from './Image';
+
 // Import Swiper styles
 import 'swiper/css';
 import 'swiper/css/pagination';
@@ -26,7 +28,7 @@ const CrewFrame = () => {
         {/* Miracle */}
         <SwiperSlide>
           <div className="flex flex-col items-center w-44">
-            <img src="/images/crew/Miracle.png" alt="Miracle" className="w-36" />
+            <Image src="/images/crew/Miracle.png" alt="Miracle" className="w-36" />
             <span className="text-center">
               <b>Miracle</b>
             </span>
@@ -35,7 +37,7 @@ const CrewFrame = () => {
         {/* Kevin */}
         <SwiperSlide>
           <div className="flex flex-col items-center w-44">
-            <img src="/images/crew/Kevin.png" alt="Kevin" className="w-36" />
+            <Image src="/images/crew/Kevin.png" alt="Kevin" className="w-36" />
             <span className="text-center">
               <b>Kevin</b>
             </span>
@@ -44,7 +46,7 @@ const CrewFrame = () => {
         {/* Jendy */}
         <SwiperSlide>
           <div className="flex flex-col items-center w-44">
-            <img src="/images/crew/Jendy.png" alt="Jendy" className="w-36" />
+            <Image src="/images/crew/Jendy.png" alt="Jendy" className="w-36" />
             <span className="text-center">
               <b>Jendy</b>
             </span>
@@ -53,7 +55,7 @@ const CrewFrame = () => {
         {/* Sammi */}
         <SwiperSlide>
           <div className="flex flex-col items-center w-44">
-            <img src="/images/crew/Sammi.png" alt="Sammi" className="w-36" />
+            <Image src="/images/crew/Sammi.png" alt="Sammi" className="w-36" />
             <span className="text-center">
               <b>Sammi</b>
             </span>
@@ -62,7 +64,7 @@ const CrewFrame = () => {
         {/* Amara */}
         <SwiperSlide>
           <div className="flex flex-col items-center w-44 h-52">
-            <img src="/images/crew/Amara.png" alt="Amara" className="w-36" />
+            <Image src="/images/crew/Amara.png" alt="Amara" className="w-36" />
             <span className="text-center">
               <b>Amara</b>
             </span>
@@ -71,7 +73,7 @@ const CrewFrame = () => {
         {/* Arthi */}
         <SwiperSlide>
           <div className="flex flex-col items-center w-44">
-            <img src="/images/crew/Arthi.png" alt="Arthi" className="w-36" />
+            <Image src="/images/crew/Arthi.png" alt="Arthi" className="w-36" />
             <span className="text-center">
               <b>Arthi</b>
             </span>
@@ -80,7 +82,7 @@ const CrewFrame = () => {
         {/* Arjun */}
         <SwiperSlide>
           <div className="flex flex-col items-center w-44">
-            <img src="/images/crew/Arjun.png" alt="Arjun" className="w-36" />
+            <Image src="/images/crew/Arjun.png" alt="Arjun" className="w-36" />
             <span className="text-center">
               <b>Arjun</b>
             </span>
@@ -89,7 +91,7 @@ const CrewFrame = () => {
         {/* Alex */}
         <SwiperSlide>
           <div className="flex flex-col items-center w-44">
-            <img src="/images/crew/Alex.png" alt="Alex" className="w-36" />
+            <Image src="/images/crew/Alex.png" alt="Alex" className="w-36" />
             <span className="text-center">
               <b>Alex</b>
             </span>
@@ -98,7 +100,7 @@ const CrewFrame = () => {
         {/* Bisman */}
         <SwiperSlide>
           <div className="flex flex-col items-center w-44">
-            <img src="/images/crew/Bisman.png" alt="Bisman" className="w-36" />
+            <Image src="/images/crew/Bisman.png" alt="Bisman" className="w-36" />
             <span className="text-center">
               <b>Bisman</b>
             </span>
@@ -108,7 +110,7 @@ const CrewFrame = () => {
         {/* Ethan */}
         <SwiperSlide>
           <div className="flex flex-col items-center w-44">
-            <img src="/images/crew/Ethan.png" alt="Ethan" className="w-36" />
+            <Image src="/images/crew/Ethan.png" alt="Ethan" className="w-36" />
             <span className="text-center">
               <b>Ethan</b>
             </span>
@@ -118,7 +120,7 @@ const CrewFrame = () => {
         {/* Nathan */}
         <SwiperSlide>
           <div className="flex flex-col items-center w-44">
-            <img src="/images/crew/Nathan.png" alt="Nathan" className="w-36" />
+            <Image src="/images/crew/Nathan.png" alt="Nathan" className="w-36" />
             <span className="text-center">
               <b>Nathan</b>
             </span>
@@ -128,7 +130,7 @@ const CrewFrame = () => {
         {/* Samihah */}
         <SwiperSlide>
           <div className="flex flex-col items-center w-44">
-            <img src="/images/crew/Samihah.png" alt="Samihah" className="w-36" />
+            <Image src="/images/crew/Samihah.png" alt="Samihah" className="w-36" />
             <span className="text-center">
               <b>Samihah</b>
             </span>
@@ -138,7 +140,7 @@ const CrewFrame = () => {
         {/* Jasmine */}
         <SwiperSlide>
           <div className="flex flex-col items-center w-44">
-            <img src="/images/crew/Jasmine.png" alt="Jasmine" className="w-36" />
+            <Image src="/images/crew/Jasmine.png" alt="Jasmine" className="w-36" />
             <span className="text-center">
               <b>Jasmine</b>
             </span>
@@ -148,7 +150,7 @@ const CrewFrame = () => {
         {/* Christina */}
         <SwiperSlide>
           <div className="flex flex-col items-center w-44">
-            <img src="/images/crew/Christina.png" alt="Christina" className="w-36" />
+            <Image src="/images/crew/Christina.png" alt="Christina" className="w-36" />
             <span className="text-center">
               <b>Christina</b>
             </span>

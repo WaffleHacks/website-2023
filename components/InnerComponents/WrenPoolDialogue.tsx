@@ -156,8 +156,8 @@ const WrenPoolDialogue = ({ close }: WrenPoolDialogueProps) => {
           <br />
           <br />
           <span className="text-lg">
-            And I&apos;ve learned - my recipe is hidden in a safe that takes 24 numbers to open. There&apos;yas no way
-            to crack it.
+            And I&apos;ve learned - my recipe is hidden in a safe that takes 24 numbers to open. There&apos;s no way to
+            crack it.
           </span>
         </>
       ),
@@ -220,6 +220,7 @@ const WrenPoolDialogue = ({ close }: WrenPoolDialogueProps) => {
       onStart: () => {
         SCAV.setPath(1);
         close();
+        console.log('closing');
       },
     },
 
