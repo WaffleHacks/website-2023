@@ -672,7 +672,7 @@ const TracksFrame = () => {
             <ShortDesc
               desc="In the Travel category, participants are challenged to create innovative and practical solutions for the travel industry, such as a new platform for booking or an app for helping travelers plan their trips. This track aims to revolutionize travel."
               question="Guiding question"
-              prize="TBD"
+              prize="MATEIN Travel Backpack"
               holding={holding[1]}
               setHold={() => holdItem(1)}
             />
@@ -683,7 +683,7 @@ const TracksFrame = () => {
             <ShortDesc
               desc="You can submit any hack or solution that contributes to a better future, no matter where on the globe you are. We're excited to see how you support industrial, environmental, business, and any other applicable causes."
               question="What do you think can be made better about travelling?"
-              prize="TBD"
+              prize="TILTOP Hydroponics Growing System"
               holding={holding[2]}
               setHold={() => holdItem(2)}
             />
@@ -712,7 +712,7 @@ const TracksFrame = () => {
             <ShortDesc
               desc="By creating innovative solutions for real-world challenges faced by people with disabilities, from developing apps for blind people to creating tools for the hard of hearing, we'll be able to change people's lives. Let's roll up our sleeves and make a difference in the world of digital accessibility!"
               question="something"
-              prize="TBD"
+              prize="ELEGOO UNO Project Super Starter Kit"
               holding={holding[3]}
               setHold={() => holdItem(3)}
             />
@@ -734,7 +734,7 @@ const TracksFrame = () => {
           {/* best ui/ux */}
           <SmallPrize
             name="Best UI/UX"
-            prize="TBD"
+            prize="XPPen Graphic Drawing Tablet"
             desc="Get ready to flex your design muscles and create the ultimate user-centered software product! Whether you're a seasoned designer or just starting out, this category is for anyone who is passionate about creating intuitive and engaging user experiences. You'll have the chance to come up with a brand new software product or give an existing one a fresh redesign, all while keeping in mind the needs and goals of the end user. Whether it's a mobile app, website, or something else entirely, the sky's the limit! Just make sure to consider factors like usability, aesthetics, and overall user satisfaction as you brainstorm and design. This category is open to designers, developers, and anyone else who is excited about UI/UX."
             isShowing={showLongDesc[5]}
             show={() => {
@@ -767,7 +767,7 @@ const TracksFrame = () => {
           {/* best use of data */}
           <SmallPrize
             name="Best Use of Data"
-            prize="TBD"
+            prize="JuiceBox from Juice Analytics License"
             desc="Data is the most powerful resource of our times, and there're uncountable cool things you can do with it! Get cracking with a cool data API on visualizations, analysis, and integrate it seamlessly into your product! Whether you're a Kaggle champion or you were just introduced to the fascinating world of Data Science, this category is for anyone that seeks creative solutions by using this incredible resource."
             isShowing={showLongDesc[8]}
             show={() => {
@@ -776,7 +776,7 @@ const TracksFrame = () => {
           />
 
           {/* best use of wolfram */}
-          <SmallPrize
+          {/* <SmallPrize
             name="Best Use of Wolfram"
             prize="TBD"
             desc="Get ready to unleash the full power of Wolfram! This track allows you to show off your skills in cutting-edge computational tools and technologieis provided by Wolfram. You'll have the opportunity to work on projects that showcase the capabilities of powerful products such as Mathematica, Wolfram Alpha, and the Wolfram Language. Maybe you'll create a tool that helps researchers automate data analysis tasks. Or perhaps you'll create an app that uses natural language processing to understand and respond to user queries. Whatever your idea may be, our goal is to help you turn it into a reality that showcases the full potential of Wolfram's computational technologies. So come ready to innovate, create, and make a splash with Wolfram!"
@@ -784,7 +784,7 @@ const TracksFrame = () => {
             show={() => {
               setShowLongDesc(showLongDesc.map((val, ind) => (ind == 9 ? !val : val)));
             }}
-          />
+          /> */}
         </div>
       </div>
     </div>

@@ -165,7 +165,7 @@ const WrenPoolDialogue = ({ close }: WrenPoolDialogueProps) => {
         {
           text: (
             <>
-              <span>Good stuff. It&apos;s beutiful out here.</span>
+              <span>Good stuff. It&apos;s beautiful out here.</span>
             </>
           ),
           classes: 'bg-white text-black w-1/2',

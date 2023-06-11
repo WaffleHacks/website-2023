@@ -108,7 +108,6 @@ const VaultDialog = ({ on, setOff }: VaultDialogProps) => {
           <br />
           <span>Take a screenshot and DM it to @Ethaniel in the discord!</span>
           <br />
-          <span>*show image*</span>
           <img src="/images/scav/recipe scroll.webp" alt="recipe" className="w-[50vw]" />
         </div>
       ) : (

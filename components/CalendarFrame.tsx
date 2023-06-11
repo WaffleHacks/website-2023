@@ -14,33 +14,157 @@ const CalendarFrame = () => {
   const [sections, setSections] = useState([
     [
       {
-        time: '5:30 PM EST',
+        time: '7 - 8 PM ET',
+        name: 'Finatic Workshop',
+        desc: '',
+      },
+      {
+        time: '8 - 9 PM ET',
+        name: 'Intro to Data Science',
+        desc: '',
+      },
+      {
+        time: '9 - 10:30 PM ET',
+        name: 'Intro to Computer Vision',
+        desc: '',
+      },
+    ],
+    [
+      {
+        time: '7 - 8 PM ET',
+        name: 'Data Visualization feat. Plotly Express',
+        desc: '',
+      },
+      {
+        time: '8 - 9 PM ET',
+        name: 'Database Workshop',
+        desc: '',
+      },
+      {
+        time: '9 - 10 PM ET',
+        name: 'Figma Workshop',
+        desc: '',
+      },
+      {
+        time: '10 - 11 PM ET',
+        name: 'Intro to Web Dev',
+        desc: '',
+      },
+    ],
+    [
+      {
+        time: '5 - 6 PM ET',
         name: 'Opening Ceremony',
         desc: 'Join us as we kick off WaffleHacks 2023!',
       },
       {
-        time: 'TBD',
-        name: 'Events coming soon!',
+        time: '6 - 7 PM ET',
+        name: 'Team Building Activities',
+        desc: '',
+      },
+      {
+        time: '7 - 8:30 PM ET',
+        name: 'Resume Workshop',
+        desc: '',
+      },
+      {
+        time: '11 PM - 12 AM ET',
+        name: 'Tetris Tournament',
         desc: '',
       },
     ],
     [
       {
-        time: 'TBD',
-        name: 'Events coming soon!',
+        time: '10 - 11 AM ET',
+        name: 'Fighting the Tech Bros Panel',
+        desc: '',
+      },
+      {
+        time: '11 AM - 12 PM ET',
+        name: 'Intro to DEI',
+        desc: '',
+      },
+      {
+        time: '12 - 1 PM ET',
+        name: 'BIPOC in Tech Panel',
+        desc: '',
+      },
+      {
+        time: '2 - 3 PM ET',
+        name: 'MLH Fun Activity',
+        desc: '',
+      },
+      {
+        time: '3 - 4 PM ET',
+        name: 'Grad School Tips and Tricks',
+        desc: '',
+      },
+      {
+        time: '4 - 5 PM ET',
+        name: 'Intro to .NET/C#',
+        desc: '',
+      },
+      {
+        time: '5 - 6 PM ET',
+        name: 'Intro to Python',
+        desc: '',
+      },
+      {
+        time: '6 - 7 PM ET',
+        name: 'Intro to Video Editing',
+        desc: '',
+      },
+      {
+        time: '8 - 9 PM ET',
+        name: 'Cloud Deployment Workshop',
+        desc: '',
+      },
+      {
+        time: '9 - 10 PM ET',
+        name: 'Computer Vision - Advanced',
         desc: '',
       },
     ],
     [
       {
-        time: '5:00 PM EST',
+        time: '10 AM ET',
+        name: 'Drawing/Picture Comp End',
+        desc: '',
+      },
+      {
+        time: '10:30 AM - 12 PM ET',
+        name: 'Devpost / Submission Helpline',
+        desc: '',
+      },
+      {
+        time: '12 PM ET',
+        name: 'Submission Deadline',
+        desc: '',
+      },
+      {
+        time: '12:30 - 2 PM ET',
+        name: 'Hackathon Portfolio Pipeline',
+        desc: '',
+      },
+      {
+        time: '2 - 3 PM ET',
+        name: 'Internship Panel',
+        desc: '',
+      },
+      {
+        time: '3 - 4 PM ET',
+        name: 'College Apps Panel',
+        desc: '',
+      },
+      {
+        time: '5 - 6 PM ET',
         name: 'Closing Ceremony',
         desc: 'Join us as we celebrate all of your impressive projects!',
       },
     ],
   ]);
   const [day, setDay] = useState(0);
-  const weekDays = ['Friday', 'Saturday', 'Sunday'];
+  const weekDays = ['Wed 6/21', 'Thurs 6/22', 'Fri 6/23', 'Sat 6/24', 'Sun 6/25'];
   return (
     <div id="calendar" className="bg-white p-8 md:text-left flex justify-center">
       <div className="block w-full" style={{ maxWidth: 'min(100vw, 80rem)' }}>

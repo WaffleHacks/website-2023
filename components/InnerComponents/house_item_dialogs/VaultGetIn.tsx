@@ -19,6 +19,7 @@ const VaultGetIn = ({ onCorrect }: VaultGetInProps) => {
 
   function focusNext(e: any) {
     let els: any = document.querySelectorAll('.vault .vault-input');
+    if (e.target.value.length < 1) return;
     for (let i = 0; i < els.length; i++) {
       if (els[i] === e.target && i < els.length - 1) {
         els[i + 1].focus();
