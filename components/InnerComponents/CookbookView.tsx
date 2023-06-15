@@ -46,7 +46,31 @@ const CookbookView = ({ back }: CookbookViewProps) => {
         &lt; Back
       </button>
 
-      <HTMLFlipBook width={window.innerWidth * 0.3} height={600} flippingTime={600} drawShadow={true} showCover={true}>
+      <HTMLFlipBook
+        width={window.innerWidth * 0.3}
+        height={600}
+        flippingTime={600}
+        drawShadow={true}
+        showCover={true}
+        className={''}
+        style={{}}
+        startPage={0}
+        size={'fixed'}
+        minWidth={0}
+        maxWidth={0}
+        minHeight={0}
+        maxHeight={0}
+        usePortrait={false}
+        startZIndex={0}
+        autoSize={true}
+        maxShadowOpacity={0}
+        mobileScrollSupport={true}
+        clickEventForward={true}
+        useMouseEvents={true}
+        swipeDistance={0}
+        showPageCorners={false}
+        disableFlipByClick={false}
+      >
         <div className="">
           <img src="/images/scav/cbcover.svg" alt="cookbook cover" className="w-full h-full absolute top-0 left-0" />
         </div>

@@ -33,6 +33,22 @@ const PassportView = () => {
         showCover={true}
         size={'fixed'}
         usePortrait={false}
+        className={''}
+        style={{}}
+        startPage={0}
+        minWidth={0}
+        maxWidth={0}
+        minHeight={0}
+        maxHeight={0}
+        startZIndex={0}
+        autoSize={true}
+        maxShadowOpacity={0}
+        mobileScrollSupport={true}
+        clickEventForward={true}
+        useMouseEvents={true}
+        swipeDistance={0}
+        showPageCorners={false}
+        disableFlipByClick={false}
       >
         <div className="">
           <img
