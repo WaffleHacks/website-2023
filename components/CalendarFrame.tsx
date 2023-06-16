@@ -11,7 +11,7 @@ const Arrow = ({ fill, svgProps }: ArrowProps) => (
 );
 
 const CalendarFrame = () => {
-  const [sections, setSections] = useState([
+  const sections = [
     [
       {
         time: '7 - 8 PM ET',
@@ -162,7 +162,8 @@ const CalendarFrame = () => {
         desc: 'Join us as we celebrate all of your impressive projects!',
       },
     ],
-  ]);
+  ];
+
   const [day, setDay] = useState(0);
   const weekDays = ['Wed 6/21', 'Thurs 6/22', 'Fri 6/23', 'Sat 6/24', 'Sun 6/25'];
   return (
@@ -179,22 +180,27 @@ const CalendarFrame = () => {
         >
           {/* top section with day */}
           <div className="h-24 w-full">
-            <div className="bg-white/50 p-4 inline-flex justify-center items-center">
-              <Arrow
-                fill={day == 0 ? '#0000005C' : '#000'}
-                svgProps={{
-                  className: 'inline-block h-6 rotate-180',
-                  onClick: () => setDay(Math.max(day - 1, 0)),
-                }}
-              />
+            <div className="bg-white/50 inline-flex justify-center items-center">
+              <button className="p-4" onClick={() => setDay(Math.max(day - 1, 0))}>
+                <Arrow
+                  fill={day == 0 ? '#0000005C' : '#000'}
+                  svgProps={{
+                    className: 'inline-block h-6 rotate-180',
+                  }}
+                />
+              </button>
+
               <span className="text-3xl mx-4">{weekDays[day]}</span>
-              <Arrow
-                fill={day == sections.length - 1 ? '#0000005C' : '#000'}
-                svgProps={{
-                  className: 'inline-block h-6',
-                  onClick: () => setDay(Math.min(day + 1, sections.length - 1)),
-                }}
-              />
+
+              <button className="p-4" onClick={() => setDay(Math.min(day + 1, sections.length - 1))}>
+                <Arrow
+                  fill={day == sections.length - 1 ? '#0000005C' : '#000'}
+                  svgProps={{
+                    className: 'inline-block h-6',
+                  }}
+                />
+              </button>
+
               {/* <span className="text-3xl">&gt;</span> */}
             </div>
           </div>

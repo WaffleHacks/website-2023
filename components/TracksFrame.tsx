@@ -1,7 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
 
-import Image from './Image';
-
 function map(num: number, in_min: number, in_max: number, out_min: number, out_max: number) {
   return ((num - in_min) * (out_max - out_min)) / (in_max - in_min) + out_min;
 }
@@ -574,9 +572,28 @@ interface LongDescProps {
   show: boolean;
 }
 const LongDesc = ({ desc, show }: LongDescProps) => {
+  const ref = useRef<HTMLSpanElement>(null);
+
+  useEffect(() => {
+    if (!ref.current) return;
+    var timeout: any = null;
+    if (show) {
+      ref.current.style.zIndex = '10';
+    } else {
+      timeout = setTimeout(() => {
+        if (ref.current == null) return;
+        ref.current.style.zIndex = '-5';
+      }, 500);
+    }
+
+    return () => {
+      if (timeout) clearTimeout(timeout);
+    };
+  }, [show]);
   return (
     <span
-      className={`track-desc ${
+      ref={ref}
+      className={`track-desc track-long-desc ${
         show ? 'track-long-desc-on' : ''
       } absolute w-[98.5%] bg-white/[90%] backdrop-blur-[3px] overflow-hidden border-2 border-black border-dotted flex flex-col justify-end items-center text-xl md:text-sm lg:text-lg p-4 md:py-2 lg:py-4`}
       style={{ maxHeight: '85%' }}
