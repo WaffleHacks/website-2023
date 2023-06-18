@@ -11,6 +11,7 @@ const VaultDialog = ({ on, setOff }: VaultDialogProps) => {
   const vaultDialog: any = useRef(null);
 
   const [correct, setCorrect] = useState(false);
+  const [timeFinished, setTiemFinished] = useState('');
   var canvas: any = useRef(null);
   var sparks: any = useRef([]);
   var timeSinceComplete = useRef(0);
@@ -35,7 +36,31 @@ const VaultDialog = ({ on, setOff }: VaultDialogProps) => {
   useEffect(() => {
     if (correct) {
       if (timeSinceComplete.current === 0) timeSinceComplete.current = Date.now();
-      requestAnimationFrame(showSparks);
+      // requestAnimationFrame(showSparks);
+      let timeCompleted = new Date(timeSinceComplete.current);
+      let weekdays = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+      let months = [
+        'January',
+        'February',
+        'March',
+        'April',
+        'May',
+        'June',
+        'July',
+        'August',
+        'September',
+        'October',
+        'November',
+        'December',
+      ];
+      let minutes = timeCompleted.getUTCMinutes() + '';
+      if (minutes.length == 1) minutes = '0' + minutes;
+      let seconds = timeCompleted.getUTCSeconds() + '';
+      if (seconds.length == 1) seconds = '0' + seconds;
+      let timeCompletedString = `${weekdays[timeCompleted.getUTCDay()]}, ${
+        months[timeCompleted.getUTCMonth()]
+      } ${timeCompleted.getUTCDate()} at ${timeCompleted.getUTCHours()}:${minutes}:${seconds} UTC`;
+      setTiemFinished(timeCompletedString);
 
       return () => {
         setCorrect(false);
@@ -105,6 +130,8 @@ const VaultDialog = ({ on, setOff }: VaultDialogProps) => {
         <div className="text-white text-center">
           <canvas id="complete-sparks" ref={canvas} className="absolute top-0 left-0 z-0 w-full h-full hidden"></canvas>
           <h1 className="text-2xl font-bold">YOU FOUND THE RECIPE!</h1>
+          <br />
+          <span>Finished on {timeFinished}</span>
           <br />
           <span>Take a screenshot and DM it to @Ethaniel in the discord!</span>
           <br />
