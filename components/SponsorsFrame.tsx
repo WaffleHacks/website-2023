@@ -8,7 +8,10 @@ const SponsorsFrame = () => {
     ],
     first: [],
     business: [],
-    economy: [{ image: '/images/logos/bugsnag.png', link: 'https://www.bugsnag.com', name: 'BugSnag' }],
+    economy: [
+      { image: '/images/logos/bugsnag.png', link: 'https://www.bugsnag.com', name: 'BugSnag' },
+      // { image: '/images/logos/quine.svg', link: 'https://www.quine.sh', name: 'Quine' },
+    ],
   };
 
   return (

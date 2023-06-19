@@ -83,12 +83,20 @@ body {
 .calendar-date {
   border-bottom: none;
   border-right: 2px solid black;
+  word-wrap: break-word;
 }
 .calendar-date.has-bottom {
   border-bottom: 2px solid black;
 }
-.calendar-date:nth-child(7n){
+.calendar-date:nth-child(4n){
   border-right: none;
+}
+.calendar-date a {
+  color: blue;
+}
+.calendar-date ul {
+    list-style-type: disc; 
+    list-style-position: inside; 
 }
 
 .track-island {
@@ -180,13 +188,13 @@ body {
     border: none;
     border-top: 2px solid black;
   }
-  .calendar-date:nth-child(7n){
+  .calendar-date:nth-child(4n){
     border-right: none;
   }
-  .calendar-date:nth-child(-n+7){
+  .calendar-date:nth-child(-n+4){
     border-bottom: none;
   }
-  .calendar-date:nth-last-child(-n+7){
+  .calendar-date:nth-last-child(-n+4){
     border-bottom: none;
   }
 }
