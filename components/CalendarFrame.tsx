@@ -123,7 +123,7 @@ const CalendarFrame = () => {
       },
       {
         time: '6 - 7 PM ET',
-        name: 'Intro to Video Editing',
+        name: 'Basics of DaVinci Resolve',
         summary: "Interested in video editing but don't know where or how to start?",
         desc: "Perhaps you want to make a YouTube channel or just want to learn how to create a video for WaffleHacks. Well then, join in on this workshop to learn the basics of DaVinci Resolve, a professional video editing application! You'll quickly learn that it is simple and fun, by the end you'll have the necessary skills at your fingertips to start creating videos. Please make sure to download DaVinci Resolve and the following video files before the workshop.",
       },
