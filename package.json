@@ -44,6 +44,7 @@
     "tailwindcss": "^3.2.4"
   },
   "engines": {
-    "node": "18.x"
+    "node": "18.x",
+    "yarn": "3.x"
   }
 }
