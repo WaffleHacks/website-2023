@@ -10,6 +10,11 @@ const SponsorsFrame = () => {
     business: [],
     economy: [
       { image: '/images/logos/bugsnag.png', link: 'https://www.bugsnag.com', name: 'BugSnag' },
+      {
+        image: '/images/logos/standoutstickers.png',
+        link: 'https://www.standoutstickers.com/',
+        name: 'Standout Stickers',
+      },
       // { image: '/images/logos/quine.svg', link: 'https://www.quine.sh', name: 'Quine' },
     ],
   };
