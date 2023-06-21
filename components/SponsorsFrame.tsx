@@ -16,7 +16,7 @@ const SponsorsFrame = () => {
         link: 'https://www.standoutstickers.com/',
         name: 'Standout Stickers',
       },
-      // { image: '/images/logos/quine.svg', link: 'https://www.quine.sh', name: 'Quine' },
+      { image: '/images/logos/quine.svg', link: 'https://www.quine.sh', name: 'Quine' },
     ],
   };
 
@@ -39,11 +39,13 @@ const SponsorsFrame = () => {
           <span className="mt-8 block text-2xl md:text-3xl text-[#2258A1] font-semibold">BUSINESS CLASS</span>
           <div>{/* <span>Sponsor Images</span> */}</div>
           <span className="mt-8 block text-2xl md:text-3xl text-[#2258A1] font-semibold">ECONOMY</span>
-          <div>
+          <div className="flex flex-col">
             {sponsors.economy.map((sponsor, index) => (
-              <a key={'sponsor-pilot-' + index} href={sponsor.link} target="_blank" rel="noreferrer">
-                <Image key={index} src={sponsor.image} alt={sponsor.name} className="h-16 mx-auto" />
-              </a>
+              <div key={'sponsor-pilot-' + index}>
+                <a href={sponsor.link} target="_blank" rel="noreferrer" className="inline-block">
+                  <Image key={index} src={sponsor.image} alt={sponsor.name} className="h-16 mx-auto inline" />
+                </a>
+              </div>
             ))}
           </div>
         </div>
