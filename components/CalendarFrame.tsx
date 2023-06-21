@@ -98,6 +98,12 @@ const CalendarFrame = () => {
         desc: 'With 35% of Black, Latine, and Asian Americans in tech, it is very clear we need more diversity in tech. Join us for a celebration of achievements and an honest conversation about what it means to be a person of color in tech.',
       },
       {
+        time: '1 - 1:30 PM ET',
+        name: 'Autonomous Vehicle Research Talk',
+        summary: '',
+        desc: '',
+      },
+      {
         time: '2 - 3 PM ET',
         name: 'MLH Fun Activity',
         summary: '',
