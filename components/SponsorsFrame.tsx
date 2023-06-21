@@ -5,6 +5,7 @@ const SponsorsFrame = () => {
   let sponsors = {
     pilot: [
       { image: '/images/logos/BDC_Logo.png', link: 'https://www.belmontdata.org/', name: 'Belmont Data Collaborative' },
+      { image: '/images/logos/wolfram.svg', link: 'https://www.wolfram.com/wolfram-one/', name: 'Wolfram' },
     ],
     first: [],
     business: [],
