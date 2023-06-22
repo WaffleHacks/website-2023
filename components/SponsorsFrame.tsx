@@ -7,7 +7,7 @@ const SponsorsFrame = () => {
       { image: '/images/logos/BDC_Logo.png', link: 'https://www.belmontdata.org/', name: 'Belmont Data Collaborative' },
       { image: '/images/logos/wolfram.svg', link: 'https://www.wolfram.com/wolfram-one/', name: 'Wolfram' },
     ],
-    first: [],
+    first: [{ image: '/images/logos/blueproton.png', link: 'https://blueproton.com/', name: 'Blue Proton' }],
     business: [],
     economy: [
       { image: '/images/logos/bugsnag.png', link: 'https://www.bugsnag.com', name: 'BugSnag' },
@@ -35,7 +35,14 @@ const SponsorsFrame = () => {
             ))}
           </div>
           <span className="mt-8 block text-2xl md:text-3xl text-[#2258A1] font-semibold">FIRST CLASS</span>
-          <div>{/* <span>Sponsor Images</span> */}</div>
+          <div>
+            {/* <span>Sponsor Images</span> */}
+            {sponsors.first.map((sponsor, index) => (
+              <a key={'sponsor-pilot-' + index} href={sponsor.link} target="_blank" rel="noreferrer">
+                <Image key={index} src={sponsor.image} alt={sponsor.name} className="h-24 mx-auto" />
+              </a>
+            ))}
+          </div>
           <span className="mt-8 block text-2xl md:text-3xl text-[#2258A1] font-semibold">BUSINESS CLASS</span>
           <div>{/* <span>Sponsor Images</span> */}</div>
           <span className="mt-8 block text-2xl md:text-3xl text-[#2258A1] font-semibold">ECONOMY</span>
