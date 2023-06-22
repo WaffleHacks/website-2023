@@ -67,8 +67,8 @@ const CalendarFrame = () => {
       {
         time: '8 - 9 PM ET',
         name: 'Intro to Web Dev',
-        summary: '',
-        desc: '',
+        summary: 'How do you make a website?',
+        desc: "Come join the maker of the WaffleHacks website as we show you how to approach making a website! We'll go over how to write and structure HTML, style it with CSS, and add interactivity with JavaScript.",
       },
 
       {
