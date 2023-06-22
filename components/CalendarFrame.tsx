@@ -28,6 +28,12 @@ const CalendarFrame = () => {
     ],
     [
       {
+        time: '5 - 5:30 PM EST',
+        name: 'Journey and Learnings as a Coder and Content Creator',
+        summary: 'How can you use coding and content creation to boost your career?',
+        desc: 'Discussing the start of his career into coding from a non-technical background, to working at some of the biggest Tech companies - Bap will speak about the value in creating content in the tech world and how that can skyrocket your career.',
+      },
+      {
         time: '7 - 8 PM ET',
         name: 'Data Visualization feat. Plotly Express',
         summary: 'What does it take to understand data?',
@@ -100,8 +106,9 @@ const CalendarFrame = () => {
       {
         time: '1 - 1:30 PM ET',
         name: 'Autonomous Vehicle Research Talk',
-        summary: '',
-        desc: '',
+        summary:
+          'Interested in how autonomous vehicle research has been advancing and how safety can always remain a top priority?',
+        desc: 'In this talk, we will be discussing the components of autonomous vehicles, how these components differ in publicly available cars and in research, and the difficulties in conducting research in this field. We will then go in depth in one of the ways research projects can be conducted with the MiniCity environment and discuss some work that has already been done with this setup. If you are interested in one of the ways computer science combines with physical hardware, be sure to attend this talk!',
       },
       {
         time: '2 - 3 PM ET',
