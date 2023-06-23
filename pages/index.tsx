@@ -20,7 +20,7 @@ export default function Home() {
   const [path, setPath] = useState(0);
 
   return (
-    <ScavContext.Provider value={{ on: false, path, setPath }}>
+    <ScavContext.Provider value={{ on: true, path, setPath }}>
       <div className="App">
         <Navbar />
         <LandingFrame />
