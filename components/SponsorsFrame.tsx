@@ -38,8 +38,8 @@ const SponsorsFrame = () => {
           <div>
             {/* <span>Sponsor Images</span> */}
             {sponsors.first.map((sponsor, index) => (
-              <a key={'sponsor-pilot-' + index} href={sponsor.link} target="_blank" rel="noreferrer">
-                <Image key={index} src={sponsor.image} alt={sponsor.name} className="h-24 mx-auto" />
+              <a key={'sponsor-first-' + index} href={sponsor.link} target="_blank" rel="noreferrer">
+                <Image key={index} src={sponsor.image} alt={sponsor.name} className="h-32 mx-auto" />
               </a>
             ))}
           </div>
@@ -48,7 +48,7 @@ const SponsorsFrame = () => {
           <span className="mt-8 block text-2xl md:text-3xl text-[#2258A1] font-semibold">ECONOMY</span>
           <div className="flex flex-col">
             {sponsors.economy.map((sponsor, index) => (
-              <div key={'sponsor-pilot-' + index}>
+              <div key={'sponsor-econ-' + index}>
                 <a href={sponsor.link} target="_blank" rel="noreferrer" className="inline-block">
                   <Image key={index} src={sponsor.image} alt={sponsor.name} className="h-16 mx-auto inline" />
                 </a>
