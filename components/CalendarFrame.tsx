@@ -146,9 +146,14 @@ const CalendarFrame = () => {
         summary: '',
         desc: '',
       },
-
       {
-        time: '10 PM - 11 PM ET',
+        time: '9 - 10:30 PM ET',
+        name: 'Fundamentals of Image Processing with OpenCV',
+        summary: '',
+        desc: '',
+      },
+      {
+        time: '10:30 PM - 11:30 PM ET',
         name: 'Tetris Tournament',
         summary: '',
         desc: 'Join us for a fun time playing Tetris!',
