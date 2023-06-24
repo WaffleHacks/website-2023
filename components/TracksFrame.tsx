@@ -660,7 +660,7 @@ const TracksFrame = () => {
             <ShortDesc
               desc="Innovative solutions are needed to end student food insecurity! By utilizing technology to connect students with resources, we can revamp campus dining and create sustainable food assistance programs. There are endless possibilities, and we're ready to help college and university students find affordable, nutritious meals."
               question="How can you connect people with more / better food?"
-              prize="TBD"
+              prize="Dezin Electric Hot Pot, 1 yr subscription to Wolfram|One and Wolfram|Alpha Pro"
               holding={holding[0]}
               setHold={() => holdItem(0)}
             />
@@ -671,7 +671,7 @@ const TracksFrame = () => {
             <TreeDisplay />
             <LongDesc
               show={showLongDesc[0]}
-              desc="Are you passionate about making a sustainable impact? From a global scale to creating change in your own community; if that's your jam, then create a project that can contribute to a better and more sustainable future! This category is open to any hack or solution that supports an industrial, business, environmental, or any applicable cause."
+              desc="It's time to take action and help tackle the issue of student food insecurity head on! This category challenges you to come up with innovative solutions that will make it easier for college and university students to access affordable, nutritious meals. Whether it's through new food assistance programs, revamping campus dining options, or using technology to connect students with resources, the possibilities are endless. And don't forget to think sustainably! We want to create solutions that will have a lasting impact and make a real difference for students."
             />
           </div>
 
@@ -680,7 +680,7 @@ const TracksFrame = () => {
             <CloudDisplay />
             <LongDesc
               show={showLongDesc[1]}
-              desc="Get ready for a weekend of innovation and social impact at the accessibility track! This track is all about creating solutions to address specific, real-world challenges faced by people with disabilities. Whether you create an app to help blind or low vision individuals navigate unfamiliar environments, develop a browser extension to help people better navigate web content, or design a tool to allow people who are deaf or hard of hearing more easily and affordably access interpreting services, your goal is to make a real, tangible impact on the lives of people with disabilities. So come ready to roll up your sleeves and make a difference in the world of digital accessibility!"
+              desc="Looking for a change of scenery? This category challenges you to design and develop innovative, user-friendly, and practical solutions for the travel industry. Maybe you'll develop a new booking platform that streamlines the process of finding and reserving flights and hotels. Or maybe you'll create an app that helps travelers plan and optimize their itineraries, taking into account things like budget, duration of trip, and must-see attractions. There's infinite possibilities! Whatever your idea may be, participants in this track have the opportunity to work on projects that have the potential to revolutionize the way we travel. Come prepared to let your creativity roam free!"
             />
           </div>
 
@@ -689,7 +689,7 @@ const TracksFrame = () => {
             <ShortDesc
               desc="In the Travel category, participants are challenged to create innovative and practical solutions for the travel industry, such as a new platform for booking or an app for helping travelers plan their trips. This track aims to revolutionize travel."
               question="Guiding question"
-              prize="MATEIN Travel Backpack"
+              prize="MATEIN Travel Backpack, 1 yr subscription to Wolfram|One and Wolfram|Alpha Pro"
               holding={holding[1]}
               setHold={() => holdItem(1)}
             />
@@ -700,7 +700,7 @@ const TracksFrame = () => {
             <ShortDesc
               desc="You can submit any hack or solution that contributes to a better future, no matter where on the globe you are. We're excited to see how you support industrial, environmental, business, and any other applicable causes."
               question="What do you think can be made better about travelling?"
-              prize="TILTOP Hydroponics Growing System"
+              prize="TILTOP Hydroponics Growing System, 1 yr subscription to Wolfram|One and Wolfram|Alpha Pro"
               holding={holding[2]}
               setHold={() => holdItem(2)}
             />
@@ -711,7 +711,7 @@ const TracksFrame = () => {
             <BoatDisplay />
             <LongDesc
               show={showLongDesc[2]}
-              desc="It's time to take action and help tackle the issue of student food insecurity head on! This category challenges you to come up with innovative solutions that will make it easier for college and university students to access affordable, nutritious meals. Whether it's through new food assistance programs, revamping campus dining options, or using technology to connect students with resources, the possibilities are endless. And don't forget to think sustainably! We want to create solutions that will have a lasting impact and make a real difference for students."
+              desc="Are you passionate about making a sustainable impact? From a global scale to creating change in your own community; if that's your jam, then create a project that can contribute to a better and more sustainable future! This category is open to any hack or solution that supports an industrial, business, environmental, or any applicable cause."
             />
           </div>
 
@@ -720,7 +720,7 @@ const TracksFrame = () => {
             <RocketDisplay />
             <LongDesc
               show={holding[3]}
-              desc="Looking for a change of scenery? This category challenges you to design and develop innovative, user-friendly, and practical solutions for the travel industry. Maybe you'll develop a new booking platform that streamlines the process of finding and reserving flights and hotels. Or maybe you'll create an app that helps travelers plan and optimize their itineraries, taking into account things like budget, duration of trip, and must-see attractions. There's infinite possibilities! Whatever your idea may be, participants in this track have the opportunity to work on projects that have the potential to revolutionize the way we travel. Come prepared to let your creativity roam free!"
+              desc="Get ready for a weekend of innovation and social impact at the accessibility track! This track is all about creating solutions to address specific, real-world challenges faced by people with disabilities. Whether you create an app to help blind or low vision individuals navigate unfamiliar environments, develop a browser extension to help people better navigate web content, or design a tool to allow people who are deaf or hard of hearing more easily and affordably access interpreting services, your goal is to make a real, tangible impact on the lives of people with disabilities. So come ready to roll up your sleeves and make a difference in the world of digital accessibility!"
             />
           </div>
 
@@ -729,7 +729,7 @@ const TracksFrame = () => {
             <ShortDesc
               desc="By creating innovative solutions for real-world challenges faced by people with disabilities, from developing apps for blind people to creating tools for the hard of hearing, we'll be able to change people's lives. Let's roll up our sleeves and make a difference in the world of digital accessibility!"
               question="something"
-              prize="ELEGOO UNO Project Super Starter Kit"
+              prize="ELEGOO UNO Project Super Starter Kit, 1 yr subscription to Wolfram|One and Wolfram|Alpha Pro"
               holding={holding[3]}
               setHold={() => holdItem(3)}
             />
@@ -740,7 +740,7 @@ const TracksFrame = () => {
           {/* best beginner hack */}
           <SmallPrize
             name="Best Beginner Hack"
-            prize="TBD"
+            prize="Lego London Skyline"
             desc="Your first time attending a hackathon or creating a hack? Then this track is for you! To be applicable for this track, at least half of your team must be first-time hackers. Any theme, any project, any proposal, or any design can be considered for this track. Projects will be evaluated based on creativity, usability, and technical complexity. Create your first project and learn while you're here!"
             isShowing={showLongDesc[4]}
             show={() => {
@@ -762,7 +762,7 @@ const TracksFrame = () => {
           {/* diversity in culture */}
           <SmallPrize
             name="Diversity In Culture"
-            prize="TBD"
+            prize="Soprano Ukulele"
             desc="The Diversity and Inclusion track encourages  attendees to come together and work on projects that promote diversity, equity, and inclusion in the tech industry and beyond. By embracing and celebrating different cultures and backgrounds, we can create a more inclusive and innovative community. Teams in this track have the chance to develop solutions that address issues of diversity and inclusion, such as creating tools to promote equal access to education and employment opportunities for people of all cultures and backgrounds, or designing platforms that amplify underrepresented voices and perspectives. Participants have the chance to make a real impact on conversations about diversity and inclusion in tech. The winning projects in this track will be recognized for their efforts to promote diversity and inclusion. Come join us and be a part of creating a more inclusive and culturally rich community!"
             isShowing={showLongDesc[6]}
             show={() => {
@@ -773,7 +773,7 @@ const TracksFrame = () => {
           {/* best use of ai */}
           <SmallPrize
             name="Best Use of AI"
-            prize="TBD"
+            prize="ESP-EYE Microcontroller"
             desc="While we're all still wrapping our heads around the marvelous AI products that have come around in the last few years (months? weeks? days?), you can get started out actually building using them! You're free to use ChatGPT, DALL-E, GPT-3, Watson, or any other platform that you find interesting. This category is for people on their way to honing our newfound superpowers to make useful and fun products."
             isShowing={showLongDesc[7]}
             show={() => {
@@ -791,17 +791,6 @@ const TracksFrame = () => {
               setShowLongDesc(showLongDesc.map((val, ind) => (ind == 8 ? !val : val)));
             }}
           />
-
-          {/* best use of wolfram */}
-          {/* <SmallPrize
-            name="Best Use of Wolfram"
-            prize="TBD"
-            desc="Get ready to unleash the full power of Wolfram! This track allows you to show off your skills in cutting-edge computational tools and technologieis provided by Wolfram. You'll have the opportunity to work on projects that showcase the capabilities of powerful products such as Mathematica, Wolfram Alpha, and the Wolfram Language. Maybe you'll create a tool that helps researchers automate data analysis tasks. Or perhaps you'll create an app that uses natural language processing to understand and respond to user queries. Whatever your idea may be, our goal is to help you turn it into a reality that showcases the full potential of Wolfram's computational technologies. So come ready to innovate, create, and make a splash with Wolfram!"
-            isShowing={showLongDesc[9]}
-            show={() => {
-              setShowLongDesc(showLongDesc.map((val, ind) => (ind == 9 ? !val : val)));
-            }}
-          /> */}
         </div>
       </div>
     </div>
