@@ -1,10 +1,48 @@
+import { useEffect, useState } from "react";
+
 const BoardingPass = () => {
   let now = Date.now();
+  const [hoursLeft, setHoursLeft] = useState(0);
+  const [minutesLeft, setMinutesLeft] = useState(0);
+  const [secondsLeft, setSecondsLeft] = useState(0);
 
   let endDate = Date.parse(new Date(2023, 5, 23).toDateString());
-  let timeLeft = endDate - now;
-  let daysLeft = Math.max(0, Math.ceil(timeLeft / (1000 * 60 * 60 * 24)));
+  
+  let timeLeft = Math.max(0, endDate - now);
+  let daysLeft = Math.ceil(timeLeft / (1000 * 60 * 60 * 24));
 
+
+  function zeroPad(num: number) {
+    return num.toString().padStart(2, '0');
+  }
+
+  useEffect(() => {
+    function showtime(){
+      let subDate = Date.UTC(2023, 5, 25, 16, 0, 0);
+      let now = Date.now();
+      let subTimeLeft = Math.max(0, subDate - now);
+
+      let hoursLeft = Math.floor(subTimeLeft / (1000 * 60 * 60));
+      subTimeLeft -= hoursLeft * 60 * 60 * 1000;
+      let minutesLeft = Math.floor(subTimeLeft / (1000 * 60));
+      subTimeLeft -= minutesLeft * 60 * 1000;
+      let secondsLeft = Math.floor(subTimeLeft / 1000);
+
+      setHoursLeft(hoursLeft);
+      setMinutesLeft(minutesLeft);
+      setSecondsLeft(secondsLeft);
+    }
+    let interval = setInterval(() => {
+      showtime();
+    }, 1000);
+
+    showtime();
+
+    return () => {
+      clearInterval(interval);
+    }
+  }, []);
+  
   return (
     <>
       <svg
@@ -97,13 +135,13 @@ const BoardingPass = () => {
           </tspan>
         </text>
 
-        {/* Flight # */}
+        {/* boarding in */}
         <text fill="#3C2415" fontFamily="Lexend">
-          <tspan x="589" y="76" fontSize={24} fontWeight="500">
-            Boarding in
+          <tspan x="560" y="76" fontSize={24} fontWeight="500">
+            Submissions Due In
           </tspan>
-          <tspan x="585" y="130" fontSize={44} fontWeight="bold">
-            {daysLeft} Days
+          <tspan x="560" y="130" fontSize={44} fontWeight="bold">
+            {hoursLeft}:{zeroPad(minutesLeft)}:{zeroPad(secondsLeft)}
           </tspan>
         </text>
 
