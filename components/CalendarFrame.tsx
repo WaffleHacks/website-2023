@@ -34,12 +34,6 @@ const CalendarFrame = () => {
         desc: 'Discussing the start of his career into coding from a non-technical background, to working at some of the biggest Tech companies - Bap will speak about the value in creating content in the tech world and how that can skyrocket your career.',
       },
       {
-        time: '7 - 8 PM ET',
-        name: 'Data Visualization feat. Plotly Express',
-        summary: 'What does it take to understand data?',
-        desc: "Data visualization is an integral part of data. It lets us see data in aesthetically pleasing ways and helps us understand its importance. In this workshop, we will learn what data visualization is, and its significance, and create a visualizations investigating YouTube data. Prior to attending this workshop, participants should install the latest version of Python on their machine. Link to install can be found here. <a href='https://colab.research.google.com/drive/1JmlqjyIDBEUcyGlSLH0yob5Kq8nFWxsp?usp=sharing'>Link to Notebook</a> ",
-      },
-      {
         time: '8 - 9 PM ET',
         name: 'Database Workshop',
         summary: 'Need to store data for your project?',
@@ -141,6 +135,12 @@ const CalendarFrame = () => {
         desc: "Perhaps you want to make a YouTube channel or just want to learn how to create a video for WaffleHacks. Well then, join in on this workshop to learn the basics of DaVinci Resolve, a professional video editing application! You'll quickly learn that it is simple and fun, by the end you'll have the necessary skills at your fingertips to start creating videos. Please make sure to download DaVinci Resolve and the following video files before the workshop.",
       },
       {
+        time: '7 - 8 PM ET',
+        name: 'Data Visualization feat. Plotly Express',
+        summary: 'What does it take to understand data?',
+        desc: "Data visualization is an integral part of data. It lets us see data in aesthetically pleasing ways and helps us understand its importance. In this workshop, we will learn what data visualization is, and its significance, and create a visualizations investigating YouTube data. Prior to attending this workshop, participants should install the latest version of Python on their machine. Link to install can be found here. <a href='https://colab.research.google.com/drive/1JmlqjyIDBEUcyGlSLH0yob5Kq8nFWxsp?usp=sharing'>Link to Notebook</a> ",
+      },
+      {
         time: '8 - 9 PM ET',
         name: 'Cloud Deployment Workshop',
         summary: '',
@@ -189,12 +189,6 @@ const CalendarFrame = () => {
         name: 'Internship Panel',
         summary: 'Hear about internships!',
         desc: "One of the biggest concerns for high school and college students is figuring out how to land a successful job. But for many, one great first step is to land an internship! In this panel, we'll introduce interns who have gone through the application process and found success. Please come with questions! We will have a Q & A time at the end of the panel for you to ask your burning questions to our panelists!",
-      },
-      {
-        time: '3 - 4 PM ET',
-        name: 'College Apps Panel',
-        summary: 'Get helpful college tips from current students!',
-        desc: "After graduating high school, many students may choose to pursue higher education. The college application process can be confusing and stressful. In this panel, we'll introduce you to college students and alums who can provide invaluable insights, tips, and guidance as you begin the application process. There will be a Q&A at the end of the panel, so come prepared with questions!",
       },
       {
         time: '5 - 6 PM ET',
