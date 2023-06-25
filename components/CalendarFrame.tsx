@@ -161,12 +161,6 @@ const CalendarFrame = () => {
     ],
     [
       {
-        time: '10 AM ET',
-        name: 'Drawing/Picture Comp End',
-        summary: '',
-        desc: '',
-      },
-      {
         time: '10:30 AM - 12 PM ET',
         name: 'Devpost / Submission Helpline',
         summary: '',
@@ -174,7 +168,7 @@ const CalendarFrame = () => {
       },
       {
         time: '12 PM ET',
-        name: 'Submission Deadline',
+        name: 'Submission Deadline<br>Drawing/Picture Comp End',
         summary: '',
         desc: '',
       },
@@ -255,7 +249,7 @@ const CalendarFrame = () => {
                 {/* time */}
                 <span className="text-lg">{val.time}</span>
                 {/* title */}
-                <span className="text-lg font-bold mb-2">{val.name}</span>
+                <span className="text-lg font-bold mb-2" dangerouslySetInnerHTML={{ __html: val.name }}></span>
                 {/* Description */}
                 {val.summary ? (
                   <details>
