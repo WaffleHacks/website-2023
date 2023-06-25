@@ -388,7 +388,6 @@ const BoatDisplay = () => {
       bboxVal.current = svgRef.current.getBBox();
     }
     let bbox = bboxVal.current;
-    var boatLeft = 0;
     if (bbox) {
       boatLeft = map(boatLoc.x + 12.5, bbox.x, bbox.x + bbox.width, 0, 100);
     }
