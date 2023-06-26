@@ -13,7 +13,7 @@ const SponsorsFrame = () => {
       { image: '/images/logos/bugsnag.png', link: 'https://www.bugsnag.com', name: 'BugSnag' },
       {
         image: '/images/logos/standoutstickers.png',
-        link: 'https://www.standoutstickers.com/',
+        link: 'https://www.standoutstickers.com/?utm_campaign=events-league-organizers-spring2022&utm_medium=email&utm_source=customerio-zoho_creator_-_standout_sticker_intro',
         name: 'Standout Stickers',
       },
       { image: '/images/logos/quine.svg', link: 'https://www.quine.sh', name: 'Quine' },
